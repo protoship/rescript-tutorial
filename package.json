@@ -1,0 +1,18 @@
+{
+  "name": "learn-rescript",
+  "version": "0.0.1",
+  "description": "Execises for learning ReScript language",
+  "scripts": {
+    "build": "bsb -make-world",
+    "clean": "bsb -clean-world",
+    "start": "bsb -make-world -w"
+  },
+  "keywords": [
+    "rescript"
+  ],
+  "author": "Jacob Sherin <jacob@protoship.io>",
+  "license": "CC-BY-4.0",
+  "devDependencies": {
+    "bs-platform": "^8.3.3"
+  }
+}
