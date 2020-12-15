@@ -182,10 +182,57 @@ $ npm install -g pnpm
 - Unicode
 - Utils
 - Fetch
-- XmlHttpRequest `xhr`
+- XMLHttpRequest `xhr`
 - bs-json
 - maps & hash tables
 - cli parsing
 - dom, webapis, canvas
 - https://github.com/ostera/reason-design-patterns
 - Obj.Magic
+
+## DOM & other Web APIs
+
+- Global objects
+  - window
+  - alert
+  - navigator
+  - location
+- Document
+  - body, location, title
+  - getElementById, querySelector, querySelectorAll
+- Events
+  - Delegation, bubbling, capturing, browser default actions
+  - Clipboard
+  - Drag & Drop
+  - Fullscreen
+  - Keyboard
+  - Load/Unload
+  - Pointer/Touch
+- Styles & Classes
+  - getComputedStyle
+  - getBoundingClientRect
+  - scrolling elements, windows
+- Forms
+  - events like change, cut, copy, paste
+  - submit
+  - focus
+- Event Loop
+  - setTimeout/setInterval
+  - blocking the main thread
+  - requestAnimationFrame
+- Selection/Range
+  - boundary points (start, end)
+- Storage
+  - Cookies
+  - Session
+  - LocalStorage
+  - IndexedDB
+- Animation
+  - CSS - bezier curve
+  - Javascript using canvas
+- Regular expressions (just enough to be dangerous)
+- History
+  - moving back/forward
+  - go to specific point in history
+  - pushState
+  - replaceState
