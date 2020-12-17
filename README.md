@@ -1,3 +1,12 @@
+## ReScript
+
+- Understand the build step: ReScript -> JavaScript
+  - Fix a simple syntax error
+- Bootstrap
+  - Primitive types
+  - Bindings
+  - 
+
 ## Learn ReasonML Workshop
 
 - Introduction: code-compile cycle, fix syntax error
