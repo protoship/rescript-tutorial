@@ -5,7 +5,8 @@
   "scripts": {
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
-    "start": "bsb -make-world -w"
+    "start": "bsb -make-world -w",
+    "dev": "snowpack dev"
   },
   "keywords": [
     "rescript"
@@ -13,6 +14,7 @@
   "author": "Jacob Sherin <jacob@protoship.io>",
   "license": "CC-BY-4.0",
   "devDependencies": {
-    "bs-platform": "^8.3.3"
+    "bs-platform": "^8.3.3",
+    "snowpack": "^2.18.4"
   }
 }

@@ -1,3 +1,7 @@
+## FIXME
+
+- exports is not defined in browser console
+
 ## ReScript
 
 - Understand the build step: ReScript -> JavaScript
@@ -5,7 +9,7 @@
 - Bootstrap
   - Primitive types
   - Bindings
-  - 
+  -
 
 ## Learn ReasonML Workshop
 

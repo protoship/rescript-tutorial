@@ -1,5 +1,8 @@
 @bs.val external document: {..} = "document"
 
-document["body"]["innerHTML"] = "<h1>Hello, world!</h1>"
-document["body"]["style"]["backgroundColor"] = "#222831"
-document["body"]["style"]["color"] = "#eeeeee"
+let root = document["getElementById"]("root")
+root["innerHTML"] = "<h1>Hello, world!</h1>"
+
+let body = document["body"]
+body["style"]["backgroundColor"] = "#222831"
+body["style"]["color"] = "#eeeeee"

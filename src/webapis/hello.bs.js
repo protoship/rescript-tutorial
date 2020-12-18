@@ -2,10 +2,16 @@
 'use strict';
 
 
-document.body.innerHTML = "<h1>Hello, world!</h1>";
+var root = document.getElementById("root");
 
-document.body.style.backgroundColor = "#222831";
+root.innerHTML = "<h1>Hello, world!</h1>";
 
-document.body.style.color = "#eeeeee";
+var body = document.body;
 
-/*  Not a pure module */
+body.style.backgroundColor = "#222831";
+
+body.style.color = "#eeeeee";
+
+exports.root = root;
+exports.body = body;
+/* root Not a pure module */
