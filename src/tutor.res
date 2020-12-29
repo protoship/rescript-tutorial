@@ -1,4 +1,39 @@
 /*
+  Content order (tentative):
+  
+  1. Declare a variable (let-binding)
+*/
+
+/*
+  This is how you declare a variable.
+ */
+
+let greeting: string = "Hello, World!"
+
+/*
+  In many mainstream programming languages you can modify the value
+  in the `greeting` variable. It would look like this:
+  
+    ```
+    greeting = "Goodbye!"
+    ```
+  
+  The `greeting` variable is __mutable__.
+
+  In a functional programming language like ReScript the `greeting`
+  variable is __immutable__. You cannot therefore change the value
+  assigned to the variable `greeting`.
+
+  In a functional programming language like ReScript the string value
+  in the variable `greeting` cannot be changed once it has been
+  declared. 
+ */
+
+/*
+
+let firewood: string = `শিমুল কাঠই হোক বা বকুল কাঠই হোক, আগুনের চেহারাটা একই`
+Js.log(firewood)
+
 https://wiki.c2.com/?TenWordLine
 
 1. Building blocks
