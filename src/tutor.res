@@ -18,15 +18,40 @@ let greeting: string = "Hello, World!"
     greeting = "Goodbye!"
     ```
   
-  The `greeting` variable is __mutable__.
+  The `greeting` variable is __mutable__. So you can reassign the
+  contents of this variable any number of times in the code that
+  you author.
 
-  In a functional programming language like ReScript the `greeting`
-  variable is __immutable__. You cannot therefore change the value
-  assigned to the variable `greeting`.
+  This is not valid syntax in ReScript. The `greeting` variable
+  is __immutable__. It's value cannot be changed.
 
-  In a functional programming language like ReScript the string value
-  in the variable `greeting` cannot be changed once it has been
-  declared. 
+  In ReScript this syntax is known as let-binding. The line above 
+  binds the value "Hello, World!" to the name `greeting`. The
+  type of `greeting` is also manually annotated as belonging to the 
+  `string` (primitive) type.
+
+  The ReScript compiler will type-check the value to ensure that it
+  is indeed the same as the annotated type. When the type of the
+  binding does not match the type of the value, the code will not
+  compile.
+
+  Ex.1
+  Change the annotated type of `greeting` from string to char. This
+  will result in a compilation error. Read the error message generated
+  by the ReScript compiler. Fix the problem by changing back the
+  annotated type to match the value.
+
+  The ReScript compiler produces clear and helpful error messages. It
+  sometimes also recommends a fix for the problem. Under the hood there
+  is a powerful compiler which eliminates an entire category of bugs
+  or defects from every making it into production code. The ReScript 
+  compiler is your guide in writing high quality code. You will often
+  hear ReScript developers exclaim that if it compiles then it works
+  correctly!
+
+  > __Tip__: Develop a habit of reading the compiler error messages
+  to identify & fix the problem in your code. The more you do it, the 
+  easier this becomes and the better you get at it.
  */
 
 /*
