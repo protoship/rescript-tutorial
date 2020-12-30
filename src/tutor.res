@@ -18,9 +18,9 @@ let greeting: string = "Hello, World!"
     greeting = "Goodbye!"
     ```
   
-  The `greeting` variable is __mutable__. So you can reassign the
-  contents of this variable any number of times in the code that
-  you author.
+  The `greeting` variable is __mutable__. So you can change the
+  contents referenced by this variable any number of times in
+  the code that you author.
 
   This is not valid syntax in ReScript. The `greeting` variable
   is __immutable__. It's value cannot be changed.
@@ -29,6 +29,23 @@ let greeting: string = "Hello, World!"
   binds the value "Hello, World!" to the name `greeting`. The
   type of `greeting` is also manually annotated as belonging to the 
   `string` (primitive) type.
+
+  If you are used to the mutable style of programming, it will take
+  some adjusting to where the default is immutable values. This is
+  standard fare for functional programming languages, and has its
+  benefits.
+
+  When variables are mutable you have to write more guard clauses
+  in your code to assert and raise exceptions when invalid states
+  are entered during computation. This is known as enforcing
+  invariants in your code. In the presence of mutability reasoning
+  about state is lot more difficult, and it creates more opportunities
+  for bugs in the code.
+
+  With immutability as the default it becomes easier to reason
+  about the state because its constrained in how it can be changed.
+  As a consequence it requires less code to enforce your invariants.
+  The reason being that the compiler does this for you.
 
   The ReScript compiler will type-check the value to ensure that it
   is indeed the same as the annotated type. When the type of the
