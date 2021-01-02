@@ -1,4 +1,4 @@
-let greeting: string = "Hello, World!"
+let hello: string = "Hello, World!"
 
 /*
   This is known as a let-binding. It has the following form:
@@ -17,13 +17,13 @@ let greeting: string = "Hello, World!"
   -----------------------------------------------------------------------------
   Exercise 1 (easy)
   -----------------------------------------------------------------------------
-  Change the type of `greeting` to one of the other primitive types. 
+  Change the type of `hello` to one of the other primitive types. 
   
   This will result in a compilation error because of type mismatch. Inspect 
   the compiler error message.
   
   Once you have understood the error message fix it by changing the annotated 
-  type of `greeting` back to `string`.
+  type of `hello` back to `string`.
   -----------------------------------------------------------------------------
 
   Did you try changing the annotated type to either `int` or `float` in the
@@ -35,14 +35,20 @@ let greeting: string = "Hello, World!"
 
   Did you misspell `string` as `sting` or `stirgn`?
 
-  The compiler contain a rudimentary spell-checker which then provides you
+  The compiler contains a rudimentary spell-checker which then provides you
   with a hint.
 
-  The point is compiler errors don't have to be scary, cryptic or difficult
-  to understand. There is a new generation of compilers which provides clear
-  and helpful error messages by design. The quality of these error messages
-  signficantly improves the developer experience when working in languages
-  with such compilers.
+  Compiler errors do not have to scary, cryptic or difficult to understand.
+  Fortunately this is a thing of the past, and most new languages and their
+  compilers focus on delivering better messages to developers when a problem
+  is detected in the code.
+
+  Better error messages improves the developer experience.
+ */
+
+let autoTypeInfere = "th"
+
+/*
 
   --- immutability start ---
   In many mainstream programming languages you can modify the value
