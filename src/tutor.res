@@ -1,16 +1,34 @@
-/*
-  Content order (tentative):
-  
-  1. Declare a variable (let-binding)
-
----
-
-  This is how you declare a variable.
- */
-
 let greeting: string = "Hello, World!"
 
 /*
+  This is known as a let-binding. It has the following form:
+
+      let <binding-name>: <type> = <expression>
+
+  The ReScript compiler will "type check" if the value on the right-hand side 
+  matches the expected type. The code will fail to compile if there is a 
+  mismatch.
+
+  Other commonly used primitive types are - `int` (32-bit integers), `float`,
+  and `bool` (either `true` or `false`).
+
+  +----------------------------------------------------------------------------
+  | Exercise 1. (easy)
+  +----------------------------------------------------------------------------
+
+  Change the type of `greeting` to one of the other primitive types. This will
+  result in a compilation error because of type mismatch. Inspect the compiler
+  error message. 
+  
+  Once you have understood the error message fix the error by changing the 
+  annotated type of `greeting` back to the `string` type.
+
+  +----------------------------------------------------------------------------
+
+
+  The following are primitive types:
+  - 
+
   In ReScript this syntax is known as let-binding. The line above 
   binds the value "Hello, World!" to the name `greeting`. The
   type of `greeting` is also manually annotated as belonging to the 
@@ -76,7 +94,7 @@ let greeting: string = "Hello, World!"
   programs in this language without mutation...
 */
 
-let greeting: string = "Goodbye!"
+// let greeting: string = "Goodbye!"
 /*
   This binding `greeting` __shadows__ the earlier binding with the
   same name.  
