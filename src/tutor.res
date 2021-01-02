@@ -9,52 +9,40 @@ let greeting: string = "Hello, World!"
   matches the expected type. The code will fail to compile if there is a 
   mismatch.
 
-  Other commonly used primitive types are - `int` (32-bit integers), `float`,
-  and `bool` (either `true` or `false`).
+  Other commonly used primitive types are:
+    - `int` (32-bit integers), 
+    - `float`,
+    - `bool` (either `true` or `false`).
 
-  +----------------------------------------------------------------------------
-  | Exercise 1. (easy)
-  +----------------------------------------------------------------------------
-
-  Change the type of `greeting` to one of the other primitive types. This will
-  result in a compilation error because of type mismatch. Inspect the compiler
-  error message. 
+  -----------------------------------------------------------------------------
+  Exercise 1 (easy)
+  -----------------------------------------------------------------------------
+  Change the type of `greeting` to one of the other primitive types. 
   
-  Once you have understood the error message fix the error by changing the 
-  annotated type of `greeting` back to the `string` type.
+  This will result in a compilation error because of type mismatch. Inspect 
+  the compiler error message.
+  
+  Once you have understood the error message fix it by changing the annotated 
+  type of `greeting` back to `string`.
+  -----------------------------------------------------------------------------
 
-  +----------------------------------------------------------------------------
+  Did you try changing the annotated type to either `int` or `float` in the
+  exercise above?
 
+  The compiler error message includes a contextual recommendation. It points
+  you to a library function which can be used to convert a `string` to either
+  `int` or `float` types.
 
-  The following are primitive types:
-  - 
+  Did you misspell `string` as `sting` or `stirgn`?
 
-  In ReScript this syntax is known as let-binding. The line above 
-  binds the value "Hello, World!" to the name `greeting`. The
-  type of `greeting` is also manually annotated as belonging to the 
-  `string` (primitive) type.
+  The compiler contain a rudimentary spell-checker which then provides you
+  with a hint.
 
-  The ReScript compiler will type-check the value to ensure that it
-  is indeed the same as the annotated type. When the type of the
-  binding does not match the type of the value, the code will not
-  compile.
-
-  Ex.1
-  Change the annotated type of `greeting` from string to char. This
-  will result in a compilation error. Read the error message generated
-  by the ReScript compiler. Then revert your change to fix the error.
-
-  The ReScript compiler produces clear and helpful error messages. It
-  sometimes also recommends a fix for the problem. Under the hood there
-  is a powerful compiler which eliminates an entire category of bugs
-  or defects from every making it into production code. The ReScript 
-  compiler is your guide in writing high quality code. You will often
-  hear ReScript developers exclaim that if it compiles then it works
-  correctly!
-
-  > __Tip__: Develop a habit of reading the compiler error messages
-  to identify & fix the problem in your code. The more you do it, the 
-  easier this becomes and the better you get at it.
+  The point is compiler errors don't have to be scary, cryptic or difficult
+  to understand. There is a new generation of compilers which provides clear
+  and helpful error messages by design. The quality of these error messages
+  signficantly improves the developer experience when working in languages
+  with such compilers.
 
   --- immutability start ---
   In many mainstream programming languages you can modify the value
