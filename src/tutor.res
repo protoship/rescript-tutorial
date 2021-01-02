@@ -28,7 +28,7 @@ let hello: string = "Hello, World!"
 
   Did you try changing the annotated type to either `int` or `float` in the
   exercise above?
-
+  
   The compiler error message includes a contextual recommendation. It points
   you to a library function which can be used to convert a `string` to either
   `int` or `float` types.
@@ -40,10 +40,10 @@ let hello: string = "Hello, World!"
 
   Compiler errors do not have to scary, cryptic or difficult to understand.
   Fortunately this is a thing of the past, and most new languages and their
-  compilers focus on delivering better messages to developers when a problem
+  authors focus on delivering better messages to developers when a problem
   is detected in the code.
 
-  Better error messages improves the developer experience.
+  Better error messages definitely improves the developer experience.
  */
 
 let autoTypeInfere = "th"
