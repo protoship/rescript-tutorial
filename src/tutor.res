@@ -76,6 +76,26 @@ let goodbye = "Goodbye!"
   let-binding.
  */
 
+let favouriteColor = "red"
+// let favouriteColor = "blue"
+// let favouriteColor = "green"
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 3 (easy)
+  -----------------------------------------------------------------------------
+  Uncomment the two bindings with the name `favouriteColor`
+
+  Do you see the following compiler warning: 
+  Warning number 32: unused value favouriteColor?
+
+  To suppress the warning change any of the two bindings by prefixing it with
+  an underscore like this: favouriteColor -> _favouriteColor
+  -----------------------------------------------------------------------------
+
+  
+ */
+
 /*
   Newcomers / beginners to programming often can get their code working
   through writing code which is highly imperative and structured. This

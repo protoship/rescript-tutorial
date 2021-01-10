@@ -5,9 +5,12 @@ var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
 
+var favouriteColor = "red";
+
 export {
   hello ,
   goodbye ,
+  favouriteColor ,
   
 }
 /* No side effect */
