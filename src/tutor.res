@@ -59,14 +59,21 @@ let goodbye = "Goodbye!"
   -----------------------------------------------------------------------------
   Exercise 2 (easy)
   -----------------------------------------------------------------------------
-  Change the type of `goodbye` to one of the other primitive types. 
+  Change the type of `goodbye` to one of the other primitive types by adding
+  a manual type annotation. 
   
-  This will result in a compilation error because of type mismatch. Inspect 
-  the compiler error message.
-  
-  Once you have understood the error message fix it by changing the annotated 
-  type of `goodbye` back to `string`.
+  a) Hover over the `binding`. Is the type displayed the same as the manually
+  annotated one?
+
+  b) Hover over the red squiggly or wavy line under the value on the
+  right-hands side. You can see the compilation error summarized by the
+  plugin.
+
+  Fix the compilation error by removing the manual annotation.
   -----------------------------------------------------------------------------
+
+  The type of `goodbye` depends on the value on the right-hand side of the
+  let-binding.
  */
 
 /*
