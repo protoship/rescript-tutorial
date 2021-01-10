@@ -3,8 +3,11 @@
 
 var hello = "Hello, World!";
 
+var goodbye = "Goodbye!";
+
 export {
   hello ,
+  goodbye ,
   
 }
 /* No side effect */

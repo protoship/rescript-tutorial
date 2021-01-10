@@ -44,8 +44,29 @@ let hello: string = "Hello, World!"
   definitely improves the developer experience.
  */
 
-/*
+let goodbye = "Goodbye!"
 
+/*
+  You do not have to manually annotate the type for a binding. The ReScript
+  compiler is able to infer the type correctly in most situations. This is
+  the __type inference__ feature at work.
+
+  If you are using a recommended editor with the rescript plugin you'll be
+  able to hove over the binding to see the automatically inferred type.
+  
+  You'll see that the type of the binding `goodbye` is of `string`.
+
+  -----------------------------------------------------------------------------
+  Exercise 2 (easy)
+  -----------------------------------------------------------------------------
+  Change the type of `goodbye` to one of the other primitive types. 
+  
+  This will result in a compilation error because of type mismatch. Inspect 
+  the compiler error message.
+  
+  Once you have understood the error message fix it by changing the annotated 
+  type of `goodbye` back to `string`.
+  -----------------------------------------------------------------------------
  */
 
 /*
