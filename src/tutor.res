@@ -39,16 +39,45 @@ let hello: string = "Hello, World!"
   with a hint.
 
   Compiler errors do not have to scary, cryptic or difficult to understand.
-  Fortunately this is a thing of the past, and most new languages and their
-  authors focus on delivering better messages to developers when a problem
-  is detected in the code.
-
-  Better error messages definitely improves the developer experience.
+  Fortunately this is a thing of the past, and most new languages and
+  compiler authors understand the importance of better error messages. It
+  definitely improves the developer experience.
  */
 
-let autoTypeInfere = "th"
+/*
+
+ */
 
 /*
+  Newcomers / beginners to programming often can get their code working
+  through writing code which is highly imperative and structured. This
+  code will work, and in the small (under 500 SLOC) is straight forward
+  to read and understand. But they lack the abstractions or design
+  thinking necessary to scale the small program into a larger program
+  10x times its initial size. There are low hanging fruits in programming
+  in the small which can immediately improve the quality of the program
+  written by beginners.
+
+  These are few common patterns we witnessed in code written by beginner
+  programmers:
+
+    * functions without arguments, or return types
+    * interleaving I/O with computation
+    * using exceptions as control flow
+  
+  These are just the few we observed from reviewing code for a small
+  CRUD programming task. 
+
+  Intermediate/Experienced programmers have trouble picking up Typed-FP
+  because of the following reasons (subjective):
+
+    * Immutability by default (instead of mutability)
+    * Chaining function as a pipeline for transforming data
+    * Confused about parametric polymorphism
+    * Not reading the compiler error messages
+    * Not having a good mental model of how types are inferred
+    * Not using types as a tool for shaping data
+    * etc.
 
   --- immutability start ---
   In many mainstream programming languages you can modify the value

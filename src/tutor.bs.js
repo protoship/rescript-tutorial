@@ -3,11 +3,8 @@
 
 var hello = "Hello, World!";
 
-var autoTypeInfere = "th";
-
 export {
   hello ,
-  autoTypeInfere ,
   
 }
 /* No side effect */
