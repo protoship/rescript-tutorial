@@ -76,27 +76,39 @@ let goodbye = "Goodbye!"
   let-binding.
  */
 
-let favouriteColor = "red"
-// let favouriteColor = "blue"
-// let favouriteColor = "green"
+let runningTotal = 1 * 1
+// let runningTotal = 2 * 2
+// let runningTotal = 3 * 3
 
 /*
   -----------------------------------------------------------------------------
   Exercise 3 (easy)
   -----------------------------------------------------------------------------
-  Uncomment the two bindings with the name `favouriteColor`
-
-  Do you see the following compiler warning: 
-  Warning number 32: unused value favouriteColor?
-
-  To suppress the warning change any of the two bindings by prefixing it with
-  an underscore like this: favouriteColor -> _favouriteColor
+  Uncomment the two bindings with the same name `runningTotal`. You will see 
+  the compiler warning you about an unused variable. Modify the expression on
+  the right-hand side to add the previous value of `runningTotal` to it. Doing
+  this uses the binding and the compiler will not warn about an unused
+  variable.
   -----------------------------------------------------------------------------
-
-  
  */
 
 /*
+  -----------------------------------------------------------------------------
+  TODO :-
+  -----------------------------------------------------------------------------
+  Conversation w/Jasim regarding writing assigments,
+
+  Give a writing assigment where they have to search and learn about a concept
+  by finding good quality online references. The writing has to explain the
+  concept in a tutorial fashion. It should also include the references they
+  used for writing. References like wikipedia/medium set a low bar and will
+  not be accepted. They should rather link to the original source.
+
+  This encourages independent learning, and solidifying their understanding
+  of concepts through writing. Afterall writing is thinking!
+  -----------------------------------------------------------------------------
+
+
   Newcomers / beginners to programming often can get their code working
   through writing code which is highly imperative and structured. This
   code will work, and in the small (under 500 SLOC) is straight forward
