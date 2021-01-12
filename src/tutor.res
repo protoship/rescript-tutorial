@@ -90,6 +90,29 @@ let runningTotal = 1 * 1
   this uses the binding and the compiler will not warn about an unused
   variable.
   -----------------------------------------------------------------------------
+
+  The variables in ReScript are *immutable* by default. Once declared you
+  cannot change its value through assignment.
+
+  But you can *shadow* an existing binding by declaring it again.
+
+  This may feel overly restrictive when you are used to programming in other
+  languges where a variable is *mutable* by default. But what you are often
+  trying to express are the intermediate steps of a computation.
+
+  When you add the previous `runningTotal` value to get a new *immutable*
+  value for `runningTotal`, you are representing the intermediate steps
+  required to reach the final value of `runningTotal`. 
+  
+  The example above is trivial, but *immutable* by default prevents various
+  latent bugs in your code. In other languages writing *immutable* code
+  you incur a performance penalty. The ReScript compiler is able to perform
+  smart optimizations under the hood, that the generated JavaScript code
+  will not incur any performance penalty.
+
+  ReScript is not a *pure* language like Haskell/Elm/PureScript. Even though
+  *immutable* is the default, there is a different syntax for mutable
+  expressions. You will learn that later in this tutorial!
  */
 
 /*
@@ -106,6 +129,10 @@ let runningTotal = 1 * 1
 
   This encourages independent learning, and solidifying their understanding
   of concepts through writing. Afterall writing is thinking!
+
+  Ideas :-
+  1) Immutability vs Mutability
+  2) Pure vs Impure
   -----------------------------------------------------------------------------
 
 
