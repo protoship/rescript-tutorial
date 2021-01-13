@@ -115,6 +115,73 @@ let runningTotal = 1 * 1
   expressions. You will learn more about that later in this tutorial.
  */
 
+let sumOfInts = 1 + 2 + 3 + 4
+let sumOfFloats = 1. +. 2.2 +. 3.14
+let joinedStrings = "Hello, " ++ "World" ++ "!"
+
+/*
+  In the expressions above are adding together multiple integers, floats
+  strings. Depending on the type of the values you can guess what the
+  final value will be when the expression is evaluated.
+
+  You will notice that in ReScript you use a different operator, when the
+  type of the value changes. 
+  
+  To add integer values you use the `+` operator.
+  To add float values you use the `+.` operator.
+  To add string values you use the `++` operator.
+
+  In object-oriented languages you will have experience writing
+  expressions like:
+  
+    `1 + 2` 
+    
+  and 
+  
+    `"deep work" + " and " + "deliberate practice"`
+  
+  expecting them to just work. Those languages have support for a kind
+  of polymorphism known as *ad-hoc polymorphism*. The operator `+` is
+  polymorphic function which can be applied to arguments of different
+  types. 
+  
+  Some of these languages may also allow you to overload the `+` 
+  operator for your own custom types. You can use the same
+  name with different types. They can act in totally different ways
+  which is decided at compilation time, and it depends on the context -
+  which is the types of the values being applied to that polymorphic
+  function.
+
+  Ad-hoc polymorphism is not a feature of the ReScript/OCaml type
+  system.  
+
+  The ReScript compiler can therefore recognize when the programmer
+  makes a mistake in code. If you intended to add float type values
+  but supplied an integer, you have to explicitly cast the integer
+  to a float. This type of syntax may feel awkward when you get
+  started, but without it you'll encounter subtle bugs which are
+  difficult to track down.
+
+  In the long run, these tiny details add up and have a compounding
+  effect in writing programs which are safe - because once the code
+  compiles the type checker guarantees that a class of errors simply
+  do not exist in your code.  
+
+  -----------------------------------------------------------------------------
+  Exercise 4 (easy)
+  -----------------------------------------------------------------------------
+  Attempt mixing up the operators and the value types in the above bindings.
+  For example, change an integer value to a float like this `1` -> `1.`. Try
+  every combination you can.
+
+  See if you can slip one past the ReScript type checker!
+
+  Move on when you have convinced yourself that the ReScript compiler has got
+  your back :)
+  -----------------------------------------------------------------------------
+
+ */
+
 /*
   -----------------------------------------------------------------------------
   TODO :-
