@@ -112,7 +112,7 @@ let runningTotal = 1 * 1
 
   ReScript is not a *pure* language like Haskell/Elm/PureScript. Even though
   *immutable* is the default, there is a different syntax for mutable
-  expressions. You will learn that later in this tutorial!
+  expressions. You will learn more about that later in this tutorial.
  */
 
 /*
@@ -133,6 +133,15 @@ let runningTotal = 1 * 1
   Ideas :-
   1) Immutability vs Mutability
   2) Pure vs Impure
+
+  Decision :-
+  Writing is a skill which is necessary but difficult to learn. Good writing
+  is translating good thinking to paper. This requires significant time
+  and effort. When considering budgeting time for improving writing skills
+  vs. using that time for improving programming skills - the latter wins.
+  The desired outcome of this course is to push the the newbie programmer
+  to an intermediate programmer. This comes through deliberate practice
+  and putting in more hours.
   -----------------------------------------------------------------------------
 
 
