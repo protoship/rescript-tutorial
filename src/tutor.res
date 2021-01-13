@@ -180,6 +180,20 @@ let joinedStrings = "Hello, " ++ "World" ++ "!"
   your back :)
   -----------------------------------------------------------------------------
 
+  **Note regarding exercise 4**
+
+  The ReScript compiler error messages will include hints on the `Belt`
+  library functions like:
+  
+  - Belt.Float.toInt,
+  - Belt.Int.toFloat,
+  - Belt.Float.toString,
+  - Belt.Int.toString to name a few...
+
+  You can use these functions to explicitly convert a value from one type
+  to another. But before you can use them in code, we need to learn a few
+  other concepts. This will be covered later in the tutorial, and you will
+  revisit these functions.
  */
 
 /*
