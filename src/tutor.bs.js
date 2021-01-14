@@ -21,6 +21,12 @@ var sumOfInts = 10;
 
 var joinedStrings = "Hello, World!";
 
+var two = 2;
+
+var one = 1;
+
+var three = 3;
+
 export {
   hello ,
   goodbye ,
@@ -32,6 +38,9 @@ export {
   tagline ,
   book2 ,
   book ,
+  two ,
+  one ,
+  three ,
   
 }
 /* No side effect */
