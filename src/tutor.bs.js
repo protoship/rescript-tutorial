@@ -3,6 +3,14 @@
 
 var sumOfFloats = 1 + 2.2 + 3.14;
 
+var bookName = "Deep Work";
+
+var tagline = "Rules for Focused Success in a Distracted World";
+
+var book2 = "Real World OCaml: Functional programming for the masses";
+
+var book = "Deep Work: Rules for Focused Success in a Distracted World";
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -20,6 +28,10 @@ export {
   sumOfInts ,
   sumOfFloats ,
   joinedStrings ,
+  bookName ,
+  tagline ,
+  book2 ,
+  book ,
   
 }
 /* No side effect */
