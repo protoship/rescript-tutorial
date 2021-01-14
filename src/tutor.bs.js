@@ -19,10 +19,12 @@ function bookFormatToString(x) {
         return "Paperback";
     case /* KindleEdition */2 :
         return "Kindle Edition";
-    case /* Audible */3 :
-        return "Audible";
     
   }
+}
+
+function isElectronic(x) {
+  return x >= 2;
 }
 
 var hello = "Hello, World!";
@@ -59,6 +61,7 @@ export {
   three ,
   bookFormatToString ,
   bookFormat2 ,
+  isElectronic ,
   
 }
 /*  Not a pure module */

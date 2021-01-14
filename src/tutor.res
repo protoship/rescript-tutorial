@@ -291,7 +291,7 @@ type bookFormat =
   | Hardcover
   | Paperback
   | KindleEdition
-  | Audible
+// | Audible
 
 // let bookFormat: bookFormat = HardCover
 
@@ -309,11 +309,14 @@ let bookFormatToString = x =>
   | Hardcover => "Hardcover"
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
-  | Audible => "Audible"
+  // | Audible => "Audible"
   }
 /*
   TODO: explain function syntax with annotation for input arguments and
   the returned value
+
+  TODO: introduction to pattern matching syntax on variants
+  case analysis is exhaustive
 
   TODO: introduction to reading function type signatures 
         bookFormat => string
@@ -327,6 +330,32 @@ let bookFormat2 = bookFormatToString(KindleEdition)
 
   TODO: hover for types
  */
+
+let isElectronic = x =>
+  switch x {
+  | Hardcover
+  | Paperback => false
+  | KindleEdition => true
+  // | Audible => true
+  }
+
+isElectronic(Hardcover)
+isElectronic(KindleEdition)
+
+/*
+ Case analysis is exhaustive
+
+  -----------------------------------------------------------------------------
+  Exercise 2 (easy)
+  -----------------------------------------------------------------------------
+  Add a new constructor for audio books from Audible.
+
+  Follow compiler warnings, and handle the case for Audible. You'll need to
+  fix the code in two functions for all the warnings to go away.
+  -----------------------------------------------------------------------------
+
+  TODO: Make exhaustive case analysis a compiler error (instead of warning)?
+*/
 
 /*
   -----------------------------------------------------------------------------
