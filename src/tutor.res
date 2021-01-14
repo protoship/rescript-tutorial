@@ -1,3 +1,7 @@
+/*
+  Section 1: Bindings
+ */
+
 let hello: string = "Hello, World!"
 
 /*
@@ -267,6 +271,61 @@ let three = 3
   This makes it increasingly predictable when reading ReScript programs. You
   can always expect the binding to have been declared somewhere above before
   it is used in an expression.
+ */
+
+/*
+  Section 2: Variants
+
+  * Define a custom type
+  * Construct values
+  * transform 
+
+  Pitfalls:
+  * Confusing binding and type name
+
+  Notes:
+  * Types
+ */
+
+type bookFormat =
+  | Hardcover
+  | Paperback
+  | KindleEdition
+  | Audible
+
+// let bookFormat: bookFormat = HardCover
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 1 (easy)
+  -----------------------------------------------------------------------------
+  Uncomment the `bookFormat` binding. Fix the compilation error.  
+  -----------------------------------------------------------------------------
+ */
+
+// let bookFormatToString = (x: bookFormat): string =>
+let bookFormatToString = x =>
+  switch x {
+  | Hardcover => "Hardcover"
+  | Paperback => "Paperback"
+  | KindleEdition => "Kindle Edition"
+  | Audible => "Audible"
+  }
+/*
+  TODO: explain function syntax with annotation for input arguments and
+  the returned value
+
+  TODO: introduction to reading function type signatures 
+        bookFormat => string
+*/
+
+bookFormatToString(Hardcover) == "Hardcover"
+bookFormatToString(Paperback)
+let bookFormat2 = bookFormatToString(KindleEdition)
+/*
+  TODO: explain function call-site / application
+
+  TODO: hover for types
  */
 
 /*
