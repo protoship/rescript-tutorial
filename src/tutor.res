@@ -348,13 +348,29 @@ isElectronic(KindleEdition)
   -----------------------------------------------------------------------------
   Exercise 2 (easy)
   -----------------------------------------------------------------------------
-  Add a new constructor for audio books from Audible.
+  Add a new constructor `Audible` for audio books from Audible.
 
   Follow compiler warnings, and handle the case for Audible. You'll need to
   fix the code in two functions for all the warnings to go away.
   -----------------------------------------------------------------------------
 
   TODO: Make exhaustive case analysis a compiler error (instead of warning)?
+
+
+  -----------------------------------------------------------------------------
+  Exercise 3 (easy)
+  -----------------------------------------------------------------------------
+  a) Create a variant type `codeEditor` with the constructors
+    - VSCode
+    - RubyMine
+    - XCode
+
+  b) Add the function with the type signature:
+
+      `let madeBy: codeEditor => string`
+
+    Match the constructors to "Microsoft", "Jetbrain" & "Apple"
+  -----------------------------------------------------------------------------
 */
 
 /*
