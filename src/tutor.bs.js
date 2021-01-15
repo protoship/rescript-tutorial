@@ -27,6 +27,38 @@ function isElectronic(x) {
   return x >= 2;
 }
 
+function formInputToHTML(x) {
+  if (typeof x === "number") {
+    return "<input type=\"submit\" />";
+  }
+  switch (x.TAG | 0) {
+    case /* Text */0 :
+        return "<input type=\"text\" name=\"" + x._0 + "\" />";
+    case /* Number */1 :
+        return "<input type=\"number\" name=\"" + x._0 + "\" min=\"" + String(x._1) + " max=\"" + String(x._2) + "\"/>";
+    case /* Email */2 :
+        return "<input type=\"email\" name=\"" + x._0 + "\" />";
+    
+  }
+}
+
+var nameInput = formInputToHTML({
+      TAG: /* Text */0,
+      _0: "name"
+    });
+
+var ageInput = formInputToHTML({
+      TAG: /* Number */1,
+      _0: "age",
+      _1: 18,
+      _2: 25
+    });
+
+var emailInput = formInputToHTML({
+      TAG: /* Email */2,
+      _0: "email"
+    });
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -45,6 +77,8 @@ var three = 3;
 
 var bookFormat2 = "Kindle Edition";
 
+var submit = "<input type=\"submit\" />";
+
 export {
   hello ,
   goodbye ,
@@ -62,6 +96,11 @@ export {
   bookFormatToString ,
   bookFormat2 ,
   isElectronic ,
+  formInputToHTML ,
+  nameInput ,
+  ageInput ,
+  emailInput ,
+  submit ,
   
 }
 /*  Not a pure module */

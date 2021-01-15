@@ -373,6 +373,37 @@ isElectronic(KindleEdition)
   -----------------------------------------------------------------------------
 */
 
+type formInput =
+  | Text(string) // name
+  | Number(string, int, int) // name, min, max
+  | Email(string)
+  | Submit
+
+let formInputToHTML = x =>
+  switch x {
+  | Text(name) => `<input type="text" name="${name}" />`
+  | Number(name, min, max) =>
+    `<input type="number" name="${name}" min="${Belt.Int.toString(min)} max="${Belt.Int.toString(
+      max,
+    )}"/>`
+  | Email(name) => `<input type="email" name="${name}" />`
+  | Submit => `<input type="submit" />`
+  }
+
+let nameInput = formInputToHTML(Text("name"))
+let ageInput = formInputToHTML(Number("age", 18, 25))
+let emailInput = formInputToHTML(Email("email"))
+let submit = formInputToHTML(Submit)
+
+// tuple
+// exercise
+// records
+// exercise
+// exercise: variants with tagged data
+// self-referential data structures
+// recursive functions over these types
+// exercise: self-referential
+
 /*
   -----------------------------------------------------------------------------
   TODO :-
