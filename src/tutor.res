@@ -304,8 +304,8 @@ type bookFormat =
  */
 
 // let bookFormatToString = (x: bookFormat): string =>
-let bookFormatToString = x =>
-  switch x {
+let bookFormatToString = format =>
+  switch format {
   | Hardcover => "Hardcover"
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
@@ -331,8 +331,8 @@ let bookFormat2 = bookFormatToString(KindleEdition)
   TODO: hover for types
  */
 
-let isElectronic = x =>
-  switch x {
+let isElectronic = format =>
+  switch format {
   | Hardcover
   | Paperback => false
   | KindleEdition => true
@@ -426,8 +426,7 @@ let guest42 = displayName(Guest(42))
 let milner1934 = displayName(LoggedInUser(2010, "Robin Milner"))
 let grace1906 = displayName(Moderator(1992, "Grace Hopper"))
 
-// either improve or remove the below example
-// for variant with constructor arguments
+// --
 
 type formInput =
   | Text(string) // name
@@ -451,8 +450,38 @@ let ageInput = formInputToHTML(Number("age", 18, 25))
 let emailInput = formInputToHTML(Email("email"))
 let submit = formInputToHTML(Submit)
 
-// tuple
-// exercise
+// tuples
+let (name, min, max) = ("age-limit", 18, 25)
+
+// this can also be defined as a type
+type numberFormInput = (string, int, int) // name, min, max
+
+let ageLimit: numberFormInput = (name, min, max)
+let budget: numberFormInput = ("price-range", 500, 1500)
+let ratingFilter = ("rating-3-and-above", 3, 5)
+
+// tuples are immutable
+let (label, low, high) = budget
+let budget2 = (label, low - 100, high + 1000)
+
+// passing a tuple as an argument into the function
+
+let toNumberFormHTML = (input: numberFormInput) => {
+  let (name, min, max) = input
+  `<input type="number" name="${name}" min="${Belt.Int.toString(min)}" max="${Belt.Int.toString(
+    max,
+  )}"`
+}
+
+// passing a tuple and destructing in the arguments
+let toNumberFormHTML2 = ((name, min, max): numberFormInput) =>
+  `<input type="number" name="${name}" min="${Belt.Int.toString(min)}" max="${Belt.Int.toString(
+    max,
+  )}"`
+
+// tuples are positional
+//
+
 // records
 // exercise
 // exercise: variants with tagged data

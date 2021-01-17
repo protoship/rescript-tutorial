@@ -11,8 +11,8 @@ var book2 = "Real World OCaml: Functional programming for the masses";
 
 var book = "Deep Work: Rules for Focused Success in a Distracted World";
 
-function bookFormatToString(x) {
-  switch (x) {
+function bookFormatToString(format) {
+  switch (format) {
     case /* Hardcover */0 :
         return "Hardcover";
     case /* Paperback */1 :
@@ -23,8 +23,8 @@ function bookFormatToString(x) {
   }
 }
 
-function isElectronic(x) {
-  return x >= 2;
+function isElectronic(format) {
+  return format >= 2;
 }
 
 function nextMoveBy(current) {
@@ -109,6 +109,30 @@ var emailInput = formInputToHTML({
       _0: "email"
     });
 
+var name = "age-limit";
+
+var ageLimit = [
+  name,
+  18,
+  25
+];
+
+var label = "price-range";
+
+var budget2 = [
+  label,
+  400,
+  2500
+];
+
+function toNumberFormHTML(input) {
+  return "<input type=\"number\" name=\"" + input[0] + "\" min=\"" + String(input[1]) + "\" max=\"" + String(input[2]) + "\"";
+}
+
+function toNumberFormHTML2(param) {
+  return "<input type=\"number\" name=\"" + param[0] + "\" min=\"" + String(param[1]) + "\" max=\"" + String(param[2]) + "\"";
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -130,6 +154,26 @@ var bookFormat2 = "Kindle Edition";
 var firstMove = /* PlayerA */0;
 
 var submit = "<input type=\"submit\" />";
+
+var min = 18;
+
+var max = 25;
+
+var budget = [
+  "price-range",
+  500,
+  1500
+];
+
+var ratingFilter = [
+  "rating-3-and-above",
+  3,
+  5
+];
+
+var low = 500;
+
+var high = 1500;
 
 export {
   hello ,
@@ -162,6 +206,18 @@ export {
   ageInput ,
   emailInput ,
   submit ,
+  name ,
+  min ,
+  max ,
+  ageLimit ,
+  budget ,
+  ratingFilter ,
+  label ,
+  low ,
+  high ,
+  budget2 ,
+  toNumberFormHTML ,
+  toNumberFormHTML2 ,
   
 }
 /*  Not a pure module */
