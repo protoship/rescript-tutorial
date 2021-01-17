@@ -602,6 +602,32 @@ let drawShape = shape =>
   | Text(text) => drawText(text)
   }
 
+// intro to parametric polymorophism
+type pair<'a> = ('a, 'a)
+
+type coord2d = pair<int>
+let center: coord2d = (960, 540)
+
+type name = pair<string>
+let leroy: name = ("Xavier", "Leroy")
+
+type cssDeclaration = pair<string>
+let mediumFontSize: cssDeclaration = ("font-size", "16px")
+
+// write generic functions first, and second
+// this should be an exercise
+let first = ((x, _): pair<'a>) => x
+let second = ((_, y): pair<'a>) => y
+
+// call sites
+first(center)
+first(leroy)
+first(mediumFontSize)
+
+second(center)
+second(leroy)
+second(mediumFontSize)
+
 /* ----------------------------------------------------------------
                             SCRATCH
   -----------------------------------------------------------------

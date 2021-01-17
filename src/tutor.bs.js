@@ -200,6 +200,41 @@ function drawShape(shape) {
   }
 }
 
+var center = [
+  960,
+  540
+];
+
+var leroy = [
+  "Xavier",
+  "Leroy"
+];
+
+var mediumFontSize = [
+  "font-size",
+  "16px"
+];
+
+function first(param) {
+  return param[0];
+}
+
+function second(param) {
+  return param[1];
+}
+
+first(center);
+
+first(leroy);
+
+first(mediumFontSize);
+
+second(center);
+
+second(leroy);
+
+second(mediumFontSize);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -337,6 +372,11 @@ export {
   block1ToBlock2 ,
   textLabel ,
   drawShape ,
+  center ,
+  leroy ,
+  mediumFontSize ,
+  first ,
+  second ,
   
 }
 /*  Not a pure module */
