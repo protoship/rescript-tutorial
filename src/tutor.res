@@ -480,9 +480,29 @@ let toNumberFormHTML2 = ((name, min, max): numberFormInput) =>
   )}"`
 
 // tuples are positional
-//
-
+// give names to fields with record types
 // records
+
+type project = {
+  name: string,
+  url: string,
+  repositories: int,
+  people: int,
+}
+
+let atom = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
+let node = {name: "Node.js", url: "https://nodejs.org", repositories: 182, people: 375}
+let rails = {name: "Ruby on Rails", url: "https://rubyonrails.org", repositories: 99, people: 66}
+
+// destructuring record in parameters
+let projectLink = ({url, name}) => {
+  `<a href="${url}">${name}</a>`
+}
+
+projectLink(atom)
+projectLink(node)
+projectLink(rails)
+
 // exercise
 // exercise: variants with tagged data
 // self-referential data structures

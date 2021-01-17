@@ -133,6 +133,37 @@ function toNumberFormHTML2(param) {
   return "<input type=\"number\" name=\"" + param[0] + "\" min=\"" + String(param[1]) + "\" max=\"" + String(param[2]) + "\"";
 }
 
+var atom = {
+  name: "Atom",
+  url: "https://atom.io",
+  repositories: 255,
+  people: 56
+};
+
+var node = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 375
+};
+
+var rails = {
+  name: "Ruby on Rails",
+  url: "https://rubyonrails.org",
+  repositories: 99,
+  people: 66
+};
+
+function projectLink(param) {
+  return "<a href=\"" + param.url + "\">" + param.name + "</a>";
+}
+
+projectLink(atom);
+
+projectLink(node);
+
+projectLink(rails);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -218,6 +249,10 @@ export {
   budget2 ,
   toNumberFormHTML ,
   toNumberFormHTML2 ,
+  atom ,
+  node ,
+  rails ,
+  projectLink ,
   
 }
 /*  Not a pure module */
