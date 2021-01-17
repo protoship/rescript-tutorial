@@ -503,6 +503,30 @@ projectLink(atom)
 projectLink(node)
 projectLink(rails)
 
+// record where one of the field types is a variant type
+
+type book = {title: string, tagline: string, format: bookFormat, availableInStock: int}
+
+let codersAtWork = {
+  title: "Coders at Work",
+  tagline: "Reflections on the Craft of Programming",
+  format: Paperback,
+  availableInStock: 10,
+}
+
+let bookHTML = book => {
+  let count = Belt.Int.toString(book.availableInStock)
+
+  `<div>
+    <h2>${book.title}: ${book.tagline}</h2>
+    <p>${count} new ${bookFormatToString(
+    book.format,
+  )} avialable in stock</p>
+  </div>`
+}
+
+bookHTML(codersAtWork)
+
 // exercise
 // exercise: variants with tagged data
 // self-referential data structures

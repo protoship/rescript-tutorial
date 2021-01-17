@@ -164,6 +164,20 @@ projectLink(node);
 
 projectLink(rails);
 
+var codersAtWork = {
+  title: "Coders at Work",
+  tagline: "Reflections on the Craft of Programming",
+  format: /* Paperback */1,
+  availableInStock: 10
+};
+
+function bookHTML(book) {
+  var count = String(book.availableInStock);
+  return "<div>\n    <h2>" + book.title + ": " + book.tagline + "</h2>\n    <p>" + count + " new " + bookFormatToString(book.format) + " avialable in stock</p>\n  </div>";
+}
+
+bookHTML(codersAtWork);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -253,6 +267,8 @@ export {
   node ,
   rails ,
   projectLink ,
+  codersAtWork ,
+  bookHTML ,
   
 }
 /*  Not a pure module */
