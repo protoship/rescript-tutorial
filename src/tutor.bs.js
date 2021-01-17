@@ -235,6 +235,29 @@ second(leroy);
 
 second(mediumFontSize);
 
+var lineFromOrigin = [
+  [
+    0,
+    0
+  ],
+  [
+    100,
+    100
+  ]
+];
+
+var lineStart = first(lineFromOrigin);
+
+var lineStartX = first(lineStart);
+
+var lineStartY = second(lineStart);
+
+var lineEnd = second(lineFromOrigin);
+
+var lineEndX = first(lineEnd);
+
+var lineEndY = second(lineEnd);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -377,6 +400,13 @@ export {
   mediumFontSize ,
   first ,
   second ,
+  lineFromOrigin ,
+  lineStart ,
+  lineStartX ,
+  lineStartY ,
+  lineEnd ,
+  lineEndX ,
+  lineEndY ,
   
 }
 /*  Not a pure module */

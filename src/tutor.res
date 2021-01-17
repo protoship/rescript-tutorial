@@ -628,6 +628,19 @@ second(center)
 second(leroy)
 second(mediumFontSize)
 
+// using types like lego bricks to compose more complex
+// types from simple types
+type lineSegment = pair<coord2d>
+let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
+
+let lineStart = first(lineFromOrigin)
+let lineStartX = first(lineStart)
+let lineStartY = second(lineStart)
+
+let lineEnd = second(lineFromOrigin)
+let lineEndX = first(lineEnd)
+let lineEndY = second(lineEnd)
+
 /* ----------------------------------------------------------------
                             SCRATCH
   -----------------------------------------------------------------
