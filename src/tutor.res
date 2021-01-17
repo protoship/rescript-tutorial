@@ -527,12 +527,13 @@ let bookHTML = book => {
 
 bookHTML(codersAtWork)
 
-/* TO BE FOLLOWED AFTER LISTS/ARRAYS */
-/* --------------------------------- */
+// variant + record
+// simple, not recursive
+// does not requires lists/arrays
+
 // composing variants & records
 // for a drawing tool where the user can draw
 // vector diagrams (excalidraw)
-// depends on arrays/lists being introduced
 type fontSize =
   | Small
   | Medium
@@ -544,26 +545,66 @@ type fontFamily =
   | SansSerif
   | Monospace
 
-type simpleShapes =
+type simpleShape =
   | Rectangle(int, int, int, int) // x, y, w, h,
   | Line(int, int, int) // x, y, length
   | Text(fontSize, fontFamily, string)
-
-// refactor `simpleShapes` to use records
 
 type rectangle = {x: int, y: int, width: int, height: int}
 type line = {x: int, y: int, length: int}
 type text = {text: string, fontSize: fontSize, fontFamily: fontFamily}
 
-// construct values
+// refactor `simpleShape` to use records
+type shape =
+  | Rectangle(rectangle)
+  | Line(line)
+  | Text(text)
+
 // functions for rendering shapes
+
+// rectangle => unit
+// explain unit
+// what is a side-effect?
+// unit is a primitive type
+// signalling side-effects through the type system
+// explain the underscore prefix
+// maybe this should be introduced earlier in the bindings section
+let drawRectangle = (_rectangle: rectangle) => {
+  // pretend to draw a rectangle at (x, y) which width x height pixels
+  ()
+}
+
+let drawLine = (_line: line) => {
+  // pretend to draw a line at (x, y) with length pixels
+  ()
+}
+
+let drawText = (_text: text) => {
+  // pretend to render text
+  ()
+}
+
+// construct values
+let block1 = Rectangle({x: 100, y: 100, width: 50, height: 50})
+let block2 = Rectangle({x: 200, y: 100, width: 50, height: 50})
+let block1ToBlock2 = Line({x: 150, y: 125, length: 50})
+let text = Text({text: "Connect", fontSize: Medium, fontFamily: Monospace})
+
 // type narrowing - after pattern matching call the draw for shape
 // common mistake is to pattern match within the draw function
-// use this example after introducing lists/arrays
-/* --------------------------------- */
+// point out this anti-pattern
+// don't pattern match inside drawRectangle on `shape`
+// the `rectangle` constructor argument has already been narrowed
+let drawShape = shape =>
+  switch shape {
+  | Rectangle(rectangle) => drawRectangle(rectangle)
+  | Line(line) => drawLine(line)
+  | Text(text) => drawText(text)
+  }
 
-// exercise
-// exercise: variants with tagged data
+// ^ Convert this to an exercise?
+// They only have to fill in with the correct function call.
+
 // self-referential data structures
 // recursive functions over these types
 // exercise: self-referential

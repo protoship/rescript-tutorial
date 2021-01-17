@@ -178,6 +178,28 @@ function bookHTML(book) {
 
 bookHTML(codersAtWork);
 
+function drawRectangle(_rectangle) {
+  
+}
+
+function drawLine(_line) {
+  
+}
+
+function drawText(_text) {
+  
+}
+
+function drawShape(shape) {
+  switch (shape.TAG | 0) {
+    case /* Rectangle */0 :
+    case /* Line */1 :
+    case /* Text */2 :
+        return ;
+    
+  }
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -219,6 +241,44 @@ var ratingFilter = [
 var low = 500;
 
 var high = 1500;
+
+var block1 = {
+  TAG: /* Rectangle */0,
+  _0: {
+    x: 100,
+    y: 100,
+    width: 50,
+    height: 50
+  }
+};
+
+var block2 = {
+  TAG: /* Rectangle */0,
+  _0: {
+    x: 200,
+    y: 100,
+    width: 50,
+    height: 50
+  }
+};
+
+var block1ToBlock2 = {
+  TAG: /* Line */1,
+  _0: {
+    x: 150,
+    y: 125,
+    length: 50
+  }
+};
+
+var text = {
+  TAG: /* Text */2,
+  _0: {
+    text: "Connect",
+    fontSize: /* Medium */1,
+    fontFamily: /* Monospace */2
+  }
+};
 
 export {
   hello ,
@@ -269,6 +329,14 @@ export {
   projectLink ,
   codersAtWork ,
   bookHTML ,
+  drawRectangle ,
+  drawLine ,
+  drawText ,
+  block1 ,
+  block2 ,
+  block1ToBlock2 ,
+  text ,
+  drawShape ,
   
 }
 /*  Not a pure module */
