@@ -27,6 +27,22 @@ function isElectronic(x) {
   return x >= 2;
 }
 
+function nextMoveBy(current) {
+  switch (current) {
+    case /* PlayerA */0 :
+        return /* PlayerB */1;
+    case /* PlayerB */1 :
+        return /* PlayerC */2;
+    case /* PlayerC */2 :
+        return /* PlayerA */0;
+    
+  }
+}
+
+var secondMove = nextMoveBy(/* PlayerA */0);
+
+var thirdMove = nextMoveBy(secondMove);
+
 function formInputToHTML(x) {
   if (typeof x === "number") {
     return "<input type=\"submit\" />";
@@ -77,6 +93,8 @@ var three = 3;
 
 var bookFormat2 = "Kindle Edition";
 
+var firstMove = /* PlayerA */0;
+
 var submit = "<input type=\"submit\" />";
 
 export {
@@ -96,6 +114,10 @@ export {
   bookFormatToString ,
   bookFormat2 ,
   isElectronic ,
+  nextMoveBy ,
+  firstMove ,
+  secondMove ,
+  thirdMove ,
   formInputToHTML ,
   nameInput ,
   ageInput ,

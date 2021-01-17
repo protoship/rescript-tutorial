@@ -373,6 +373,39 @@ isElectronic(KindleEdition)
   -----------------------------------------------------------------------------
 */
 
+type player =
+  | PlayerA
+  | PlayerB
+  | PlayerC
+
+let nextMoveBy = current =>
+  switch current {
+  | PlayerA => PlayerB
+  | PlayerB => PlayerC
+  | PlayerC => PlayerA
+  }
+
+let firstMove = PlayerA
+let secondMove = nextMoveBy(firstMove)
+let thirdMove = nextMoveBy(secondMove)
+/*
+  -----------------------------------------------------------------------------
+  Exercise 4 (easy)
+  -----------------------------------------------------------------------------
+  In a turn based game the moves rotate between three palyers in the 
+  following order:
+
+    A -> B -> C -> A -> B -> C
+
+  Implement the function which returns the next player in the chain when
+  given the current player,
+
+    `let nextMoveBy: player => player`
+  -----------------------------------------------------------------------------
+*/
+
+// Variant with constructor arguments
+
 type formInput =
   | Text(string) // name
   | Number(string, int, int) // name, min, max
