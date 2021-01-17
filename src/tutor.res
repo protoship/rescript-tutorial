@@ -527,6 +527,41 @@ let bookHTML = book => {
 
 bookHTML(codersAtWork)
 
+/* TO BE FOLLOWED AFTER LISTS/ARRAYS */
+/* --------------------------------- */
+// composing variants & records
+// for a drawing tool where the user can draw
+// vector diagrams (excalidraw)
+// depends on arrays/lists being introduced
+type fontSize =
+  | Small
+  | Medium
+  | Large
+  | VeryLarge
+
+type fontFamily =
+  | Serif
+  | SansSerif
+  | Monospace
+
+type simpleShapes =
+  | Rectangle(int, int, int, int) // x, y, w, h,
+  | Line(int, int, int) // x, y, length
+  | Text(fontSize, fontFamily, string)
+
+// refactor `simpleShapes` to use records
+
+type rectangle = {x: int, y: int, width: int, height: int}
+type line = {x: int, y: int, length: int}
+type text = {text: string, fontSize: fontSize, fontFamily: fontFamily}
+
+// construct values
+// functions for rendering shapes
+// type narrowing - after pattern matching call the draw for shape
+// common mistake is to pattern match within the draw function
+// use this example after introducing lists/arrays
+/* --------------------------------- */
+
 // exercise
 // exercise: variants with tagged data
 // self-referential data structures
