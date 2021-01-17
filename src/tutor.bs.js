@@ -271,7 +271,7 @@ var block1ToBlock2 = {
   }
 };
 
-var text = {
+var textLabel = {
   TAG: /* Text */2,
   _0: {
     text: "Connect",
@@ -335,7 +335,7 @@ export {
   block1 ,
   block2 ,
   block1ToBlock2 ,
-  text ,
+  textLabel ,
   drawShape ,
   
 }

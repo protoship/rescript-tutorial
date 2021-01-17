@@ -588,7 +588,7 @@ let drawText = (_text: text) => {
 let block1 = Rectangle({x: 100, y: 100, width: 50, height: 50})
 let block2 = Rectangle({x: 200, y: 100, width: 50, height: 50})
 let block1ToBlock2 = Line({x: 150, y: 125, length: 50})
-let text = Text({text: "Connect", fontSize: Medium, fontFamily: Monospace})
+let textLabel = Text({text: "Connect", fontSize: Medium, fontFamily: Monospace})
 
 // type narrowing - after pattern matching call the draw for shape
 // common mistake is to pattern match within the draw function
@@ -605,9 +605,15 @@ let drawShape = shape =>
 // ^ Convert this to an exercise?
 // They only have to fill in with the correct function call.
 
-// self-referential data structures
+// self-referential / heirarchical data structures
 // recursive functions over these types
 // exercise: self-referential
+
+// parameteric polymporphism a simple example
+// lists
+// arrays
+// option
+// functional programming
 
 /*
   -----------------------------------------------------------------------------
