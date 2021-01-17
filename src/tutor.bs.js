@@ -43,6 +43,40 @@ var secondMove = nextMoveBy(/* PlayerA */0);
 
 var thirdMove = nextMoveBy(secondMove);
 
+function displayName(user) {
+  if (typeof user === "number") {
+    return "Anonymous";
+  }
+  switch (user.TAG | 0) {
+    case /* Guest */0 :
+        return "Guest#" + String(user._0);
+    case /* LoggedInUser */1 :
+    case /* Moderator */2 :
+        break;
+    
+  }
+  return user._1 + ", " + String(user._0) + " points";
+}
+
+var anonymous = displayName(/* Anonymous */0);
+
+var guest42 = displayName({
+      TAG: /* Guest */0,
+      _0: 42
+    });
+
+var milner1934 = displayName({
+      TAG: /* LoggedInUser */1,
+      _0: 2010,
+      _1: "Robin Milner"
+    });
+
+var grace1906 = displayName({
+      TAG: /* Moderator */2,
+      _0: 1992,
+      _1: "Grace Hopper"
+    });
+
 function formInputToHTML(x) {
   if (typeof x === "number") {
     return "<input type=\"submit\" />";
@@ -118,6 +152,11 @@ export {
   firstMove ,
   secondMove ,
   thirdMove ,
+  displayName ,
+  anonymous ,
+  guest42 ,
+  milner1934 ,
+  grace1906 ,
   formInputToHTML ,
   nameInput ,
   ageInput ,

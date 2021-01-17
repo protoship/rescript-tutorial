@@ -406,6 +406,29 @@ let thirdMove = nextMoveBy(secondMove)
 
 // Variant with constructor arguments
 
+type user =
+  | Anonymous
+  | Guest(int)
+  | LoggedInUser(int, string)
+  | Moderator(int, string)
+
+let displayName = user =>
+  switch user {
+  | Anonymous => "Anonymous"
+  | Guest(guestId) => `Guest#${Belt.Int.toString(guestId)}`
+  | LoggedInUser(karma, username)
+  | Moderator(karma, username) =>
+    `${username}, ${Belt.Int.toString(karma)} points`
+  }
+
+let anonymous = displayName(Anonymous)
+let guest42 = displayName(Guest(42))
+let milner1934 = displayName(LoggedInUser(2010, "Robin Milner"))
+let grace1906 = displayName(Moderator(1992, "Grace Hopper"))
+
+// either improve or remove the below example
+// for variant with constructor arguments
+
 type formInput =
   | Text(string) // name
   | Number(string, int, int) // name, min, max
