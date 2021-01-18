@@ -4,6 +4,7 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
+var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
@@ -598,6 +599,80 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
       };
 }
 
+var exampleHTML = {
+  TAG: /* Division */0,
+  _0: [
+    {
+      TAG: /* Heading */1,
+      _0: [{
+          TAG: /* Anchor */3,
+          _0: {
+            TAG: /* Fragment */0,
+            _0: "hello-world"
+          },
+          _1: "Jump to here"
+        }]
+    },
+    {
+      TAG: /* Paragraph */2,
+      _0: "Hello, world!"
+    },
+    {
+      TAG: /* Anchor */3,
+      _0: {
+        TAG: /* MailTo */1,
+        _0: "nowhere@mozilla.org"
+      },
+      _1: "Send email to nowhere"
+    }
+  ]
+};
+
+function hrefToHTML(href) {
+  if (href.TAG) {
+    return "mailto:" + href._0;
+  } else {
+    return "#" + href._0;
+  }
+}
+
+function anchorToHTML(href, displayText) {
+  return "<a href=" + hrefToHTML(href) + ">" + displayText + "</a>";
+}
+
+function paragraphToHTML(text) {
+  return "<p>" + text + "</p>";
+}
+
+function renderHTML(html) {
+  var aux = function (depth, x) {
+    switch (x.TAG | 0) {
+      case /* Division */0 :
+          var partial_arg = depth + 1 | 0;
+          var intermediate = Belt_Array.map(x._0, (function (param) {
+                  return aux(partial_arg, param);
+                }));
+          var innerHTML = intermediate.join("\n");
+          return " ".repeat((depth << 1)) + "<div>\n" + innerHTML + "\n" + " ".repeat((depth << 1)) + "</div>";
+      case /* Heading */1 :
+          var partial_arg$1 = depth + 1 | 0;
+          var intermediate$1 = Belt_Array.map(x._0, (function (param) {
+                  return aux(partial_arg$1, param);
+                }));
+          var innerHTML$1 = intermediate$1.join("\n");
+          return " ".repeat((depth << 1)) + "<h1>\n" + innerHTML$1 + "\n" + " ".repeat((depth << 1)) + "</h1>";
+      case /* Paragraph */2 :
+          return " ".repeat((depth << 1)) + paragraphToHTML(x._0);
+      case /* Anchor */3 :
+          return " ".repeat((depth << 1)) + anchorToHTML(x._0, x._1);
+      
+    }
+  };
+  return aux(0, html);
+}
+
+console.log(renderHTML(exampleHTML));
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -785,4 +860,9 @@ exports.bukowski = bukowski;
 exports.printMessage = printMessage;
 exports.mapOption = mapOption;
 exports.$$double = $$double;
+exports.exampleHTML = exampleHTML;
+exports.hrefToHTML = hrefToHTML;
+exports.anchorToHTML = anchorToHTML;
+exports.paragraphToHTML = paragraphToHTML;
+exports.renderHTML = renderHTML;
 /*  Not a pure module */

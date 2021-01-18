@@ -989,8 +989,72 @@ assert (Belt.Option.map(Some(2), double) == Some(4))
 
 // self-referential structures
 // recursive functions over them
+/*
+  <div>
+    <h1>
+      <a href="#hello-world">Jump to here</a>
+    </h1>
+    <p>Hello, world!</p>
+    <a href="mailto:nowhere@mozilla.org">Send email to nowhere</a>
+  </div>
+*/
+type href = Fragment(string) | MailTo(string)
 
-// variant which uses the option type
+type rec markup =
+  | Division(array<markup>)
+  | Heading(array<markup>)
+  | Paragraph(string)
+  | Anchor(href, string)
+
+let exampleHTML = Division([
+  Heading([Anchor(Fragment("hello-world"), "Jump to here")]),
+  Paragraph("Hello, world!"),
+  Anchor(MailTo("nowhere@mozilla.org"), "Send email to nowhere"),
+])
+
+// exercise functions below (difficulty is hard)
+let hrefToHTML = href =>
+  switch href {
+  | Fragment(fragment) => `#${fragment}`
+  | MailTo(email) => `mailto:${email}`
+  }
+
+let anchorToHTML = (href, displayText) => `<a href=${hrefToHTML(href)}>${displayText}</a>`
+
+let paragraphToHTML = text => `<p>${text}</p>`
+
+// with depth debugging
+let renderHTML = html => {
+  let rec aux = (depth, x) =>
+    switch x {
+    | Division(children) =>
+      // Js.log("Division => " ++ Belt.Int.toString(depth))
+      let intermediate = Belt.Array.map(children, aux(depth + 1))
+      let innerHTML = Js.Array.joinWith("\n", intermediate)
+      `${Js.String.repeat(depth * 2, " ")}<div>\n${innerHTML}\n${Js.String.repeat(
+        depth * 2,
+        " ",
+      )}</div>`
+    | Heading(children) =>
+      // Js.log("Heading => " ++ Belt.Int.toString(depth))
+      let intermediate = Belt.Array.map(children, aux(depth + 1))
+      let innerHTML = Js.Array.joinWith("\n", intermediate)
+      `${Js.String.repeat(depth * 2, " ")}<h1>\n${innerHTML}\n${Js.String.repeat(
+        depth * 2,
+        " ",
+      )}</h1>`
+    | Paragraph(text) =>
+      // Js.log("Paragraph => " ++ Belt.Int.toString(depth))
+      Js.String.repeat(depth * 2, " ") ++ paragraphToHTML(text)
+    | Anchor(href, displayText) =>
+      // Js.log("Anchor => " ++ Belt.Int.toString(depth))
+      Js.String.repeat(depth * 2, " ") ++ anchorToHTML(href, displayText)
+    }
+
+  aux(0, html)
+}
+
+Js.log(renderHTML(exampleHTML))
 
 // functional programming
 // currying, partial applications
@@ -1000,10 +1064,10 @@ assert (Belt.Option.map(Some(2), double) == Some(4))
 
 // side-effects
 // Js.log
-
 // bindings, JS interop
 // JSON
 // Promises
+// Belt / Stdlib
 
 // modules
 // module interfaces
