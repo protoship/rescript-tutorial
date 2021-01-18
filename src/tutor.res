@@ -602,6 +602,10 @@ let drawShape = shape =>
   | Text(text) => drawText(text)
   }
 
+/*
+  Section 3: Parametric Polymorphism
+ */
+
 // intro to parametric polymorophism
 type pair<'a> = ('a, 'a)
 
@@ -634,12 +638,120 @@ type lineSegment = pair<coord2d>
 let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
 
 let lineStart = first(lineFromOrigin)
-let lineStartX = first(lineStart)
-let lineStartY = second(lineStart)
+let (lineStartX, listStartY) = (first(lineStart), second(lineStart))
 
 let lineEnd = second(lineFromOrigin)
-let lineEndX = first(lineEnd)
-let lineEndY = second(lineEnd)
+let (lineEndX, lineEndY) = (first(lineEnd), second(lineEnd))
+
+// parametric polymorphism enables building container types
+// the concrete type is only determined when it is used
+// polymorphic on the type variable
+// ability to create functions which does not need to know
+// what those concrete types are
+// the functions are acting on polymorphic types
+// because they lack knowledge of the concrete type
+// the ability to introduce defects in polymorphic type functions
+// is limited. The function simply doesn't know the domain of
+// concrete type to contain a domain defect
+
+// The container can only contain values which are defined
+// by the type variable. You cannot put a coordinate inside
+// a pair<name> or vice versa. The containers are guaranteed
+// to contain homogenous data structures. This is often not
+// consciously considered or forced in dynamic languages.
+// Heteregenous collection of values, are a common source
+// of defects. The functions acting on them also leak domain
+// information, and adding the number of places code has to
+// change when something about the applications domain changes
+// We also lose the ability to reason about the functions
+// as a black box. In the functions `first` or `second` you
+// have this reasoning ability. It does not matter what
+// the final concrete type variable will be substituted as
+// but you know these functions will always work regardless
+// of the domain of those types.
+
+// The most common generic container types you will be familiar
+// from other programming languages are arrays. Also look at
+// polymorphic functions which transforms an array like -
+// map, fold, filter.
+
+// Arrays are implicitly mutable, because ReScript compiles them
+// down to JavaScript arrays. It's a shared data type. There is
+// no difference in behavior between a JavaScript and ReScript
+// array. So there is no immutability. You can change the contents
+// of an array without changing it's reference. That is mutation.
+
+// So arrays...
+
+type progLangCreator = pair<string>
+
+let progLangCreators: array<progLangCreator> = [
+  ("Java", "James Gosling"),
+  ("C", "Dennis Ritchie"),
+  ("Python", "Guido van Rossum"),
+  ("PHP", "Rasmus Lerdorf"),
+  ("Perl", "Larry Wall"),
+  ("JavaScript", "Brendan Eich"),
+  ("Ruby", "Yukihiro Matsumoto"),
+  ("Lisp", "John McCarthy"),
+  ("Pascal", "Niklaus Wirth"),
+]
+
+let arrayLength = Js.Array.length(progLangCreators)
+
+// INVESTIGATE!!!
+// The documentations shows that the shared array data
+// type compiles down to JavaScript array. But when
+// this code compiles to using OCaml arrays. That is
+// weird.
+let arrayFirstItem = progLangCreators[0]
+let arrayLastItem = progLangCreators[arrayLength - 1]
+
+Js.log(arrayLastItem)
+// Let's use Belt now?
+// But why are we using Belt when it adds a runtime
+// ergonomics
+// does not raise exceptions
+// but we haven't yet learned about options
+// so let's stick to Js.Array itself
+// and introduce Belt later
+
+// map
+let progLangCreatorToString = ((language, creator): progLangCreator): string =>
+  language ++ ": " ++ creator
+
+Js.Array.map(x => x, progLangCreators) // identity
+Js.Array.map(progLangCreatorToString, progLangCreators)
+
+// exercise - map progLangCreator tuple to a record type(below)
+type programmingLanguage = {name: string, creator: string}
+// exercise - array of languages, lowercase string
+// exercise - array of creators
+// from above record type
+
+// filter - languages that start with the letter p
+Js.Array.filter(x => {
+  let (language, _) = x
+  Js.String.startsWith("P", language)
+}, progLangCreators)
+// exercise - provide array of compiled languages
+// create array of dynamic languages
+
+// reduce / fold
+
+// list
+// option
+// revisiting variants,
+//  // self-referential structures
+//  // recursive functions over them
+
+// section 4: functional programming
+
+// section 5: bindings, JS interop, JSON
+
+// section 6: side-effects, imperative, ref, promises, JSON
+
+// section 7: Belt standard library
 
 /* ----------------------------------------------------------------
                             SCRATCH
