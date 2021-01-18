@@ -822,6 +822,21 @@ let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
 // reduce
 let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
 
+// custom map implementation using reduce
+// exercises to implement map & filter
+// implementing iter can be done after introducing unit later
+let myCustomMap = (xs: list<'a>, f: 'a => 'b): list<'b> =>
+  Belt.List.reduce(xs, list{}, (acc, x) => list{f(x), ...acc})->Belt.List.reverse
+
+// pattern matching
+let myCustomFilter = (xs, f: 'a => bool): list<'a> => Belt.List.reduce(xs, list{}, (acc, x) =>
+    if f(x) {
+      list{f(x), ...acc}
+    } else {
+      acc
+    }
+  )->Belt.List.reverse
+
 // pattern matching
 // case 1: list is empty
 // case 2: head, and tail
@@ -842,25 +857,12 @@ describeList(list{"hello", "world"})
 describeList(list{"hello", "world", "good", "bye"})
 
 // option
+
 // revisiting variants,
 //  // self-referential structures
 //  // recursive functions over them
 
 // functional programming, side-effects, ref
-// custom map implementation using reduce
-// exercises to implement map & filter
-// implementing iter can be done after introducing unit later
-let myCustomMap = (xs: list<'a>, f: 'a => 'b): list<'b> =>
-  Belt.List.reduce(xs, list{}, (acc, x) => list{f(x), ...acc})->Belt.List.reverse
-
-// pattern matching
-let myCustomFilter = (xs, f: 'a => bool): list<'a> => Belt.List.reduce(xs, list{}, (acc, x) =>
-    if f(x) {
-      list{f(x), ...acc}
-    } else {
-      acc
-    }
-  )->Belt.List.reverse
 
 // revisit Js.Array.iter after side-effects / Js.log
 // is introduced

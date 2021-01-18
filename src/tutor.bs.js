@@ -401,6 +401,28 @@ var totalRecovered2 = Belt_List.reduce(dailyRecovered, 0, (function (acc, param)
         return acc + param.count | 0;
       }));
 
+function myCustomMap(xs, f) {
+  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
+                    return {
+                            hd: Curry._1(f, x),
+                            tl: acc
+                          };
+                  })));
+}
+
+function myCustomFilter(xs, f) {
+  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
+                    if (Curry._1(f, x)) {
+                      return {
+                              hd: Curry._1(f, x),
+                              tl: acc
+                            };
+                    } else {
+                      return acc;
+                    }
+                  })));
+}
+
 function describeList(xs) {
   if (!xs) {
     return "This list is empty";
@@ -440,28 +462,6 @@ describeList({
         }
       }
     });
-
-function myCustomMap(xs, f) {
-  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
-                    return {
-                            hd: Curry._1(f, x),
-                            tl: acc
-                          };
-                  })));
-}
-
-function myCustomFilter(xs, f) {
-  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
-                    if (Curry._1(f, x)) {
-                      return {
-                              hd: Curry._1(f, x),
-                              tl: acc
-                            };
-                    } else {
-                      return acc;
-                    }
-                  })));
-}
 
 var hello = "Hello, World!";
 
@@ -628,7 +628,7 @@ exports.toDisplayMetric = toDisplayMetric;
 exports.convertedMetrics = convertedMetrics;
 exports.filteredMetrics = filteredMetrics;
 exports.totalRecovered2 = totalRecovered2;
-exports.describeList = describeList;
 exports.myCustomMap = myCustomMap;
 exports.myCustomFilter = myCustomFilter;
+exports.describeList = describeList;
 /*  Not a pure module */
