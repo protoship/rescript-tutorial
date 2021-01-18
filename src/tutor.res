@@ -713,7 +713,6 @@ let arrayLength = Js.Array.length(progLangCreators)
 let arrayFirstItem = progLangCreators[0]
 let arrayLastItem = progLangCreators[arrayLength - 1]
 
-Js.log(arrayLastItem)
 // Let's use Belt now?
 // But why are we using Belt when it adds a runtime
 // ergonomics
@@ -823,12 +822,29 @@ let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
 // reduce
 let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
 
+// pattern matching
+
 // option
 // revisiting variants,
 //  // self-referential structures
 //  // recursive functions over them
 
 // functional programming, side-effects, ref
+// custom map implementation using reduce
+// exercises to implement map & filter
+// implementing iter can be done after introducing unit later
+let myCustomMap = (xs: list<'a>, f: 'a => 'b): list<'b> =>
+  Belt.List.reduce(xs, list{}, (acc, x) => list{f(x), ...acc})->Belt.List.reverse
+
+// pattern matching
+let myCustomFilter = (xs, f: 'a => bool): list<'a> => Belt.List.reduce(xs, list{}, (acc, x) =>
+    if f(x) {
+      list{f(x), ...acc}
+    } else {
+      acc
+    }
+  )->Belt.List.reverse
+
 // revisit Js.Array.iter after side-effects / Js.log
 // is introduced
 // bindings, JS interop, JSON, promises

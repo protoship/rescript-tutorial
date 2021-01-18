@@ -6,7 +6,7 @@
     "subdirs": true
   },
   "package-specs": {
-    "module": "es6-global",
+    "module": "commonjs",
     "in-source": true
   },
   "suffix": ".bs.js",
