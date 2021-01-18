@@ -843,7 +843,6 @@ let myCustomFilter = (xs, f: 'a => bool): list<'a> => Belt.List.reduce(xs, list{
 let describeList = xs =>
   switch xs {
   | list{} => "This list is empty"
-  | list{head} => "There is only a single item: " ++ head
   | list{head, ...rest} =>
     "The first item in this list is: " ++
     head ++
@@ -852,11 +851,50 @@ let describeList = xs =>
   }
 
 describeList(list{})
-describeList(list{"hello"})
-describeList(list{"hello", "world"})
 describeList(list{"hello", "world", "good", "bye"})
 
 // option
+// Tony Hoare had this to say this regarding the invention
+// of the null reference in 1965
+// "I call it my billion dollar mistake..."
+// "This has led to innumerable errors, vulenrabilities,..."
+// Ruby uses the special object `nil` to represent and empty
+// or default value.
+// JavaScript has null & undefined. It is common to get type errors
+// like "null is not an object" or "undefined is a not a function"
+//
+// It is also common to raise an exception when encountering an
+// edge case in your code, where there is no result which can
+// be returned.
+//
+// All of these problems has an elegant solution. Use the option
+// variant type
+//
+// type option<'a> = None | Some('a)
+//
+// It has two constructors.
+// None -> there is no value, nothing!
+// Some('a) -> there is some value
+// it's parametrically polymorphic
+// so you can use option to signal the presence or absence of
+// value for any type
+//
+// A concrete example to return the 2nd element in a list
+// what are the cases here,
+// 1. list could be empty in which case there is no first element
+// 2. list could have only a single item
+// 3. list could have 2 or more items
+let getSecondListItem = xs =>
+  switch xs {
+  | list{} => None
+  | list{_first} => None
+  | list{_first, second, ..._rest} => Some(second)
+  }
+
+let secondListItem = getSecondListItem(list{})
+let secondListItem2 = getSecondListItem(list{1})
+let secondListItem3 = getSecondListItem(list{"hello", "world"})
+let secondListItem4 = getSecondListItem(list{mh, ka, dl, wb, jh, tn})
 
 // revisiting variants,
 //  // self-referential structures

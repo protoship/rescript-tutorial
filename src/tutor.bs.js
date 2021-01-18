@@ -4,6 +4,7 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var Caml_option = require("bs-platform/lib/js/caml_option.js");
 
 var sumOfFloats = 1 + 2.2 + 3.14;
 
@@ -424,30 +425,12 @@ function myCustomFilter(xs, f) {
 }
 
 function describeList(xs) {
-  if (!xs) {
+  if (xs) {
+    return "The first item in this list is: " + xs.hd + " and there are other " + String(Belt_List.length(xs.tl)) + " items.";
+  } else {
     return "This list is empty";
   }
-  var rest = xs.tl;
-  var head = xs.hd;
-  if (rest) {
-    return "The first item in this list is: " + head + " and there are other " + String(Belt_List.length(rest)) + " items.";
-  } else {
-    return "There is only a single item: " + head;
-  }
 }
-
-describeList({
-      hd: "hello",
-      tl: /* [] */0
-    });
-
-describeList({
-      hd: "hello",
-      tl: {
-        hd: "world",
-        tl: /* [] */0
-      }
-    });
 
 describeList({
       hd: "hello",
@@ -458,6 +441,50 @@ describeList({
           tl: {
             hd: "bye",
             tl: /* [] */0
+          }
+        }
+      }
+    });
+
+function getSecondListItem(xs) {
+  if (!xs) {
+    return ;
+  }
+  var match = xs.tl;
+  if (match) {
+    return Caml_option.some(match.hd);
+  }
+  
+}
+
+var secondListItem2 = getSecondListItem({
+      hd: 1,
+      tl: /* [] */0
+    });
+
+var secondListItem3 = getSecondListItem({
+      hd: "hello",
+      tl: {
+        hd: "world",
+        tl: /* [] */0
+      }
+    });
+
+var secondListItem4 = getSecondListItem({
+      hd: mh,
+      tl: {
+        hd: ka,
+        tl: {
+          hd: dl,
+          tl: {
+            hd: wb,
+            tl: {
+              hd: jh,
+              tl: {
+                hd: tn,
+                tl: /* [] */0
+              }
+            }
           }
         }
       }
@@ -542,6 +569,8 @@ var textLabel = {
     fontFamily: /* Monospace */2
   }
 };
+
+var secondListItem;
 
 exports.hello = hello;
 exports.goodbye = goodbye;
@@ -631,4 +660,9 @@ exports.totalRecovered2 = totalRecovered2;
 exports.myCustomMap = myCustomMap;
 exports.myCustomFilter = myCustomFilter;
 exports.describeList = describeList;
+exports.getSecondListItem = getSecondListItem;
+exports.secondListItem = secondListItem;
+exports.secondListItem2 = secondListItem2;
+exports.secondListItem3 = secondListItem3;
+exports.secondListItem4 = secondListItem4;
 /*  Not a pure module */
