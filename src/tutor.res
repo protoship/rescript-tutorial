@@ -609,6 +609,12 @@ let drawShape = shape =>
 // intro to parametric polymorophism
 type pair<'a> = ('a, 'a)
 
+// the right-hand can also be a record
+// with the fields first, and second
+// but a tuple is more convenient because
+// we are dealing with this type
+// positionally.
+
 type coord2d = pair<int>
 let center: coord2d = (960, 540)
 
