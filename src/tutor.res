@@ -799,6 +799,30 @@ let totalRecovered = Js.Array.reduce((acc, {count}) => {
 */
 
 // list
+// map, filter
+// pattern matching
+// immutable
+// fast prepend
+// fast tail
+let dailyRecovered: list<metric> = list{mh, ka, dl, wb, jh, tn}
+
+type displayMetric = pair<string>
+
+// TODO
+// data first vs data last
+let toDisplayMetric = (metric: metric): displayMetric => (
+  metric.state,
+  Belt.Int.toString(metric.count),
+)
+
+let convertedMetrics = Belt.List.map(dailyRecovered, toDisplayMetric)
+
+// recovered over 500 or more
+let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
+
+// reduce
+let totalRecovered = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
+
 // option
 // revisiting variants,
 //  // self-referential structures
