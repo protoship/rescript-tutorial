@@ -987,12 +987,24 @@ let () = assert (mapOption(double, Some(2)) == Some(4))
 assert (Belt.Option.map(None, double) == None)
 assert (Belt.Option.map(Some(2), double) == Some(4))
 
-// revisiting variants,
-//  // self-referential structures
-//  // recursive functions over them
+// self-referential structures
+// recursive functions over them
 
-// functional programming, side-effects, ref
-// revisit Js.Array.iter after side-effects / Js.log
-// is introduced
-// bindings, JS interop, JSON, promises
-// Modules, module interfaces inline
+// variant which uses the option type
+
+// functional programming
+// currying, partial applications
+// functions as arguments
+// higher order functions
+// pipeline -> |>
+
+// side-effects
+// Js.log
+
+// bindings, JS interop
+// JSON
+// Promises
+
+// modules
+// module interfaces
+// module types
