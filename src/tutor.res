@@ -992,46 +992,7 @@ assert (Belt.Option.map(Some(2), double) == Some(4))
 //  // recursive functions over them
 
 // functional programming, side-effects, ref
-
 // revisit Js.Array.iter after side-effects / Js.log
 // is introduced
 // bindings, JS interop, JSON, promises
 // Modules, module interfaces inline
-
-/* ----------------------------------------------------------------
-                            SCRATCH
-  -----------------------------------------------------------------
-
-// concrete types to motivate parametric polymorphism
-// - a linked list for integers
-type rec intLinkedList =
-  | Nil
-  | List(int, intLinkedList)
-
-// construct values
-let emptyIntLinkedList = Nil
-
-
-// ^ Convert this to an exercise?
-// They only have to fill in with the correct function call.
-
-type rec markup =
-  | Heading(int, string)
-  | TextNode(string)
-  | Division(markup)
-
-let mainHeading = Heading(1, "Main Heading")
-let subHeading = Heading(2, "Sub Heading")
-let post = TextNode("This is some content...")
-let content = Division(post
-
------------------------------------------------------------------*/
-
-// recursive functions over these types
-// exercise: self-referential
-
-// parameteric polymporphism a simple example
-// lists
-// arrays
-// option
-// functional programming
