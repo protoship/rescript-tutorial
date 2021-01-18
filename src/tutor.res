@@ -743,7 +743,60 @@ Js.Array.filter(x => {
 // exercise - provide array of compiled languages
 // create array of dynamic languages
 
+// demonstrate fold with a simple example
+type metric = {state: string, count: int}
+
+// daily recovered counts by state
+let mh = {state: "Maharasthra", count: 2342}
+let ka = {state: "Karnataka", count: 745}
+let dl = {state: "Delhi", count: 385}
+let wb = {state: "West Bengal", count: 621}
+let jh = {state: "Jharkand", count: 111}
+let tn = {state: "Tamil Nadu", count: 770}
+
+let totalRecovered = Js.Array.reduce((acc, {count}) => {
+  acc + count
+}, 0, [mh, ka, dl, wb, jh, tn])
+
 // reduce / fold
+// exercise
+//
+/*
+  Transform the value,
+
+  ("Java", "James Gosling") 
+
+  into the table row html
+
+  <tr>
+    <td>Java</td>
+    <td>James Gosling</td>
+  </tr>
+
+  Reduce/Fold the list of language creators to create a table,
+
+  the table header is,
+
+  <tr>
+    <th>Programming Langauge</th>
+    <th>Creator</th>
+  </tr>
+
+
+  final output:
+
+  <table>
+    <tr>
+      <th>Programming Langauge</th>
+      <th>Creator</th>
+    </tr>
+    <tr>
+      <td>Java</td>
+      <td>James Gosling</td>
+    </tr>
+    ...
+  </table>
+*/
 
 // list
 // option

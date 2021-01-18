@@ -320,6 +320,47 @@ progLangCreators.filter(function (x) {
       return x[0].startsWith("P");
     });
 
+var mh = {
+  state: "Maharasthra",
+  count: 2342
+};
+
+var ka = {
+  state: "Karnataka",
+  count: 745
+};
+
+var dl = {
+  state: "Delhi",
+  count: 385
+};
+
+var wb = {
+  state: "West Bengal",
+  count: 621
+};
+
+var jh = {
+  state: "Jharkand",
+  count: 111
+};
+
+var tn = {
+  state: "Tamil Nadu",
+  count: 770
+};
+
+var totalRecovered = [
+    mh,
+    ka,
+    dl,
+    wb,
+    jh,
+    tn
+  ].reduce((function (acc, param) {
+        return acc + param.count | 0;
+      }), 0);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -474,6 +515,13 @@ export {
   arrayFirstItem ,
   arrayLastItem ,
   progLangCreatorToString ,
+  mh ,
+  ka ,
+  dl ,
+  wb ,
+  jh ,
+  tn ,
+  totalRecovered ,
   
 }
 /*  Not a pure module */
