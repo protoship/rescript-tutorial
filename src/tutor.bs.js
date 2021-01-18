@@ -2,9 +2,11 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
+var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 
 var sumOfFloats = 1 + 2.2 + 3.14;
@@ -527,6 +529,75 @@ function safeDivide(dividend, divisor) {
   return Caml_int32.div(dividend, divisor);
 }
 
+var bukowski = "If you're going to try, go all the way...";
+
+function printMessage(message) {
+  if (message !== undefined) {
+    return message;
+  } else {
+    return "The message is empty";
+  }
+}
+
+function mapOption(f, opt) {
+  if (opt !== undefined) {
+    return Caml_option.some(Curry._1(f, Caml_option.valFromOption(opt)));
+  }
+  
+}
+
+function $$double(i) {
+  return (i << 1);
+}
+
+if (mapOption($$double, undefined) !== undefined) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          967,
+          9
+        ],
+        Error: new Error()
+      };
+}
+
+if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          969,
+          9
+        ],
+        Error: new Error()
+      };
+}
+
+if (Belt_Option.map(undefined, $$double) !== undefined) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          987,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
+if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          988,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -710,4 +781,8 @@ exports.nothing = nothing;
 exports.nothing2 = nothing2;
 exports.whatNumberAmIThinking = whatNumberAmIThinking;
 exports.safeDivide = safeDivide;
+exports.bukowski = bukowski;
+exports.printMessage = printMessage;
+exports.mapOption = mapOption;
+exports.$$double = $$double;
 /*  Not a pure module */

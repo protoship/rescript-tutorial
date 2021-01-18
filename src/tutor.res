@@ -930,9 +930,62 @@ assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
  */
 let safeDivide = (~dividend, ~divisor) => Some(dividend / divisor)
 
-// pattern matching
+// pattern matching - simple example
+let bukowski = Some("If you're going to try, go all the way...")
+let printMessage = message =>
+  switch message {
+  | None => "The message is empty"
+  | Some(x) => x
+  }
+
+printMessage(bukowski)
 
 // Belt combinators
+// especially map
+
+// inside a data transformation pipeline when you encounter
+// an option value, you'll pattern match on it. After
+// applying the function to the value inside `Some(value)`
+// like `f(value)`, the computation will move down the
+// chain. When the value is a `None` the function `f`
+// has no argument to be apply.
+// The `printMessage` function above knows how to
+// pattern match on the option<'a> type values.
+// What would you do if you had to construct a pipline
+// where the functions themselves are not aware of
+// option values. Rewriting them to pattern match
+// on an option type value is painfully unnecessary.
+
+let mapOption = (f, opt) =>
+  switch opt {
+  | None => None
+  | Some(i) => Some(f(i))
+  }
+
+let double = i => 2 * i
+
+let () = assert (mapOption(double, None) == None)
+
+let () = assert (mapOption(double, Some(2)) == Some(4))
+
+// The function is not applied or computed when the
+// input argument is None. The computation is
+// short-circuited. So if you construct a data pipeline
+// where functions are being chained, when a None is
+// computed anywhere it flows to the end of the
+// pipeline without further computation.
+// Only `Some(value)` will have function application
+// happening down the chain.
+//
+// This is a forward reference:
+// We'll revisit this concept when the pipeline operator
+// is introduced.
+
+// We don't need to implement mapOption ourselves
+// We can use Belt.Option.map
+
+assert (Belt.Option.map(None, double) == None)
+assert (Belt.Option.map(Some(2), double) == Some(4))
 
 // revisiting variants,
 //  // self-referential structures
