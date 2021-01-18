@@ -4,6 +4,7 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
+var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 
 var sumOfFloats = 1 + 2.2 + 3.14;
@@ -490,6 +491,42 @@ var secondListItem4 = getSecondListItem({
       }
     });
 
+function whatNumberAmIThinking(myNumber) {
+  if (myNumber !== undefined) {
+    return "My number is: " + String(myNumber);
+  } else {
+    return "I'm not thinking of any number!";
+  }
+}
+
+if (whatNumberAmIThinking(undefined) !== "I'm not thinking of any number!") {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          923,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
+if (whatNumberAmIThinking(7) !== "My number is: 7") {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          924,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
+function safeDivide(dividend, divisor) {
+  return Caml_int32.div(dividend, divisor);
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -671,4 +708,6 @@ exports.secondListItem3 = secondListItem3;
 exports.secondListItem4 = secondListItem4;
 exports.nothing = nothing;
 exports.nothing2 = nothing2;
+exports.whatNumberAmIThinking = whatNumberAmIThinking;
+exports.safeDivide = safeDivide;
 /*  Not a pure module */

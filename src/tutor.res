@@ -914,6 +914,26 @@ let nothing = None
 // the type
 let nothing2: option<int> = None
 
+let whatNumberAmIThinking = (myNumber: option<int>) =>
+  switch myNumber {
+  | None => "I'm not thinking of any number!"
+  | Some(number) => "My number is: " ++ string_of_int(number)
+  }
+
+assert (whatNumberAmIThinking(None) == "I'm not thinking of any number!")
+assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
+
+/*
+  Implement the function [safeDivide(~dividend, ~divisor)], which takes two
+  ints and returns an int option. It should return None if [divisor = 0], and
+  otherwise returns [Some(x)] where [x] is the division result
+ */
+let safeDivide = (~dividend, ~divisor) => Some(dividend / divisor)
+
+// pattern matching
+
+// Belt combinators
+
 // revisiting variants,
 //  // self-referential structures
 //  // recursive functions over them
