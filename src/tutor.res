@@ -804,13 +804,13 @@ let totalRecovered = Js.Array.reduce((acc, {count}) => {
 //  // self-referential structures
 //  // recursive functions over them
 
-// section 4: functional programming
+// section 4: functional programming, side-effects, ref
+// revisit Js.Array.iter after side-effects / Js.log
+// is introduced
 
-// section 5: bindings, JS interop, JSON
+// section 5: bindings, JS interop, JSON, promises
 
-// section 6: side-effects, imperative, ref, promises, JSON
-
-// section 7: Belt standard library
+// section 6: Belt standard library
 
 /* ----------------------------------------------------------------
                             SCRATCH
