@@ -401,6 +401,46 @@ var totalRecovered2 = Belt_List.reduce(dailyRecovered, 0, (function (acc, param)
         return acc + param.count | 0;
       }));
 
+function describeList(xs) {
+  if (!xs) {
+    return "This list is empty";
+  }
+  var rest = xs.tl;
+  var head = xs.hd;
+  if (rest) {
+    return "The first item in this list is: " + head + " and there are other " + String(Belt_List.length(rest)) + " items.";
+  } else {
+    return "There is only a single item: " + head;
+  }
+}
+
+describeList({
+      hd: "hello",
+      tl: /* [] */0
+    });
+
+describeList({
+      hd: "hello",
+      tl: {
+        hd: "world",
+        tl: /* [] */0
+      }
+    });
+
+describeList({
+      hd: "hello",
+      tl: {
+        hd: "world",
+        tl: {
+          hd: "good",
+          tl: {
+            hd: "bye",
+            tl: /* [] */0
+          }
+        }
+      }
+    });
+
 function myCustomMap(xs, f) {
   return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
                     return {
@@ -588,6 +628,7 @@ exports.toDisplayMetric = toDisplayMetric;
 exports.convertedMetrics = convertedMetrics;
 exports.filteredMetrics = filteredMetrics;
 exports.totalRecovered2 = totalRecovered2;
+exports.describeList = describeList;
 exports.myCustomMap = myCustomMap;
 exports.myCustomFilter = myCustomFilter;
 /*  Not a pure module */

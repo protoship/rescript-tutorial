@@ -823,6 +823,23 @@ let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
 let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
 
 // pattern matching
+// case 1: list is empty
+// case 2: head, and tail
+let describeList = xs =>
+  switch xs {
+  | list{} => "This list is empty"
+  | list{head} => "There is only a single item: " ++ head
+  | list{head, ...rest} =>
+    "The first item in this list is: " ++
+    head ++
+    " and there are other " ++
+    Belt.Int.toString(Belt.List.length(rest)) ++ " items."
+  }
+
+describeList(list{})
+describeList(list{"hello"})
+describeList(list{"hello", "world"})
+describeList(list{"hello", "world", "good", "bye"})
 
 // option
 // revisiting variants,
