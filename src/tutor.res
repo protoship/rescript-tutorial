@@ -896,6 +896,24 @@ let secondListItem2 = getSecondListItem(list{1})
 let secondListItem3 = getSecondListItem(list{"hello", "world"})
 let secondListItem4 = getSecondListItem(list{mh, ka, dl, wb, jh, tn})
 
+// confusing at first!
+// why is the inferred type 'a
+// The constructor does not have arguments
+// becaues it is the None constructor
+// only the Some constructor uses the 'a argument
+// so the concrete type is not know here
+// type checker infers the principal type
+// that means the most general purpose type which is
+// applicable here.
+let nothing = None
+// You can always manually annotate to force a specialized
+// type. Often this is not necessary in application code
+// because the evaluation context would have enough
+// information to infer the type. But if that does not
+// happen, then you can fallback to manually annotating
+// the type
+let nothing2: option<int> = None
+
 // revisiting variants,
 //  // self-referential structures
 //  // recursive functions over them

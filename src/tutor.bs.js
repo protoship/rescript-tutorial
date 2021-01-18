@@ -572,6 +572,10 @@ var textLabel = {
 
 var secondListItem;
 
+var nothing;
+
+var nothing2;
+
 exports.hello = hello;
 exports.goodbye = goodbye;
 exports.runningTotal = runningTotal;
@@ -665,4 +669,6 @@ exports.secondListItem = secondListItem;
 exports.secondListItem2 = secondListItem2;
 exports.secondListItem3 = secondListItem3;
 exports.secondListItem4 = secondListItem4;
+exports.nothing = nothing;
+exports.nothing2 = nothing2;
 /*  Not a pure module */
