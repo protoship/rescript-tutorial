@@ -821,20 +821,18 @@ let convertedMetrics = Belt.List.map(dailyRecovered, toDisplayMetric)
 let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
 
 // reduce
-let totalRecovered = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
+let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
 
 // option
 // revisiting variants,
 //  // self-referential structures
 //  // recursive functions over them
 
-// section 4: functional programming, side-effects, ref
+// functional programming, side-effects, ref
 // revisit Js.Array.iter after side-effects / Js.log
 // is introduced
-
-// section 5: bindings, JS interop, JSON, promises
-
-// section 6: Belt standard library
+// bindings, JS interop, JSON, promises
+// Modules, module interfaces inline
 
 /* ----------------------------------------------------------------
                             SCRATCH

@@ -351,7 +351,7 @@ var tn = {
   count: 770
 };
 
-[
+var totalRecovered = [
     mh,
     ka,
     dl,
@@ -397,7 +397,7 @@ var filteredMetrics = Belt_List.keep(dailyRecovered, (function (param) {
         return param.count >= 500;
       }));
 
-var totalRecovered = Belt_List.reduce(dailyRecovered, 0, (function (acc, param) {
+var totalRecovered2 = Belt_List.reduce(dailyRecovered, 0, (function (acc, param) {
         return acc + param.count | 0;
       }));
 
@@ -561,11 +561,12 @@ export {
   wb ,
   jh ,
   tn ,
+  totalRecovered ,
   dailyRecovered ,
   toDisplayMetric ,
   convertedMetrics ,
   filteredMetrics ,
-  totalRecovered ,
+  totalRecovered2 ,
   
 }
 /*  Not a pure module */
