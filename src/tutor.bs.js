@@ -646,32 +646,28 @@ function paragraphToHTML(text) {
 
 function renderHTML(html) {
   var aux = function (depth, x) {
+    var indent = " ".repeat((depth << 1));
+    var childrenToHTML = function (tag, xs) {
+      var partial_arg = depth + 1 | 0;
+      var innerHTML = Belt_Array.map(xs, (function (param) {
+                return aux(partial_arg, param);
+              })).join("\n");
+      return indent + "<" + tag + ">\n" + innerHTML + "\n" + indent + "</" + tag + ">";
+    };
     switch (x.TAG | 0) {
       case /* Division */0 :
-          var partial_arg = depth + 1 | 0;
-          var intermediate = Belt_Array.map(x._0, (function (param) {
-                  return aux(partial_arg, param);
-                }));
-          var innerHTML = intermediate.join("\n");
-          return " ".repeat((depth << 1)) + "<div>\n" + innerHTML + "\n" + " ".repeat((depth << 1)) + "</div>";
+          return childrenToHTML("div", x._0);
       case /* Heading */1 :
-          var partial_arg$1 = depth + 1 | 0;
-          var intermediate$1 = Belt_Array.map(x._0, (function (param) {
-                  return aux(partial_arg$1, param);
-                }));
-          var innerHTML$1 = intermediate$1.join("\n");
-          return " ".repeat((depth << 1)) + "<h1>\n" + innerHTML$1 + "\n" + " ".repeat((depth << 1)) + "</h1>";
+          return childrenToHTML("h2", x._0);
       case /* Paragraph */2 :
-          return " ".repeat((depth << 1)) + paragraphToHTML(x._0);
+          return indent + paragraphToHTML(x._0);
       case /* Anchor */3 :
-          return " ".repeat((depth << 1)) + anchorToHTML(x._0, x._1);
+          return indent + anchorToHTML(x._0, x._1);
       
     }
   };
   return aux(0, html);
 }
-
-console.log(renderHTML(exampleHTML));
 
 var hello = "Hello, World!";
 

@@ -1023,38 +1023,29 @@ let anchorToHTML = (href, displayText) => `<a href=${hrefToHTML(href)}>${display
 
 let paragraphToHTML = text => `<p>${text}</p>`
 
-// with depth debugging
 let renderHTML = html => {
-  let rec aux = (depth, x) =>
+  let wrapInTag = (~tag, ~innerHTML, ~indent) =>
+    `${indent}<${tag}>\n${innerHTML}\n${indent}</${tag}>`
+
+  let rec aux = (depth, x) => {
+    let indent = Js.String.repeat(depth * 2, " ")
+    let childrenToHTML = (~tag, xs) =>
+      wrapInTag(
+        ~tag,
+        ~innerHTML=xs->Belt.Array.map(aux(depth + 1))->Js.Array.joinWith("\n", _),
+        ~indent,
+      )
+
     switch x {
-    | Division(children) =>
-      // Js.log("Division => " ++ Belt.Int.toString(depth))
-      let intermediate = Belt.Array.map(children, aux(depth + 1))
-      let innerHTML = Js.Array.joinWith("\n", intermediate)
-      `${Js.String.repeat(depth * 2, " ")}<div>\n${innerHTML}\n${Js.String.repeat(
-        depth * 2,
-        " ",
-      )}</div>`
-    | Heading(children) =>
-      // Js.log("Heading => " ++ Belt.Int.toString(depth))
-      let intermediate = Belt.Array.map(children, aux(depth + 1))
-      let innerHTML = Js.Array.joinWith("\n", intermediate)
-      `${Js.String.repeat(depth * 2, " ")}<h1>\n${innerHTML}\n${Js.String.repeat(
-        depth * 2,
-        " ",
-      )}</h1>`
-    | Paragraph(text) =>
-      // Js.log("Paragraph => " ++ Belt.Int.toString(depth))
-      Js.String.repeat(depth * 2, " ") ++ paragraphToHTML(text)
-    | Anchor(href, displayText) =>
-      // Js.log("Anchor => " ++ Belt.Int.toString(depth))
-      Js.String.repeat(depth * 2, " ") ++ anchorToHTML(href, displayText)
+    | Division(children) => childrenToHTML(~tag="div", children)
+    | Heading(children) => childrenToHTML(~tag="h2", children)
+    | Paragraph(text) => indent ++ paragraphToHTML(text)
+    | Anchor(href, displayText) => indent ++ anchorToHTML(href, displayText)
     }
+  }
 
   aux(0, html)
 }
-
-Js.log(renderHTML(exampleHTML))
 
 // functional programming
 // currying, partial applications
