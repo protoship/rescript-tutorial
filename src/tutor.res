@@ -1221,7 +1221,31 @@ let myCharRepeat = (~count: int, ~char: char): string => {
   aux(s, count)
 }
 
-Js.log(myCharRepeat(~char='~', ~count=4))
+// pipeline
+// key - string
+// value - 'a
+// don't talk about the type because we will
+// encounter polymorphic parametrism in the span
+// of a few examples. Let's elide this detail and
+// focus on the pipeline aspect
+let cache = Belt.Map.String.empty
+let cache1 = Belt.Map.String.set(cache, "key1", "value1")
+let cache2 = Belt.Map.String.set(cache1, "key2", "value2")
+let cache3 = Belt.Map.String.set(cache2, "key3", "value3")
+let cache4 = Belt.Map.String.set(cache3, "key4", "value4")
+let cache5 = Belt.Map.String.set(cache4, "key5", "value5")
+
+// there is an easier way to write this without any
+// intermediate variables
+let anotherCache = Belt.Map.String.empty
+anotherCache
+->Belt.Map.String.set("key1", "value1")
+->Belt.Map.String.set("key2", "value2")
+->Belt.Map.String.set("key3", "value3")
+->Belt.Map.String.set("key4", "value4")
+->Belt.Map.String.set("key5", "value5")
+
+assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
 
 // having to implement recursive functions is an uncommon
 // activity when building user interfaces. That being

@@ -10,6 +10,7 @@ var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
+var Belt_MapString = require("bs-platform/lib/js/belt_MapString.js");
 
 var sumOfFloats = 1 + 2.2 + 3.14;
 
@@ -769,7 +770,29 @@ function myCharRepeat(count, $$char) {
   };
 }
 
-console.log(myCharRepeat(4, /* "~" */126));
+var cache1 = Belt_MapString.set(undefined, "key1", "value1");
+
+var cache2 = Belt_MapString.set(cache1, "key2", "value2");
+
+var cache3 = Belt_MapString.set(cache2, "key3", "value3");
+
+var cache4 = Belt_MapString.set(cache3, "key4", "value4");
+
+var cache5 = Belt_MapString.set(cache4, "key5", "value5");
+
+Belt_MapString.set(Belt_MapString.set(Belt_MapString.set(Belt_MapString.set(Belt_MapString.set(undefined, "key1", "value1"), "key2", "value2"), "key3", "value3"), "key4", "value4"), "key5", "value5");
+
+if (Belt_MapString.size(undefined) !== Belt_MapString.size(undefined)) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          1248,
+          0
+        ],
+        Error: new Error()
+      };
+}
 
 var hello = "Hello, World!";
 
@@ -862,6 +885,10 @@ var downvotes = 10;
 var upvotes = 5;
 
 var cartTotal = 200;
+
+var cache;
+
+var anotherCache;
 
 exports.hello = hello;
 exports.goodbye = goodbye;
@@ -993,4 +1020,11 @@ exports.makeBetterDiv = makeBetterDiv;
 exports.div3 = div3;
 exports.altWrapTagAroundHTML = altWrapTagAroundHTML;
 exports.myCharRepeat = myCharRepeat;
+exports.cache = cache;
+exports.cache1 = cache1;
+exports.cache2 = cache2;
+exports.cache3 = cache3;
+exports.cache4 = cache4;
+exports.cache5 = cache5;
+exports.anotherCache = anotherCache;
 /*  Not a pure module */
