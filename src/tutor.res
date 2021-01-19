@@ -1221,6 +1221,14 @@ let myCharRepeat = (~count: int, ~char: char): string => {
   aux(s, count)
 }
 
+// having to implement recursive functions is an uncommon
+// activity when building user interfaces. That being
+// said there are legitimate uses for recursion like
+// walking the HTML DOM tree structure in the browser,
+// building a directory/file tree structure UI component,
+// or for that matter any tree UI component.
+// similar exercise is `renderHTML` encountered later
+
 // pipeline
 // key - string
 // value - 'a
@@ -1246,14 +1254,6 @@ anotherCache
 ->Belt.Map.String.set("key5", "value5")
 
 assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
-
-// having to implement recursive functions is an uncommon
-// activity when building user interfaces. That being
-// said there are legitimate uses for recursion like
-// walking the HTML DOM tree structure in the browser,
-// building a directory/file tree structure UI component,
-// or for that matter any tree UI component.
-// similar exercise is `renderHTML` encountered later
 
 // functions which return unit
 
