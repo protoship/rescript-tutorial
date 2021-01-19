@@ -1120,19 +1120,19 @@ let calculateDiscount = (total: int): int => {
 // partial application example
 
 // helper for partial application
-let wrapHTMLTag = (tagName: string, innerText: string): string => {
-  `<${tagName}>${innerText}</${tagName}>`
+let wrapTagAroundText = (tagName: string, text: string): string => {
+  `<${tagName}>${text}</${tagName}>`
 }
 
 // long form
-let makeHeading1 = (text: string): string => wrapHTMLTag("h1", text)
+let makeHeading1 = (text: string): string => wrapTagAroundText("h1", text)
 // long form without type annotation
-let makeHeading2 = text => wrapHTMLTag("h2", text)
+let makeHeading2 = text => wrapTagAroundText("h2", text)
 
 // short form this is also correct
 // but the one above is better for readability
 // types are the same
-let makeParagraph = wrapHTMLTag("p")
+let makeParagraph = wrapTagAroundText("p")
 
 // call sites, full application
 let mainHeading = makeHeading1("This is the title of the document")
@@ -1140,7 +1140,16 @@ let subHeading = makeHeading2("A simple tagline...")
 let para1 = makeParagraph("Text content....")
 let para2 = makeParagraph("This is the second paragraph...")
 
-// pass function as argument (indent) <-----
+// pass function as argument (indent)
+// pretty limited because we would not have introduced arrays by this point
+let wrapTagAroundHTML = (tagName: string, indent: string => string, html: string): string =>
+  `<${tagName}>\n${indent(" ")}${html}\n</${tagName}>`
+
+// exercise is to write the below callsite
+// hint: Use Js.String.repeat with fixed argument 2
+let indent = x => Js.String.repeat(2, x)
+let makeDiv = wrapTagAroundHTML("div", indent, para1)
+let makeDiv2 = wrapTagAroundHTML("div", indent, para2)
 
 /*
   0. if-else

@@ -689,29 +689,41 @@ function calculateDiscount(total) {
   }
 }
 
-function wrapHTMLTag(tagName, innerText) {
-  return "<" + tagName + ">" + innerText + "</" + tagName + ">";
+function wrapTagAroundText(tagName, text) {
+  return "<" + tagName + ">" + text + "</" + tagName + ">";
 }
 
 function makeHeading1(text) {
-  return wrapHTMLTag("h1", text);
+  return wrapTagAroundText("h1", text);
 }
 
 function makeHeading2(text) {
-  return wrapHTMLTag("h2", text);
+  return wrapTagAroundText("h2", text);
 }
 
 function makeParagraph(param) {
-  return wrapHTMLTag("p", param);
+  return wrapTagAroundText("p", param);
 }
 
-var mainHeading = wrapHTMLTag("h1", "This is the title of the document");
+var mainHeading = wrapTagAroundText("h1", "This is the title of the document");
 
-var subHeading = wrapHTMLTag("h2", "A simple tagline...");
+var subHeading = wrapTagAroundText("h2", "A simple tagline...");
 
-var para1 = wrapHTMLTag("p", "Text content....");
+var para1 = wrapTagAroundText("p", "Text content....");
 
-var para2 = wrapHTMLTag("p", "This is the second paragraph...");
+var para2 = wrapTagAroundText("p", "This is the second paragraph...");
+
+function wrapTagAroundHTML(tagName, indent, html) {
+  return "<" + tagName + ">\n" + Curry._1(indent, " ") + html + "\n</" + tagName + ">";
+}
+
+function indent(x) {
+  return x.repeat(2);
+}
+
+var makeDiv = wrapTagAroundHTML("div", indent, para1);
+
+var makeDiv2 = wrapTagAroundHTML("div", indent, para2);
 
 var hello = "Hello, World!";
 
@@ -917,7 +929,7 @@ exports.cssClassName = cssClassName;
 exports.cartTotal = cartTotal;
 exports.discount = discount;
 exports.calculateDiscount = calculateDiscount;
-exports.wrapHTMLTag = wrapHTMLTag;
+exports.wrapTagAroundText = wrapTagAroundText;
 exports.makeHeading1 = makeHeading1;
 exports.makeHeading2 = makeHeading2;
 exports.makeParagraph = makeParagraph;
@@ -925,4 +937,8 @@ exports.mainHeading = mainHeading;
 exports.subHeading = subHeading;
 exports.para1 = para1;
 exports.para2 = para2;
+exports.wrapTagAroundHTML = wrapTagAroundHTML;
+exports.indent = indent;
+exports.makeDiv = makeDiv;
+exports.makeDiv2 = makeDiv2;
 /*  Not a pure module */
