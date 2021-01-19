@@ -1148,8 +1148,36 @@ let wrapTagAroundHTML = (tagName: string, indent: string => string, html: string
 // exercise is to write the below callsite
 // hint: Use Js.String.repeat with fixed argument 2
 let indent = x => Js.String.repeat(2, x)
-let makeDiv = wrapTagAroundHTML("div", indent, para1)
-let makeDiv2 = wrapTagAroundHTML("div", indent, para2)
+let makeDiv = wrapTagAroundHTML("div", indent)
+
+let div1 = makeDiv(para1)
+let div2 = makeDiv(para2)
+
+// how do you make wrapTagAroundText & wrapTagAroundHTML better
+// for the reader of the code?
+// use labelled arguments when possible
+// when the types of the function are (string, string) you have
+// a designed an API where the user of that code should now either
+// remember or go lookup documentation to figure out the correct
+// way to use it. If you switch up the argument order , there is
+// no compilation error. Because they are the correct types, but
+// now you have a logical error.
+// It's better to not depend on the position of an argument, and
+// instead use named arguments.
+
+let betterWrapTagAroundHTML = (~tag: string, ~indent, ~html) =>
+  `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
+
+let makeBetterDiv = betterWrapTagAroundHTML(~tag="div", ~indent)
+let div3 = makeBetterDiv(~html=para1)
+
+// labelled arguments are not positional
+// all these functions return the same result
+// application order does not matter
+betterWrapTagAroundHTML(~indent, ~tag="div", ~html=para1)
+betterWrapTagAroundHTML(~html=para1, ~indent, ~tag="div")
+
+Js.log(div3)
 
 /*
   0. if-else
@@ -1174,6 +1202,7 @@ let makeDiv2 = wrapTagAroundHTML("div", indent, para2)
   Not included:
   1. Functions with optional arguments
   2. Destructuring in function arguments
+  3. Optional arguments - it is sugar for optional arguments
 */
 
 // side-effects

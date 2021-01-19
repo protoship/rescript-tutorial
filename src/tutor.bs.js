@@ -721,9 +721,29 @@ function indent(x) {
   return x.repeat(2);
 }
 
-var makeDiv = wrapTagAroundHTML("div", indent, para1);
+function makeDiv(param) {
+  return wrapTagAroundHTML("div", indent, param);
+}
 
-var makeDiv2 = wrapTagAroundHTML("div", indent, para2);
+var div1 = wrapTagAroundHTML("div", indent, para1);
+
+var div2 = wrapTagAroundHTML("div", indent, para2);
+
+function betterWrapTagAroundHTML(tag, indent, html) {
+  return "<" + tag + ">\n" + Curry._1(indent, " ") + html + "\n</" + tag + ">";
+}
+
+function makeBetterDiv(param) {
+  return betterWrapTagAroundHTML("div", indent, param);
+}
+
+var div3 = betterWrapTagAroundHTML("div", indent, para1);
+
+betterWrapTagAroundHTML("div", indent, para1);
+
+betterWrapTagAroundHTML("div", indent, para1);
+
+console.log(div3);
 
 var hello = "Hello, World!";
 
@@ -940,5 +960,9 @@ exports.para2 = para2;
 exports.wrapTagAroundHTML = wrapTagAroundHTML;
 exports.indent = indent;
 exports.makeDiv = makeDiv;
-exports.makeDiv2 = makeDiv2;
+exports.div1 = div1;
+exports.div2 = div2;
+exports.betterWrapTagAroundHTML = betterWrapTagAroundHTML;
+exports.makeBetterDiv = makeBetterDiv;
+exports.div3 = div3;
 /*  Not a pure module */
