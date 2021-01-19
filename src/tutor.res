@@ -1256,6 +1256,51 @@ anotherCache
 assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
 
 // functions which return unit
+// side-effects
+// functions so far have been pure
+// they do not mutate state
+// but what if we want to log something
+// into the console
+// now that is not a pure function
+// because it interacts with the real
+// world. This could be getting user
+// input keyboard, mouse, touch etc
+// through browser events, reading a file
+// etc. The most common one though is logging
+// something to the console. For that you
+// can use Js.log which is pretty much
+// console.log in javascript. Except
+// it can take only a single argument
+// but that can be of any type. But that may
+// not make sense yet. But it will in the next
+// section, how a function can take an argument
+// of any type.
+// Use Js.log to debug your code
+// Js.log("hello there") // would print it
+// to console on running this from the command
+// line.
+
+Js.log("This is the penultimate step in this section...")
+
+// there is a primitive type named unit
+// what is unit
+// represented by the value ()
+let whatIsTheNatureOfTheVoid = ()
+
+let aFunctionWhichReturnsNothing = (_: int): unit => {
+  // does somethign else here ...
+  ()
+}
+
+// neither takes any argument
+// nor does it return anything
+// if it takes no input, then it can only side-effect within
+let whatIsThisFunction = () => {
+  Js.log("A debug statement....")
+  // maybe something else is going on here
+  // but there is no contact with the outside world
+  () // return nothing
+}
 
 /*
   0. if-else

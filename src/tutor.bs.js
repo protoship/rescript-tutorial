@@ -794,6 +794,17 @@ if (Belt_MapString.size(undefined) !== Belt_MapString.size(undefined)) {
       };
 }
 
+console.log("This is the penultimate step in this section...");
+
+function aFunctionWhichReturnsNothing(param) {
+  
+}
+
+function whatIsThisFunction(param) {
+  console.log("A debug statement....");
+  
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -889,6 +900,8 @@ var cartTotal = 200;
 var cache;
 
 var anotherCache;
+
+var whatIsTheNatureOfTheVoid;
 
 exports.hello = hello;
 exports.goodbye = goodbye;
@@ -1027,4 +1040,7 @@ exports.cache3 = cache3;
 exports.cache4 = cache4;
 exports.cache5 = cache5;
 exports.anotherCache = anotherCache;
+exports.whatIsTheNatureOfTheVoid = whatIsTheNatureOfTheVoid;
+exports.aFunctionWhichReturnsNothing = aFunctionWhichReturnsNothing;
+exports.whatIsThisFunction = whatIsThisFunction;
 /*  Not a pure module */
