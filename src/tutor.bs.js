@@ -689,17 +689,29 @@ function calculateDiscount(total) {
   }
 }
 
-function add(x, y) {
-  return x + y | 0;
+function wrapHTMLTag(tagName, innerText) {
+  return "<" + tagName + ">" + innerText + "</" + tagName + ">";
 }
 
-function add5(param) {
-  return 5 + param | 0;
+function makeHeading1(text) {
+  return wrapHTMLTag("h1", text);
 }
 
-function add10(x) {
-  return 10 + x | 0;
+function makeHeading2(text) {
+  return wrapHTMLTag("h2", text);
 }
+
+function makeParagraph(param) {
+  return wrapHTMLTag("p", param);
+}
+
+var mainHeading = wrapHTMLTag("h1", "This is the title of the document");
+
+var subHeading = wrapHTMLTag("h2", "A simple tagline...");
+
+var para1 = wrapHTMLTag("p", "Text content....");
+
+var para2 = wrapHTMLTag("p", "This is the second paragraph...");
 
 var hello = "Hello, World!";
 
@@ -905,7 +917,12 @@ exports.cssClassName = cssClassName;
 exports.cartTotal = cartTotal;
 exports.discount = discount;
 exports.calculateDiscount = calculateDiscount;
-exports.add = add;
-exports.add5 = add5;
-exports.add10 = add10;
+exports.wrapHTMLTag = wrapHTMLTag;
+exports.makeHeading1 = makeHeading1;
+exports.makeHeading2 = makeHeading2;
+exports.makeParagraph = makeParagraph;
+exports.mainHeading = mainHeading;
+exports.subHeading = subHeading;
+exports.para1 = para1;
+exports.para2 = para2;
 /*  Not a pure module */

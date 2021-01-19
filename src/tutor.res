@@ -1117,20 +1117,30 @@ let calculateDiscount = (total: int): int => {
   }
 }
 
-// partial application
-// let add: (int, int) => int
-let add = (x, y) => x + y
-// fix 5
-// let add5: (int, int) => int
-let add5 = add(5)
-// this is the same  as writing:
-// let add5 = x => add(5, x)
-// full function application
-// fix 10
-let add10 = x => add(10, x)
+// partial application example
 
-assert (add5(10) == 15)
-assert (add10(10) == 20)
+// helper for partial application
+let wrapHTMLTag = (tagName: string, innerText: string): string => {
+  `<${tagName}>${innerText}</${tagName}>`
+}
+
+// long form
+let makeHeading1 = (text: string): string => wrapHTMLTag("h1", text)
+// long form without type annotation
+let makeHeading2 = text => wrapHTMLTag("h2", text)
+
+// short form this is also correct
+// but the one above is better for readability
+// types are the same
+let makeParagraph = wrapHTMLTag("p")
+
+// call sites, full application
+let mainHeading = makeHeading1("This is the title of the document")
+let subHeading = makeHeading2("A simple tagline...")
+let para1 = makeParagraph("Text content....")
+let para2 = makeParagraph("This is the second paragraph...")
+
+// pass function as argument (indent) <-----
 
 /*
   0. if-else
@@ -1150,6 +1160,7 @@ assert (add10(10) == 20)
   9. Inner functions (block scope)
   10. Pipeline
   11. function which returns unit type
+  12. pass functions as arguments
 
   Not included:
   1. Functions with optional arguments
