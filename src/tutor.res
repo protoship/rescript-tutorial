@@ -604,6 +604,12 @@ let drawShape = shape =>
 
 /*
   Section 3: Parametric Polymorphism
+
+  // Include because useful, and fits here?
+  // console.log
+  // equivalent is Js.log
+  let jsConsoleLog: 'a => unit = Js.log
+
  */
 
 // intro to parametric polymorophism
@@ -1082,7 +1088,6 @@ let cssClassName = if upvotes < downvotes {
 }
 
 // another example with an else-if branch
-
 let cartTotal = 200
 let discount = if cartTotal >= 500 {
   cartTotal * 10 / 100
@@ -1096,7 +1101,10 @@ let discount = if cartTotal >= 500 {
 // explain this example
 // -- uses if/else-if/else
 // -- inlines the helper functions to the function block scope
-let calculateDiscount = total => {
+// -- type annotations for input & output
+// -- -- input type is `int`
+// -- -- output type is `int`
+let calculateDiscount = (total: int): int => {
   let isJumboDiscount = total => total >= 500
   let isRegularDiscount = total => total >= 200 && total < 500
 
@@ -1108,6 +1116,21 @@ let calculateDiscount = total => {
     0
   }
 }
+
+// partial application
+// let add: (int, int) => int
+let add = (x, y) => x + y
+// fix 5
+// let add5: (int, int) => int
+let add5 = add(5)
+// this is the same  as writing:
+// let add5 = x => add(5, x)
+// full function application
+// fix 10
+let add10 = x => add(10, x)
+
+assert (add5(10) == 15)
+assert (add10(10) == 20)
 
 /*
   0. if-else
@@ -1126,6 +1149,7 @@ let calculateDiscount = total => {
   8. Recursive function
   9. Inner functions (block scope)
   10. Pipeline
+  11. function which returns unit type
 
   Not included:
   1. Functions with optional arguments

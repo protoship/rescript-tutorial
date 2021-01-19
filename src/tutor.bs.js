@@ -507,7 +507,7 @@ if (whatNumberAmIThinking(undefined) !== "I'm not thinking of any number!") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          923,
+          929,
           0
         ],
         Error: new Error()
@@ -519,7 +519,7 @@ if (whatNumberAmIThinking(7) !== "My number is: 7") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          924,
+          930,
           0
         ],
         Error: new Error()
@@ -556,7 +556,7 @@ if (mapOption($$double, undefined) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          967,
+          973,
           9
         ],
         Error: new Error()
@@ -568,7 +568,7 @@ if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          969,
+          975,
           9
         ],
         Error: new Error()
@@ -580,7 +580,7 @@ if (Belt_Option.map(undefined, $$double) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          987,
+          993,
           0
         ],
         Error: new Error()
@@ -592,7 +592,7 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "tutor.res",
-          988,
+          994,
           0
         ],
         Error: new Error()
@@ -687,6 +687,18 @@ function calculateDiscount(total) {
     isRegularDiscount(total);
     return 0;
   }
+}
+
+function add(x, y) {
+  return x + y | 0;
+}
+
+function add5(param) {
+  return 5 + param | 0;
+}
+
+function add10(x) {
+  return 10 + x | 0;
 }
 
 var hello = "Hello, World!";
@@ -893,4 +905,7 @@ exports.cssClassName = cssClassName;
 exports.cartTotal = cartTotal;
 exports.discount = discount;
 exports.calculateDiscount = calculateDiscount;
+exports.add = add;
+exports.add5 = add5;
+exports.add10 = add10;
 /*  Not a pure module */
