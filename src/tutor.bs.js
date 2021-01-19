@@ -647,7 +647,7 @@ function paragraphToHTML(text) {
 function renderHTML(html) {
   var aux = function (depth, x) {
     var indent = " ".repeat((depth << 1));
-    var childrenToHTML = function (tag, xs) {
+    var toHTML = function (tag, xs) {
       var partial_arg = depth + 1 | 0;
       var innerHTML = Belt_Array.map(xs, (function (param) {
                 return aux(partial_arg, param);
@@ -656,9 +656,9 @@ function renderHTML(html) {
     };
     switch (x.TAG | 0) {
       case /* Division */0 :
-          return childrenToHTML("div", x._0);
+          return toHTML("div", x._0);
       case /* Heading */1 :
-          return childrenToHTML("h2", x._0);
+          return toHTML("h2", x._0);
       case /* Paragraph */2 :
           return indent + paragraphToHTML(x._0);
       case /* Anchor */3 :
@@ -667,6 +667,26 @@ function renderHTML(html) {
     }
   };
   return aux(0, html);
+}
+
+var cssClassName = "Comment Comment-hidden";
+
+var discount = 0;
+
+function calculateDiscount(total) {
+  var isRegularDiscount = function (total) {
+    if (total >= 200) {
+      return total < 500;
+    } else {
+      return false;
+    }
+  };
+  if (total >= 500) {
+    return 20;
+  } else {
+    isRegularDiscount(total);
+    return 0;
+  }
 }
 
 var hello = "Hello, World!";
@@ -754,6 +774,12 @@ var secondListItem;
 var nothing;
 
 var nothing2;
+
+var downvotes = 10;
+
+var upvotes = 5;
+
+var cartTotal = 200;
 
 exports.hello = hello;
 exports.goodbye = goodbye;
@@ -861,4 +887,10 @@ exports.hrefToHTML = hrefToHTML;
 exports.anchorToHTML = anchorToHTML;
 exports.paragraphToHTML = paragraphToHTML;
 exports.renderHTML = renderHTML;
+exports.downvotes = downvotes;
+exports.upvotes = upvotes;
+exports.cssClassName = cssClassName;
+exports.cartTotal = cartTotal;
+exports.discount = discount;
+exports.calculateDiscount = calculateDiscount;
 /*  Not a pure module */

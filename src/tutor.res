@@ -1029,7 +1029,7 @@ let renderHTML = html => {
 
   let rec aux = (depth, x) => {
     let indent = Js.String.repeat(depth * 2, " ")
-    let childrenToHTML = (~tag, xs) =>
+    let toHTML = (~tag, xs) =>
       wrapInTag(
         ~tag,
         ~innerHTML=xs->Belt.Array.map(aux(depth + 1))->Js.Array.joinWith("\n", _),
@@ -1037,8 +1037,8 @@ let renderHTML = html => {
       )
 
     switch x {
-    | Division(children) => childrenToHTML(~tag="div", children)
-    | Heading(children) => childrenToHTML(~tag="h2", children)
+    | Division(children) => children->toHTML(~tag="div")
+    | Heading(children) => children->toHTML(~tag="h2")
     | Paragraph(text) => indent ++ paragraphToHTML(text)
     | Anchor(href, displayText) => indent ++ anchorToHTML(href, displayText)
     }
@@ -1047,11 +1047,90 @@ let renderHTML = html => {
   aux(0, html)
 }
 
+/*
+  Section 4: Functional Programming
+
+// ***
+// *** Move this section before parametric polymorphism?
+// ***
+// The parametric polymorphism section has a lot of functions
+// It would make sense to introduce functions, calling
+// conventions, passing it around, pipeline earlier. The
+// pipeline syntax would make life easier while writing
+// functions like `renderHTML` above.
+// The `myCustomFilter` uses the if-else control flow
+// *** Maybe it is better to put this section immediately
+// *** after bindings
+//------------------------------------------------------------
 // functional programming
 // currying, partial applications
 // functions as arguments
 // higher order functions
 // pipeline -> |>
+// control flow
+ */
+
+// if else is also an expression
+// The type of the return expression should be same
+
+let downvotes = 10
+let upvotes = 5
+let cssClassName = if upvotes < downvotes {
+  "Comment Comment-hidden"
+} else {
+  "Comment"
+}
+
+// another example with an else-if branch
+
+let cartTotal = 200
+let discount = if cartTotal >= 500 {
+  cartTotal * 10 / 100
+} else if cartTotal > 200 && cartTotal < 500 {
+  (cartTotal - 200) * 10 / 100
+} else {
+  0
+}
+
+// refactor the above code to use functions
+// explain this example
+// -- uses if/else-if/else
+// -- inlines the helper functions to the function block scope
+let calculateDiscount = total => {
+  let isJumboDiscount = total => total >= 500
+  let isRegularDiscount = total => total >= 200 && total < 500
+
+  if isJumboDiscount(total) {
+    cartTotal * 10 / 100
+  } else if isRegularDiscount(total) {
+    (cartTotal - 200) * 10 / 100
+  } else {
+    0
+  }
+}
+
+/*
+  0. if-else
+  1. Show a simple function
+  2. Function application (call-site)
+  3. Type signature of the function
+  4. Partial application
+    - explanations of currying are often confusing
+    - partial applicaiton otoh is about usage
+    - you use it, you understand it
+    - currying is why partial application works
+  5. Fully annotated function
+  6. Function arguments with label
+    - motivate with arguments of similar type
+  7. Anonymous function
+  8. Recursive function
+  9. Inner functions (block scope)
+  10. Pipeline
+
+  Not included:
+  1. Functions with optional arguments
+  2. Destructuring in function arguments
+*/
 
 // side-effects
 // Js.log
