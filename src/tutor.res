@@ -1302,41 +1302,7 @@ let whatIsThisFunction = () => {
   () // return nothing
 }
 
-/*
-  0. if-else
-  1. Show a simple function
-  2. Function application (call-site)
-  3. Type signature of the function
-  4. Partial application
-    - explanations of currying are often confusing
-    - partial applicaiton otoh is about usage
-    - you use it, you understand it
-    - currying is why partial application works
-  5. Fully annotated function
-  6. Function arguments with label
-    - motivate with arguments of similar type
-  7. Anonymous function
-  8. Recursive function
-  9. Inner functions (block scope)
-  10. Pipeline
-  11. function which returns unit type
-  12. pass functions as arguments
-
-  Not included:
-  1. Functions with optional arguments
-  2. Destructuring in function arguments
-  3. Optional arguments - it is sugar for optional arguments
-*/
-
-// anonymous functions
-
-// side-effects
-// Js.log
 // bindings, JS interop
-// JSON
-// Promises
-// Belt / Stdlib
-
 // modules
 // module interfaces
 // module types
