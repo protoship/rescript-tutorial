@@ -1199,6 +1199,38 @@ let altWrapTagAroundHTML = (~depth, ~tag, ~html) => {
   `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
 }
 
+// let's build a function like repeat ourselves
+// the string binding is immutable in ReScript
+// so no looping and mutating a string reference
+// instead we'll do it immutably
+// and this requires recursion
+
+let myCharRepeat = (~count: int, ~char: char): string => {
+  // convert char to a string
+  let s = String.make(1, char)
+
+  let rec aux = (acc, times) => {
+    if times < 2 {
+      acc
+    } else {
+      let acc' = acc ++ s
+      aux(acc', times - 1)
+    }
+  }
+
+  aux(s, count)
+}
+
+Js.log(myCharRepeat(~char='~', ~count=4))
+
+// having to implement recursive functions is an uncommon
+// activity when building user interfaces. That being
+// said there are legitimate uses for recursion like
+// walking the HTML DOM tree structure in the browser,
+// building a directory/file tree structure UI component,
+// or for that matter any tree UI component.
+// similar exercise is `renderHTML` encountered later
+
 // functions which return unit
 
 /*

@@ -2,6 +2,7 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
+var $$String = require("bs-platform/lib/js/string.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
@@ -751,6 +752,25 @@ function altWrapTagAroundHTML(depth, tag, html) {
   return "<" + tag + ">\n" + " ".repeat(depth) + html + "\n</" + tag + ">";
 }
 
+function myCharRepeat(count, $$char) {
+  var s = $$String.make(1, $$char);
+  var _acc = s;
+  var _times = count;
+  while(true) {
+    var times = _times;
+    var acc = _acc;
+    if (times < 2) {
+      return acc;
+    }
+    var acc$prime = acc + s;
+    _times = times - 1 | 0;
+    _acc = acc$prime;
+    continue ;
+  };
+}
+
+console.log(myCharRepeat(4, /* "~" */126));
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -972,4 +992,5 @@ exports.betterWrapTagAroundHTML = betterWrapTagAroundHTML;
 exports.makeBetterDiv = makeBetterDiv;
 exports.div3 = div3;
 exports.altWrapTagAroundHTML = altWrapTagAroundHTML;
+exports.myCharRepeat = myCharRepeat;
 /*  Not a pure module */
