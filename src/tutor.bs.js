@@ -743,7 +743,13 @@ betterWrapTagAroundHTML("div", indent, para1);
 
 betterWrapTagAroundHTML("div", indent, para1);
 
-console.log(div3);
+betterWrapTagAroundHTML("div", (function (x) {
+        return x.repeat(2);
+      }), para1);
+
+function altWrapTagAroundHTML(depth, tag, html) {
+  return "<" + tag + ">\n" + " ".repeat(depth) + html + "\n</" + tag + ">";
+}
 
 var hello = "Hello, World!";
 
@@ -965,4 +971,5 @@ exports.div2 = div2;
 exports.betterWrapTagAroundHTML = betterWrapTagAroundHTML;
 exports.makeBetterDiv = makeBetterDiv;
 exports.div3 = div3;
+exports.altWrapTagAroundHTML = altWrapTagAroundHTML;
 /*  Not a pure module */

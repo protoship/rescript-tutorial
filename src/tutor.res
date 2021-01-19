@@ -1177,7 +1177,29 @@ let div3 = makeBetterDiv(~html=para1)
 betterWrapTagAroundHTML(~indent, ~tag="div", ~html=para1)
 betterWrapTagAroundHTML(~html=para1, ~indent, ~tag="div")
 
-Js.log(div3)
+// anonymous function
+
+betterWrapTagAroundHTML(~indent=x => Js.String.repeat(2, x), ~tag="div", ~html=para1)
+// what is going on here?
+// indent is a function
+// it has type string => string
+// string input, string output
+// we did not use the named function `indent`
+// instead the function body was inlined
+// no name, this function has
+// anonymous, we then call it
+// exact same as indent, except no name
+// this is a handy techinque when working with some functions
+// like Belt.Array.map/filter etc which you  will encounter
+// in parametric polymorphism section
+
+// yet another different way of writing the wrapper function
+let altWrapTagAroundHTML = (~depth, ~tag, ~html) => {
+  let indent = x => Js.String.repeat(depth, x)
+  `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
+}
+
+// functions which return unit
 
 /*
   0. if-else
@@ -1204,6 +1226,8 @@ Js.log(div3)
   2. Destructuring in function arguments
   3. Optional arguments - it is sugar for optional arguments
 */
+
+// anonymous functions
 
 // side-effects
 // Js.log
