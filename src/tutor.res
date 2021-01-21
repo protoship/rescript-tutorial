@@ -1280,7 +1280,7 @@ assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
 // to console on running this from the command
 // line.
 
-Js.log("This is the penultimate step in this section...")
+// Js.log("This is the penultimate step in this section...")
 
 // there is a primitive type named unit
 // what is unit
@@ -1302,7 +1302,25 @@ let whatIsThisFunction = () => {
   () // return nothing
 }
 
-// bindings, JS interop
+// bindings
+// bind to any JS function
+// checkout the interop cheatsheet on the documentation site
+// the new & better binding syntax - refer Cheng Lou's commit in bs-domgraph
+// refer to https://rescript-lang.org/docs/manual/latest/object
+
+// embedding and using raw javascript
+// writing bindings to a JavaScript API
+// writing bindings for a JavaScript value
+// interacting with objects from the JS side
+
 // modules
 // module interfaces
-// module types
+// module opaque types
+
+// imperative programming
+// mutation
+// arrays
+// Js.log
+//
+
+// from rwo (side effects and weak polymorphism)

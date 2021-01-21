@@ -794,8 +794,6 @@ if (Belt_MapString.size(undefined) !== Belt_MapString.size(undefined)) {
       };
 }
 
-console.log("This is the penultimate step in this section...");
-
 function aFunctionWhichReturnsNothing(param) {
   
 }
