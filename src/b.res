@@ -1,31 +1,26 @@
-/**
-  %%raw(
-  `
-const fs = require('fs')
+// let dateFn = %raw(
+//   `
+// function () {
+//   const o_date = new Intl.DateTimeFormat();
+//   const f_date = (m_ca, m_it) => Object({ ...m_ca, [m_it.type]: m_it.value });
+//   const { day, month, year } = o_date.formatToParts().reduce(f_date, {});
+//   return day + "/" + month + "/" + year;
+// }
+// `
+// )
 
-fs.readFile('./bsconfig.json', 'utf8' , (err, data) => {
-  if (err) {
-    console.error(err)
-    return
-  }
-  console.log(data)
-})
-`
-)
- */
+// Js.log(dateFn())
 
 @bs.module("fs")
 external readFile: (string, string, (Js.Nullable.t<{..}>, string) => unit) => unit = "readFile"
 
-@bs.val external foo: 'a = "foo"
-
-readFile("./bsconfig.json", "utf8", (error, data) => {
-  if !Js.isNullable(error) {
-    Js.Console.error2("config file errro: ", error)
-  } else {
-    Js.log(data)
-  }
-})
+// readFile("./bsconfig.json", "utf8", (error, data) => {
+//   if !Js.isNullable(error) {
+//     Js.Console.error2("config file errro: ", error)
+//   } else {
+//     Js.log(data)
+//   }
+// })
 
 /**
   
@@ -38,14 +33,14 @@ readFile("./bsconfig.json", "utf8", (error, data) => {
 @bs.module("path")
 external resolve: (string, string) => string = "resolve"
 
-let completedTodos = resolve(__dirname, "done.txt")
+// let completedTodos = resolve(__dirname, "done.txt")
 
-/**
-let ddMmYyyy = () => {
-  const o_date = new Intl.DateTimeFormat();
-  const f_date = (m_ca, m_it) => Object({ ...m_ca, [m_it.type]: m_it.value });
-  const { day, month, year } = o_date.formatToParts().reduce(f_date, {});
+//scope JSON.parse
+@bs.scope("JSON") @bs.val external parseNames: string => {"names": array<string>} = "parse"
 
-  return `${day}/${month}/${year}`;
-};
- */
+// JS Object
+let result = parseNames(`{"names": ["Luke", "Christine"]}`)["names"][0]
+
+type users = {names: array<string>}
+@bs.scope("JSON") @bs.val external parseUsers: string => users = "parse"
+let name = parseUsers(`{"names": ["Luke", "Christine"]}`).names[1]
