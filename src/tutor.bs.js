@@ -9,6 +9,7 @@ var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
+var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Belt_MapString = require("bs-platform/lib/js/belt_MapString.js");
@@ -822,6 +823,46 @@ var result = Caml_array.get(JSON.parse("{\"names\": [\"Luke\", \"Christine\"]}")
 
 var name = Caml_array.get(JSON.parse("{\"names\": [\"Luke\", \"Christine\"]}").names, 1);
 
+var x = {
+  contents: 0
+};
+
+x.contents = x.contents + 1 | 0;
+
+function minAndMax(_lst) {
+  return Pervasives.failwith("For you to implement");
+}
+
+if (!Caml_obj.caml_equal(Pervasives.failwith("For you to implement"), [
+        2,
+        9
+      ])) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          1388,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
+if (!Caml_obj.caml_equal(Pervasives.failwith("For you to implement"), [
+        7,
+        34
+      ])) {
+  throw {
+        RE_EXN_ID: "Assert_failure",
+        _1: [
+          "tutor.res",
+          1389,
+          0
+        ],
+        Error: new Error()
+      };
+}
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -1062,4 +1103,6 @@ exports.whatIsThisFunction = whatIsThisFunction;
 exports.dateFn = dateFn;
 exports.result = result;
 exports.name = name;
+exports.x = x;
+exports.minAndMax = minAndMax;
 /*  Not a pure module */
