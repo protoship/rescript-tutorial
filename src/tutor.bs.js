@@ -143,36 +143,30 @@ function toNumberFormHTML2(param) {
   return "<input type=\"number\" name=\"" + param[0] + "\" min=\"" + String(param[1]) + "\" max=\"" + String(param[2]) + "\"";
 }
 
-var atom = {
-  name: "Atom",
-  url: "https://atom.io",
-  repositories: 255,
-  people: 56
-};
-
-var node = {
-  name: "Node.js",
-  url: "https://nodejs.org",
-  repositories: 182,
-  people: 375
-};
-
-var rails = {
-  name: "Ruby on Rails",
-  url: "https://rubyonrails.org",
-  repositories: 99,
-  people: 66
-};
-
 function projectLink(param) {
   return "<a href=\"" + param.url + "\">" + param.name + "</a>";
 }
 
-projectLink(atom);
+projectLink({
+      name: "Atom",
+      url: "https://atom.io",
+      repositories: 255,
+      people: 56
+    });
 
-projectLink(node);
+projectLink({
+      name: "Node.js",
+      url: "https://nodejs.org",
+      repositories: 182,
+      people: 375
+    });
 
-projectLink(rails);
+projectLink({
+      name: "Ruby on Rails",
+      url: "https://rubyonrails.org",
+      repositories: 99,
+      people: 66
+    });
 
 var codersAtWork = {
   title: "Coders at Work",
@@ -838,6 +832,93 @@ setCounter(3);
 
 setCounter(4);
 
+function linkTo(t) {
+  return "<a href=\"" + t.url + "\">" + t.name + "</a>";
+}
+
+var GithubProject__WithoutReScriptInterface = {
+  linkTo: linkTo
+};
+
+var atom = {
+  name: "Atom",
+  url: "https://atom.io",
+  repositories: 255,
+  people: 56
+};
+
+linkTo(atom);
+
+function linkTo$1(t) {
+  return "<a href=\"" + t.url + "\">" + t.name + "</a>";
+}
+
+var GithubProject__WithoutDataHiding = {
+  linkTo: linkTo$1
+};
+
+var node = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 375
+};
+
+linkTo$1(node);
+
+var node2 = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 385
+};
+
+var node3 = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 183,
+  people: 385
+};
+
+function make(name, url, repositories, people) {
+  return {
+          name: name,
+          url: url,
+          repositories: repositories,
+          people: people
+        };
+}
+
+function linkTo$2(t) {
+  return "<a href=\"" + t.url + "\">" + t.name + "</a>";
+}
+
+function addPeople(t, count) {
+  return {
+          name: t.name,
+          url: t.url,
+          repositories: t.repositories,
+          people: t.people + count | 0
+        };
+}
+
+var GithubProject__WithOpaqueType = {
+  make: make,
+  linkTo: linkTo$2,
+  addPeople: addPeople
+};
+
+var rails = {
+  name: "Ruby on Rails",
+  url: "https://rubyonrails.org",
+  repositories: 99,
+  people: 66
+};
+
+linkTo$2(rails);
+
+var rails2 = addPeople(rails, 5);
+
 var hello = "Hello, World!";
 
 var goodbye = "Goodbye!";
@@ -936,6 +1017,12 @@ var anotherCache;
 
 var whatIsTheNatureOfTheVoid;
 
+var Github1;
+
+var Github2;
+
+var Github3;
+
 exports.hello = hello;
 exports.goodbye = goodbye;
 exports.runningTotal = runningTotal;
@@ -977,9 +1064,6 @@ exports.high = high;
 exports.budget2 = budget2;
 exports.toNumberFormHTML = toNumberFormHTML;
 exports.toNumberFormHTML2 = toNumberFormHTML2;
-exports.atom = atom;
-exports.node = node;
-exports.rails = rails;
 exports.projectLink = projectLink;
 exports.codersAtWork = codersAtWork;
 exports.bookHTML = bookHTML;
@@ -1080,4 +1164,16 @@ exports.result = result;
 exports.name = name;
 exports.counter = counter;
 exports.setCounter = setCounter;
+exports.GithubProject__WithoutReScriptInterface = GithubProject__WithoutReScriptInterface;
+exports.Github1 = Github1;
+exports.atom = atom;
+exports.GithubProject__WithoutDataHiding = GithubProject__WithoutDataHiding;
+exports.Github2 = Github2;
+exports.node = node;
+exports.node2 = node2;
+exports.node3 = node3;
+exports.GithubProject__WithOpaqueType = GithubProject__WithOpaqueType;
+exports.Github3 = Github3;
+exports.rails = rails;
+exports.rails2 = rails2;
 /*  Not a pure module */
