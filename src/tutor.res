@@ -1328,12 +1328,13 @@ function () {
 @bs.module("fs")
 external readFile: (string, string, (Js.Nullable.t<{..}>, string) => unit) => unit = "readFile"
 
-readFile("./bsconfig.json", "utf8", (error, data) => {
+readFile("./bsconfig.json", "utf8", (error, _data) => {
   if !Js.isNullable(error) {
     Js.Console.error2("config file errro: ", error)
-  } else {
-    Js.log(data)
   }
+  // else {
+  //   Js.log(data)
+  // }
 })
 
 /**
@@ -1364,29 +1365,22 @@ let name = parseUsers(`{"names": ["Luke", "Christine"]}`).names[1]
 /*
   It is sometimes useful to create a single mutable value. We can do this
   using a ref. We can create an int ref containing 0 as follows:
- */
-let x = ref(0)
-
-/*
+ 
   Then we can access the value in the ref using the ^ operator, and
   we can update it using the := operator. So, we could increment our
   ref as follows:
  */
-let () = x := x.contents + 1
 
-/*
-  Write a function minAndMax which returns a tuple containing the minimum
-  and maximum values in a non-empty list of positive integers.
+// a counter example
+let counter = ref(0)
+let setCounter = (~step) => {
+  counter := counter.contents + step
+}
 
-  Your function should iterate over the list and maintain refs of the minimum
-  and maximum values seen so far.
-
-  Hint: [max_int] or [min_int].
- */
-let minAndMax = _lst => failwith("For you to implement")
-
-assert (minAndMax([5, 9, 2, 4, 3]) == (2, 9))
-assert (minAndMax([11, 15, 7, 34]) == (7, 34))
+setCounter(~step=1) // counter.contents = 1
+setCounter(~step=2) // counter.contents = 3
+setCounter(~step=3) // counter.contents = 6
+setCounter(~step=4) // counter.contents = 10
 
 // modules
 // module interfaces
