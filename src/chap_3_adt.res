@@ -18,8 +18,6 @@ type bookFormat =
   | KindleEdition
 // | Audible
 
-// let bookFormat: bookFormat = HardCover
-
 /*
   -----------------------------------------------------------------------------
   Exercise 1 (easy)
@@ -27,6 +25,7 @@ type bookFormat =
   Uncomment the `bookFormat` binding. Fix the compilation error.  
   -----------------------------------------------------------------------------
  */
+// let bookFormat: bookFormat = HardCover
 
 // let bookFormatToString = (x: bookFormat): string =>
 let bookFormatToString = format =>
@@ -94,8 +93,26 @@ isElectronic(KindleEdition)
 
       `let madeBy: codeEditor => string`
 
-    Match the constructors to "Microsoft", "Jetbrain" & "Apple"
+    Match the constructors to "Microsoft", "JetBrains" & "Apple"
   -----------------------------------------------------------------------------
+*/
+
+/*
+SimpleTest.assertEqual(
+  ~expected="Microsoft",
+  ~actual=madeBy(VSCode),
+  ~msg="[exercise 3(b)] VSCode is made by ___",
+)
+SimpleTest.assertEqual(
+  ~expected="JetBrains",
+  ~actual=madeBy(RubyMine),
+  ~msg="[exercise 3(b)] RubyMine is made by ___",
+)
+SimpleTest.assertEqual(
+  ~expected="Apple",
+  ~actual=madeBy(XCode),
+  ~msg="[exercise 3(b)] XCode is made by ___",
+)
 */
 
 type player =
