@@ -1,8 +1,7 @@
 /*
-  Section 1: Bindings
+  Uncomment the line below to get started
  */
-
-let hello: string = "Hello, World!"
+// let hello: string = "Hello, World!"
 
 /*
   This is known as a let-binding. It has the following form:
@@ -48,7 +47,10 @@ let hello: string = "Hello, World!"
   definitely improves the developer experience.
  */
 
-let goodbye = "Goodbye!"
+/*
+  Uncomment the line below to get started
+ */
+// let goodbye = "Goodbye!"
 
 /*
   You do not have to manually annotate the type for a binding. The ReScript
@@ -80,9 +82,16 @@ let goodbye = "Goodbye!"
   let-binding.
  */
 
+/*
+  Uncomment the block below.
+
+  The 2nd and 3rd lines are commentend out on purpose (See exercise 3).
+ */
+/*
 let runningTotal = 1 * 1
 // let runningTotal = 2 * 2
 // let runningTotal = 3 * 3
+*/
 
 /*
   -----------------------------------------------------------------------------
@@ -119,9 +128,14 @@ let runningTotal = 1 * 1
   expressions. You will learn more about that later in this tutorial.
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 let sumOfInts = 1 + 2 + 3 + 4
 let sumOfFloats = 1. +. 2.2 +. 3.14
 let joinedStrings = "Hello, " ++ "World" ++ "!"
+*/
 
 /*
   In the expressions above are adding together multiple integers, floats
@@ -200,6 +214,10 @@ let joinedStrings = "Hello, " ++ "World" ++ "!"
   revisit these functions.
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 let bookName = "Deep Work"
 let tagline = "Rules for Focused Success in a Distracted World"
 
@@ -211,6 +229,7 @@ let book2 = {
 }
 
 let book = bookName ++ ": " ++ tagline
+*/
 
 /*
   A new block scope can be created by putting code within curly braces `{}`.
@@ -242,11 +261,18 @@ let book = bookName ++ ": " ++ tagline
   -----------------------------------------------------------------------------
  */
 
+/*
+  Uncomment the block below.
+
+  The 2nd and 3rd lines are commentend out on purpose (See exercise 6).
+ */
+/*
 let two = 2
 // let sum2 = sum + three
 // let sum = one + two
 let one = 1
 let three = 3
+*/
 
 /*
   -----------------------------------------------------------------------------
