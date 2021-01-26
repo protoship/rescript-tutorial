@@ -89,12 +89,18 @@ SimpleTest.assertEqual(
 )
 */
 
+/* --- BEGIN 
+
+  - partial application
+  - passing function as arugments
+
+// ---
+
 // partial application example
 // helper for partial application
 let wrapTagAroundText = (tagName: string, text: string): string => {
   `<${tagName}>${text}</${tagName}>`
 }
-
 // long form
 let makeHeading1 = (text: string): string => wrapTagAroundText("h1", text)
 // long form without type annotation
@@ -103,6 +109,7 @@ let makeHeading2 = text => wrapTagAroundText("h2", text)
 // short form this is also correct
 // but the one above is better for readability
 // types are the same
+let makeHeading3 = wrapTagAroundText("h2")
 let makeParagraph = wrapTagAroundText("p")
 
 // call sites, full application
@@ -110,6 +117,8 @@ let mainHeading = makeHeading1("This is the title of the document")
 let subHeading = makeHeading2("A simple tagline...")
 let para1 = makeParagraph("Text content....")
 let para2 = makeParagraph("This is the second paragraph...")
+
+// ---
 
 // pass function as argument (indent)
 // pretty limited because we would not have introduced arrays by this point
@@ -123,6 +132,8 @@ let makeDiv = wrapTagAroundHTML("div", indent)
 
 let div1 = makeDiv(para1)
 let div2 = makeDiv(para2)
+
+// ---
 
 // how do you make wrapTagAroundText & wrapTagAroundHTML better
 // for the reader of the code?
@@ -151,6 +162,9 @@ betterWrapTagAroundHTML(~html=para1, ~indent, ~tag="div")
 // anonymous function
 
 betterWrapTagAroundHTML(~indent=x => Js.String.repeat(2, x), ~tag="div", ~html=para1)
+
+ --- END */
+
 // what is going on here?
 // indent is a function
 // it has type string => string
@@ -165,17 +179,19 @@ betterWrapTagAroundHTML(~indent=x => Js.String.repeat(2, x), ~tag="div", ~html=p
 // in parametric polymorphism section
 
 // yet another different way of writing the wrapper function
+/*
 let altWrapTagAroundHTML = (~depth, ~tag, ~html) => {
   let indent = x => Js.String.repeat(depth, x)
   `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
 }
+*/
 
 // let's build a function like repeat ourselves
 // the string binding is immutable in ReScript
 // so no looping and mutating a string reference
 // instead we'll do it immutably
 // and this requires recursion
-
+/*
 let myCharRepeat = (~count: int, ~char: char): string => {
   // convert char to a string
   let s = String.make(1, char)
@@ -191,6 +207,7 @@ let myCharRepeat = (~count: int, ~char: char): string => {
 
   aux(s, count)
 }
+*/
 
 // having to implement recursive functions is an uncommon
 // activity when building user interfaces. That being
@@ -207,6 +224,7 @@ let myCharRepeat = (~count: int, ~char: char): string => {
 // encounter polymorphic parametrism in the span
 // of a few examples. Let's elide this detail and
 // focus on the pipeline aspect
+/*
 let cache = Belt.Map.String.empty
 let cache1 = Belt.Map.String.set(cache, "key1", "value1")
 let cache2 = Belt.Map.String.set(cache1, "key2", "value2")
@@ -225,6 +243,7 @@ anotherCache
 ->Belt.Map.String.set("key5", "value5")
 
 assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
+*/
 
 // functions which return unit
 // side-effects
@@ -256,6 +275,8 @@ assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
 // there is a primitive type named unit
 // what is unit
 // represented by the value ()
+
+/*
 let whatIsTheNatureOfTheVoid = ()
 
 let aFunctionWhichReturnsNothing = (_: int): unit => {
@@ -272,3 +293,4 @@ let whatIsThisFunction = () => {
   // but there is no contact with the outside world
   () // return nothing
 }
+*/
