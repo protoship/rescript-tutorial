@@ -36,7 +36,7 @@ let cssClassName = if upvotes < downvotes {
 /*
 let cartTotal = 200
 let discount = failwith("implement ex.1")
-SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calculate discount amount")
+SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calculate discount for 200")
  */
 
 // refactor the above code to use functions
@@ -48,17 +48,45 @@ SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calcul
 // -- -- output type is `int`
 
 /*
+  -----------------------------------------------------------------------------
+  Exercise 2
+  -----------------------------------------------------------------------------
+  The code above can be easily refactored into a function. 
+  
+  The input argument is the total value of the cart of type `int`.
+  The output argument is the discount value which is also of type `int`
+
+  The rules for computing the discount are the same Exercise 1.
+  -----------------------------------------------------------------------------
+ */
+/*
   Uncomment the block below.
  */
 /*
 let calculateDiscount = (total: int): int => {
-  // 1. Copy `discount` expression here
-  // 2. Do **not** forget to change `cartTotal` to `total` 
+  total
+  // Put your implementation here
 }
-SimpleTest.assertEqual(~expected=0, ~actual=calculateDiscount(199), ~msg="discount for 199")
-SimpleTest.assertEqual(~expected=25, ~actual=calculateDiscount(200), ~msg="discount for 200")
-SimpleTest.assertEqual(~expected=39, ~actual=calculateDiscount(499), ~msg="discount for 499")
-SimpleTest.assertEqual(~expected=50, ~actual=calculateDiscount(500), ~msg="discount for 500")
+SimpleTest.assertEqual(
+  ~expected=0,
+  ~actual=calculateDiscount(199),
+  ~msg="[exercise 2] Calculate discount for 199",
+)
+SimpleTest.assertEqual(
+  ~expected=25,
+  ~actual=calculateDiscount(200),
+  ~msg="[exercise 2] Calculate discount for 200",
+)
+SimpleTest.assertEqual(
+  ~expected=39,
+  ~actual=calculateDiscount(499),
+  ~msg="[exercise 2] Calculate discount for 499",
+)
+SimpleTest.assertEqual(
+  ~expected=50,
+  ~actual=calculateDiscount(500),
+  ~msg="[exercise 2] Calculate discount for 500",
+)
 */
 
 // partial application example
