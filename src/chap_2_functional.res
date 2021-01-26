@@ -55,10 +55,10 @@ let calculateDiscount = (total: int): int => {
   // 1. Copy `discount` expression here
   // 2. Do **not** forget to change `cartTotal` to `total` 
 }
-SimpleTest.assertEqual(~expected=0, ~actual=calculateDiscount(199), ~msg="calculateDiscount(199)")
-SimpleTest.assertEqual(~expected=25, ~actual=calculateDiscount(200), ~msg="calculateDiscount(200)")
-SimpleTest.assertEqual(~expected=39, ~actual=calculateDiscount(499), ~msg="calculateDiscount(499)")
-SimpleTest.assertEqual(~expected=50, ~actual=calculateDiscount(500), ~msg="calculateDiscount(500)")
+SimpleTest.assertEqual(~expected=0, ~actual=calculateDiscount(199), ~msg="discount for 199")
+SimpleTest.assertEqual(~expected=25, ~actual=calculateDiscount(200), ~msg="discount for 200")
+SimpleTest.assertEqual(~expected=39, ~actual=calculateDiscount(499), ~msg="discount for 499")
+SimpleTest.assertEqual(~expected=50, ~actual=calculateDiscount(500), ~msg="discount for 500")
 */
 
 // partial application example
