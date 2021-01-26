@@ -52,13 +52,8 @@ SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calcul
  */
 /*
 let calculateDiscount = (total: int): int => {
-  if total >= 500 {
-    total * 10 / 100
-  } else if total >= 200 && total < 500 {
-    25 + (total - 200) * 5 / 100
-  } else {
-    0
-  }
+  // 1. Copy `discount` expression here
+  // 2. Do **not** forget to change `cartTotal` to `total` 
 }
 SimpleTest.assertEqual(~expected=0, ~actual=calculateDiscount(199), ~msg="calculateDiscount(199)")
 SimpleTest.assertEqual(~expected=25, ~actual=calculateDiscount(200), ~msg="calculateDiscount(200)")
@@ -67,7 +62,6 @@ SimpleTest.assertEqual(~expected=50, ~actual=calculateDiscount(500), ~msg="calcu
 */
 
 // partial application example
-
 // helper for partial application
 let wrapTagAroundText = (tagName: string, text: string): string => {
   `<${tagName}>${text}</${tagName}>`
