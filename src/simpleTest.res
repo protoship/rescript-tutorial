@@ -7,4 +7,8 @@ let assertEqual = (~expected, ~actual, ~msg) =>
     Js.log(lightGreen("PASS: ") ++ msg)
   } else {
     Js.log(lightRed("FAIL: ") ++ msg)
+    Js.log("Expected: ")
+    Js.log(expected)
+    Js.log("Received: ")
+    Js.log(actual)
   }

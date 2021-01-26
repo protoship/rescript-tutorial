@@ -46,19 +46,24 @@ SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calcul
 // -- type annotations for input & output
 // -- -- input type is `int`
 // -- -- output type is `int`
+
+/*
+  Uncomment the block below.
+ */
 /*
 let calculateDiscount = (total: int): int => {
-  let isJumboDiscount = total => total >= 500
-  let isRegularDiscount = total => total >= 200 && total < 500
-
-  if isJumboDiscount(total) {
-    cartTotal * 10 / 100
-  } else if isRegularDiscount(total) {
-    (cartTotal - 200) * 10 / 100
+  if total >= 500 {
+    total * 10 / 100
+  } else if total >= 200 && total < 500 {
+    25 + (total - 200) * 5 / 100
   } else {
     0
   }
 }
+SimpleTest.assertEqual(~expected=0, ~actual=calculateDiscount(199), ~msg="calculateDiscount(199)")
+SimpleTest.assertEqual(~expected=25, ~actual=calculateDiscount(200), ~msg="calculateDiscount(200)")
+SimpleTest.assertEqual(~expected=39, ~actual=calculateDiscount(499), ~msg="calculateDiscount(499)")
+SimpleTest.assertEqual(~expected=50, ~actual=calculateDiscount(500), ~msg="calculateDiscount(500)")
 */
 
 // partial application example
