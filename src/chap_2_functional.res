@@ -1,29 +1,11 @@
-/*
-  Section 4: Functional Programming
-
-// ***
-// *** Move this section before parametric polymorphism?
-// ***
-// The parametric polymorphism section has a lot of functions
-// It would make sense to introduce functions, calling
-// conventions, passing it around, pipeline earlier. The
-// pipeline syntax would make life easier while writing
-// functions like `renderHTML` above.
-// The `myCustomFilter` uses the if-else control flow
-// *** Maybe it is better to put this section immediately
-// *** after bindings
-//------------------------------------------------------------
-// functional programming
-// currying, partial applications
-// functions as arguments
-// higher order functions
-// pipeline -> |>
-// control flow
- */
-
+// control flow - branching
 // if else is also an expression
 // The type of the return expression should be same
 
+/*
+  Uncomment the block below.
+ */
+/*
 let downvotes = 10
 let upvotes = 5
 let cssClassName = if upvotes < downvotes {
@@ -31,16 +13,31 @@ let cssClassName = if upvotes < downvotes {
 } else {
   "Comment"
 }
+*/
 
-// another example with an else-if branch
+/*
+  -----------------------------------------------------------------------------
+  Exercise 1
+  -----------------------------------------------------------------------------
+  Calculate the discount applicable to shopping cart total amount using the
+  following rules:
+
+  1. When the total is either 500 or above:
+     - a flat 10% discount.
+  2. When the total is either 200 or above, but below 500:
+    - add 25 to,
+    - a 5% discount on the amount greater than 200
+  -----------------------------------------------------------------------------
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
 let cartTotal = 200
-let discount = if cartTotal >= 500 {
-  cartTotal * 10 / 100
-} else if cartTotal > 200 && cartTotal < 500 {
-  (cartTotal - 200) * 10 / 100
-} else {
-  0
-}
+let discount = failwith("implement ex.1")
+SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calculate discount amount")
+ */
 
 // refactor the above code to use functions
 // explain this example
@@ -49,6 +46,7 @@ let discount = if cartTotal >= 500 {
 // -- type annotations for input & output
 // -- -- input type is `int`
 // -- -- output type is `int`
+/*
 let calculateDiscount = (total: int): int => {
   let isJumboDiscount = total => total >= 500
   let isRegularDiscount = total => total >= 200 && total < 500
@@ -61,6 +59,7 @@ let calculateDiscount = (total: int): int => {
     0
   }
 }
+*/
 
 // partial application example
 

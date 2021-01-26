@@ -5,26 +5,6 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var $$String = require("bs-platform/lib/js/string.js");
 var Belt_MapString = require("bs-platform/lib/js/belt_MapString.js");
 
-var cssClassName = "Comment Comment-hidden";
-
-var discount = 0;
-
-function calculateDiscount(total) {
-  var isRegularDiscount = function (total) {
-    if (total >= 200) {
-      return total < 500;
-    } else {
-      return false;
-    }
-  };
-  if (total >= 500) {
-    return 20;
-  } else {
-    isRegularDiscount(total);
-    return 0;
-  }
-}
-
 function wrapTagAroundText(tagName, text) {
   return "<" + tagName + ">" + text + "</" + tagName + ">";
 }
@@ -121,7 +101,7 @@ if (Belt_MapString.size(undefined) !== Belt_MapString.size(undefined)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_2_functional.res",
-          201,
+          200,
           0
         ],
         Error: new Error()
@@ -137,24 +117,12 @@ function whatIsThisFunction(param) {
   
 }
 
-var downvotes = 10;
-
-var upvotes = 5;
-
-var cartTotal = 200;
-
 var cache;
 
 var anotherCache;
 
 var whatIsTheNatureOfTheVoid;
 
-exports.downvotes = downvotes;
-exports.upvotes = upvotes;
-exports.cssClassName = cssClassName;
-exports.cartTotal = cartTotal;
-exports.discount = discount;
-exports.calculateDiscount = calculateDiscount;
 exports.wrapTagAroundText = wrapTagAroundText;
 exports.makeHeading1 = makeHeading1;
 exports.makeHeading2 = makeHeading2;
