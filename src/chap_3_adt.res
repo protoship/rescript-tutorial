@@ -16,7 +16,6 @@ type bookFormat =
   | Hardcover
   | Paperback
   | KindleEdition
-// | Audible
 
 /*
   -----------------------------------------------------------------------------
@@ -33,7 +32,6 @@ let bookFormatToString = format =>
   | Hardcover => "Hardcover"
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
-  // | Audible => "Audible"
   }
 /*
   TODO: explain function syntax with annotation for input arguments and
@@ -60,7 +58,6 @@ let isElectronic = format =>
   | Hardcover
   | Paperback => false
   | KindleEdition => true
-  // | Audible => true
   }
 
 isElectronic(Hardcover)
@@ -80,7 +77,21 @@ isElectronic(KindleEdition)
 
   TODO: Make exhaustive case analysis a compiler error (instead of warning)?
 
+*/
+/*
+SimpleTest.assertEqual(
+  ~expected="Audible",
+  ~actual=bookFormatToString(Audible),
+  ~msg="[exercise 2] convert Audible constructor to string value",
+)
+SimpleTest.assertEqual(
+  ~expected=true,
+  ~actual=isElectronic(Audible),
+  ~msg="[exercise 2] Audible is an electronic format",
+)
+*/
 
+/*
   -----------------------------------------------------------------------------
   Exercise 3 (easy)
   -----------------------------------------------------------------------------
