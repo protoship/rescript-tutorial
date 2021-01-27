@@ -14,75 +14,6 @@ function bookFormatToString(format) {
   }
 }
 
-var name = "age-limit";
-
-var ageLimit = [
-  name,
-  18,
-  25
-];
-
-var label = "price-range";
-
-var budget2 = [
-  label,
-  400,
-  2500
-];
-
-function toNumberFormHTML(input) {
-  return "<input type=\"number\" name=\"" + input[0] + "\" min=\"" + String(input[1]) + "\" max=\"" + String(input[2]) + "\"";
-}
-
-function toNumberFormHTML2(param) {
-  return "<input type=\"number\" name=\"" + param[0] + "\" min=\"" + String(param[1]) + "\" max=\"" + String(param[2]) + "\"";
-}
-
-var atom = {
-  name: "Atom",
-  url: "https://atom.io",
-  repositories: 255,
-  people: 56
-};
-
-var node = {
-  name: "Node.js",
-  url: "https://nodejs.org",
-  repositories: 182,
-  people: 375
-};
-
-var rails = {
-  name: "Ruby on Rails",
-  url: "https://rubyonrails.org",
-  repositories: 99,
-  people: 66
-};
-
-function projectLink(param) {
-  return "<a href=\"" + param.url + "\">" + param.name + "</a>";
-}
-
-projectLink(atom);
-
-projectLink(node);
-
-projectLink(rails);
-
-var codersAtWork = {
-  title: "Coders at Work",
-  tagline: "Reflections on the Craft of Programming",
-  format: /* Paperback */1,
-  availableInStock: 10
-};
-
-function bookHTML(book) {
-  var count = String(book.availableInStock);
-  return "<div>\n    <h2>" + book.title + ": " + book.tagline + "</h2>\n    <p>" + count + " new " + bookFormatToString(book.format) + " avialable in stock</p>\n  </div>";
-}
-
-bookHTML(codersAtWork);
-
 function drawRectangle(_rectangle) {
   
 }
@@ -105,25 +36,12 @@ function drawShape(shape) {
   }
 }
 
-var min = 18;
-
-var max = 25;
-
-var budget = [
-  "price-range",
-  500,
-  1500
-];
-
-var ratingFilter = [
-  "rating-3-and-above",
-  3,
-  5
-];
-
-var low = 500;
-
-var high = 1500;
+var codersAtWork = {
+  title: "Coders at Work",
+  tagline: "Reflections on the Craft of Programming",
+  format: /* Paperback */1,
+  availableInStock: 10
+};
 
 var block1 = {
   TAG: /* Rectangle */0,
@@ -164,24 +82,7 @@ var textLabel = {
 };
 
 exports.bookFormatToString = bookFormatToString;
-exports.name = name;
-exports.min = min;
-exports.max = max;
-exports.ageLimit = ageLimit;
-exports.budget = budget;
-exports.ratingFilter = ratingFilter;
-exports.label = label;
-exports.low = low;
-exports.high = high;
-exports.budget2 = budget2;
-exports.toNumberFormHTML = toNumberFormHTML;
-exports.toNumberFormHTML2 = toNumberFormHTML2;
-exports.atom = atom;
-exports.node = node;
-exports.rails = rails;
-exports.projectLink = projectLink;
 exports.codersAtWork = codersAtWork;
-exports.bookHTML = bookHTML;
 exports.drawRectangle = drawRectangle;
 exports.drawLine = drawLine;
 exports.drawText = drawText;
@@ -190,4 +91,4 @@ exports.block2 = block2;
 exports.block1ToBlock2 = block1ToBlock2;
 exports.textLabel = textLabel;
 exports.drawShape = drawShape;
-/*  Not a pure module */
+/* No side effect */

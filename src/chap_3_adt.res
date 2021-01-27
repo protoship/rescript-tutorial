@@ -278,6 +278,8 @@ SimpleTest.assertEqual(
 )
 */
 
+/* --- BEGIN TUPLES
+
 // tuples
 let (name, min, max) = ("age-limit", 18, 25)
 
@@ -307,6 +309,8 @@ let toNumberFormHTML2 = ((name, min, max): numberFormInput) =>
     max,
   )}"`
 
+  --- END TUPLES */
+
 // tuples are positional
 // give names to fields with record types
 // records
@@ -318,6 +322,7 @@ type project = {
   people: int,
 }
 
+/*
 let atom = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 let node = {name: "Node.js", url: "https://nodejs.org", repositories: 182, people: 375}
 let rails = {name: "Ruby on Rails", url: "https://rubyonrails.org", repositories: 99, people: 66}
@@ -330,6 +335,7 @@ let projectLink = ({url, name}) => {
 projectLink(atom)
 projectLink(node)
 projectLink(rails)
+*/
 
 // record where one of the field types is a variant type
 
@@ -342,6 +348,23 @@ let codersAtWork = {
   availableInStock: 10,
 }
 
+/*
+  -----------------------------------------------------------------------------
+  Exercise 6
+  -----------------------------------------------------------------------------
+  Generate the HTML string for a book like this:
+
+  <div>
+    <h2>Coders at Work: Reflections on the Craft of Programming</h2>
+    <p>10 new Paperback avialable in stock</p>
+  </div>
+
+  Implement the function:
+
+  let bookHTML: book => string
+  -----------------------------------------------------------------------------
+*/
+/*
 let bookHTML = book => {
   let count = Belt.Int.toString(book.availableInStock)
 
@@ -350,10 +373,19 @@ let bookHTML = book => {
     <p>${count} new ${bookFormatToString(
     book.format,
   )} avialable in stock</p>
-  </div>`
+</div>`
 }
 
-bookHTML(codersAtWork)
+let expectedBookHTML = `<div>
+    <h2>Coders at Work: Reflections on the Craft of Programming</h2>
+    <p>10 new Paperback avialable in stock</p>
+</div>`
+SimpleTest.assertEqual(
+  ~expected=expectedBookHTML,
+  ~actual=bookHTML(codersAtWork),
+  ~msg="[exercise 6] book => string (html formatted)",
+)
+*/
 
 // variant + record
 // simple, not recursive
