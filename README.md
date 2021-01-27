@@ -16,4 +16,8 @@
   - dns resolver
   - see introduction to ruby (Jasim) for array/hash exercises
 - add long-form narrative to chapters
-- add an exericse for using Option.map
+- nice to have
+  - add an exericse for using Option.map
+  - add an exercise for parsing JSON object
+  - add a binding to Node.js API and use it
+  - add an exercise for mutation using `ref`

@@ -8,6 +8,7 @@
 // writing bindings to a JavaScript API
 // writing bindings for a JavaScript value
 // interacting with objects from the JS side
+/*
 let dateFn = %raw(
   `
 function () {
@@ -18,12 +19,13 @@ function () {
 }
 `
 )
-
+*/
 // Js.log(dateFn())
 
 @bs.module("fs")
 external readFile: (string, string, (Js.Nullable.t<{..}>, string) => unit) => unit = "readFile"
 
+/*
 readFile("./bsconfig.json", "utf8", (error, _data) => {
   if !Js.isNullable(error) {
     Js.Console.error2("config file errro: ", error)
@@ -32,6 +34,7 @@ readFile("./bsconfig.json", "utf8", (error, _data) => {
   //   Js.log(data)
   // }
 })
+*/
 
 /**
   
@@ -50,11 +53,11 @@ external resolve: (string, string) => string = "resolve"
 @bs.scope("JSON") @bs.val external parseNames: string => {"names": array<string>} = "parse"
 
 // JS Object
-let result = parseNames(`{"names": ["Luke", "Christine"]}`)["names"][0]
+// let result = parseNames(`{"names": ["Luke", "Christine"]}`)["names"][0]
 
 type users = {names: array<string>}
 @bs.scope("JSON") @bs.val external parseUsers: string => users = "parse"
-let name = parseUsers(`{"names": ["Luke", "Christine"]}`).names[1]
+// let name = parseUsers(`{"names": ["Luke", "Christine"]}`).names[1]
 
 // imperative programming
 // refs (mutating a let-binding)
@@ -68,6 +71,7 @@ let name = parseUsers(`{"names": ["Luke", "Christine"]}`).names[1]
  */
 
 // a counter example
+/*
 let counter = ref(0)
 let setCounter = (~step) => {
   counter := counter.contents + step
@@ -77,3 +81,4 @@ setCounter(~step=1) // counter.contents = 1
 setCounter(~step=2) // counter.contents = 3
 setCounter(~step=3) // counter.contents = 6
 setCounter(~step=4) // counter.contents = 10
+*/
