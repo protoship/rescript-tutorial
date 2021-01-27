@@ -2,18 +2,6 @@
 'use strict';
 
 
-function bookFormatToString(format) {
-  switch (format) {
-    case /* Hardcover */0 :
-        return "Hardcover";
-    case /* Paperback */1 :
-        return "Paperback";
-    case /* KindleEdition */2 :
-        return "Kindle Edition";
-    
-  }
-}
-
 function drawRectangle(_rectangle) {
   
 }
@@ -81,7 +69,6 @@ var textLabel = {
   }
 };
 
-exports.bookFormatToString = bookFormatToString;
 exports.codersAtWork = codersAtWork;
 exports.drawRectangle = drawRectangle;
 exports.drawLine = drawLine;

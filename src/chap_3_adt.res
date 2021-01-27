@@ -45,13 +45,13 @@ type bookFormat =
 */
 // let bookFormatToString = (x: bookFormat): string =>
 
+/*
 let bookFormatToString = format =>
   switch format {
   | Hardcover => "Hardcover"
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
   }
-/*
 bookFormatToString(Hardcover) == "Hardcover"
 bookFormatToString(Paperback)
 let bookFormat2 = bookFormatToString(KindleEdition)
@@ -352,16 +352,18 @@ let codersAtWork = {
   -----------------------------------------------------------------------------
   Exercise 6
   -----------------------------------------------------------------------------
+  Implement the function: 
+  
+    let bookHTML: book => string
+
   Generate the HTML string for a book like this:
 
-  <div>
-    <h2>Coders at Work: Reflections on the Craft of Programming</h2>
-    <p>10 new Paperback avialable in stock</p>
-  </div>
+    <div>
+      <h2>Coders at Work: Reflections on the Craft of Programming</h2>
+      <p>10 new Paperback avialable in stock</p>
+    </div>
 
-  Implement the function:
-
-  let bookHTML: book => string
+  You will need the `bookFormatToString` function defined earlier.
   -----------------------------------------------------------------------------
 */
 /*
