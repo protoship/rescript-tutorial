@@ -335,6 +335,41 @@ SimpleTest.assertEqual(
 )
 */
 
+/*
+  -----------------------------------------------------------------------------
+  Exercise 7
+  -----------------------------------------------------------------------------
+  Merge the arrays `books` and `authors` into record values of type `book`.
+  Save the result in the binding `mergedBooks`.
+
+  You may need `Belt.List.zip` for this exercise. The `zip` function allows
+  you to merge two arrays into an array of tuple values. 
+  
+  See the example below.
+
+    let xs = [1, 2, 3]
+    let ys = [1, 4, 9]
+    let zs = Belt.Array.zip(xs, ys) // [(1, 1), (2, 4), (3, 9)]
+  -----------------------------------------------------------------------------
+ */
+
+type book = {name: string, author: string}
+/*
+let books = ["Design as Art", "Anathem", "Shogun"]
+let authors = ["Bruno Munari", "Neal Stephenson", "James Clavell"]
+
+let mergedBooks = []
+
+let expectedBooks = SimpleTest.assertEqual(
+  ~expected=[
+    {name: "Design as Art", author: "Bruno Munari"},
+    {name: "Anathem", author: "Neal Stephenson"},
+    {name: "Shogun", author: "James Clavell"},
+  ],
+  ~actual=mergedBooks,
+  ~msg="[exercise 7] merge two array values into an array of record values",
+)
+*/
 // list
 // map, filter
 // pattern matching
@@ -381,7 +416,7 @@ convertedMetrics->Belt.List.forEach(((state, count)) => {
 // implementing iter can be done after introducing unit later
 /*
   -----------------------------------------------------------------------------
-  Exercise 7
+  Exercise 8
   -----------------------------------------------------------------------------
   Implement the following list higher-order functions:
 
@@ -413,7 +448,7 @@ let myCustomFilter = (xs: list<'a>, f: 'a => bool): list<'a> =>
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 8
+  Exercise 9
   -----------------------------------------------------------------------------
   Use your custom functions for map, filter & forEach in the following
   data pipeline:
@@ -541,7 +576,7 @@ assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 9
+  Exercise 10
   -----------------------------------------------------------------------------
   Implement the function [safeDivide(~dividend, ~divisor)], which takes two
   ints and returns an int option. It should return None if [divisor = 0], and
