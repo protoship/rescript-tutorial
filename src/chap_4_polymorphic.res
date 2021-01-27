@@ -185,6 +185,30 @@ SimpleTest.assertEqual(
   -----------------------------------------------------------------------------
   Exercise 3
   -----------------------------------------------------------------------------
+  Use `names` which is pair of first and last names to create `fullnames`
+  like shown below:
+
+    ("Jhumpa", "Lahiri") => "Jhumpa Lahiri"
+  -----------------------------------------------------------------------------
+ */
+let names: array<pair<string>> = [
+  ("Jhumpa", "Lahiri"),
+  ("J. K", "Rowling"),
+  ("Devdutt", "Pattanaik"),
+]
+
+let fullnames = []
+
+SimpleTest.assertEqual(
+  ~expected=["Jhumpa Lahiri", "J. K Rowling", "Devdutt Pattanaik"],
+  ~actual=fullnames,
+  ~msg="[exercise 3] generate array of full names",
+)
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 4
+  -----------------------------------------------------------------------------
   Generate an array of programming language creators from `progLangCreators`.
 
   Name the binding `creators`
@@ -205,7 +229,7 @@ SimpleTest.assertEqual(
     "Niklaus Wirth",
   ],
   ~actual=creators,
-  ~msg="[exercise 3] array of language creators",
+  ~msg="[exercise 4] array of language creators",
 )
 */
 
@@ -219,7 +243,7 @@ Js.Array.filter(x => {
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 4
+  Exercise 5
   -----------------------------------------------------------------------------
   Create a binding `dynamicLanguages` which contains all the dynamic languages
   in `progLangCreators`.!
@@ -240,7 +264,7 @@ let compiledLanguages = ["Java", "C"]
 SimpleTest.assertEqual(
   ~expected=["Python", "PHP", "Perl", "JavaScript", "Ruby", "Lisp", "Pascal"],
   ~actual=dynamicLanguages,
-  ~msg="[exercise 4] list of dynamic languages",
+  ~msg="[exercise 5] list of dynamic languages",
 )
 */
 
@@ -266,7 +290,7 @@ let totalRecovered = Js.Array.reduce((acc, {count}) => {
 //
 /*
   -----------------------------------------------------------------------------
-  Exercise 5
+  Exercise 6
   -----------------------------------------------------------------------------
   Use `Js.Array.reduce` to generate table rows HTML string from the array
   `languagesAndAuthors`.
@@ -306,7 +330,7 @@ let expectedTableHTML = `<tr>
 SimpleTest.assertEqual(
   ~expected=expectedTableHTML,
   ~actual=tableRowsHTML,
-  ~msg="[exercise 4] Use Js.Array.reduce to generate table rows HTML",
+  ~msg="[exercise 6] Use Js.Array.reduce to generate table rows HTML",
 )
 */
 
@@ -356,7 +380,7 @@ convertedMetrics->Belt.List.forEach(((state, count)) => {
 // implementing iter can be done after introducing unit later
 /*
   -----------------------------------------------------------------------------
-  Exercise 6
+  Exercise 7
   -----------------------------------------------------------------------------
   Implement the following list higher-order functions:
 
@@ -388,7 +412,7 @@ let myCustomFilter = (xs: list<'a>, f: 'a => bool): list<'a> =>
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 7
+  Exercise 8
   -----------------------------------------------------------------------------
   Use your custom functions for map, filter & forEach in the following
   data pipeline:
@@ -516,7 +540,7 @@ assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 8
+  Exercise 9
   -----------------------------------------------------------------------------
   Implement the function [safeDivide(~dividend, ~divisor)], which takes two
   ints and returns an int option. It should return None if [divisor = 0], and
