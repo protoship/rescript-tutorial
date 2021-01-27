@@ -191,6 +191,7 @@ SimpleTest.assertEqual(
     ("Jhumpa", "Lahiri") => "Jhumpa Lahiri"
   -----------------------------------------------------------------------------
  */
+/*
 let names: array<pair<string>> = [
   ("Jhumpa", "Lahiri"),
   ("J. K", "Rowling"),
@@ -204,7 +205,7 @@ SimpleTest.assertEqual(
   ~actual=fullnames,
   ~msg="[exercise 3] generate array of full names",
 )
-
+*/
 /*
   -----------------------------------------------------------------------------
   Exercise 4
