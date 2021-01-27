@@ -18,12 +18,14 @@ type pair<'a> = ('a, 'a)
 // positionally.
 
 type coord2d = pair<int>
-let center: coord2d = (960, 540)
 
 type name = pair<string>
-let leroy: name = ("Xavier", "Leroy")
 
 type cssDeclaration = pair<string>
+
+/*
+let center: coord2d = (960, 540)
+let leroy: name = ("Xavier", "Leroy")
 let mediumFontSize: cssDeclaration = ("font-size", "16px")
 
 // write generic functions first, and second
@@ -39,17 +41,19 @@ first(mediumFontSize)
 second(center)
 second(leroy)
 second(mediumFontSize)
+*/
 
 // using types like lego bricks to compose more complex
 // types from simple types
 type lineSegment = pair<coord2d>
-let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
 
+/*
+let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
 let lineStart = first(lineFromOrigin)
 let (lineStartX, listStartY) = (first(lineStart), second(lineStart))
-
 let lineEnd = second(lineFromOrigin)
 let (lineEndX, lineEndY) = (first(lineEnd), second(lineEnd))
+*/
 
 // parametric polymorphism enables building container types
 // the concrete type is only determined when it is used
@@ -104,6 +108,7 @@ let progLangCreators: array<progLangCreator> = [
   ("Lisp", "John McCarthy"),
   ("Pascal", "Niklaus Wirth"),
 ]
+/*
 
 let arrayLength = Js.Array.length(progLangCreators)
 
@@ -129,12 +134,42 @@ let progLangCreatorToString = ((language, creator): progLangCreator): string =>
 
 Js.Array.map(x => x, progLangCreators) // identity
 Js.Array.map(progLangCreatorToString, progLangCreators)
+*/
 
-// exercise - map progLangCreator tuple to a record type(below)
 type programmingLanguage = {name: string, creator: string}
-// exercise - array of languages, lowercase string
-// exercise - array of creators
-// from above record type
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 1 
+  -----------------------------------------------------------------------------
+  Implement the following function which converts the tuple type to a 
+  record type,
+
+  let toProgrammingLanguage: progLangCreator => programmingLanguage
+  -----------------------------------------------------------------------------
+ */
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 2
+  -----------------------------------------------------------------------------
+  Generate an array of languages (in lowercase) from `progLangCreators`. The
+  language values must be made lowercase.
+
+  You can us the JS API function `Js.String.toLocaleLowerCase` to convert
+  a string to lowercase.
+
+    Js.String.toLocaleLowerCase: string => string
+  -----------------------------------------------------------------------------
+ */
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 3
+  -----------------------------------------------------------------------------
+  Generate an array of programming language creators from `progLangCreators`.
+  -----------------------------------------------------------------------------
+ */
 
 // filter - languages that start with the letter p
 Js.Array.filter(x => {

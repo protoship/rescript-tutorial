@@ -5,68 +5,9 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
-var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
-
-var center = [
-  960,
-  540
-];
-
-var leroy = [
-  "Xavier",
-  "Leroy"
-];
-
-var mediumFontSize = [
-  "font-size",
-  "16px"
-];
-
-function first(param) {
-  return param[0];
-}
-
-function second(param) {
-  return param[1];
-}
-
-first(center);
-
-first(leroy);
-
-first(mediumFontSize);
-
-second(center);
-
-second(leroy);
-
-second(mediumFontSize);
-
-var lineFromOrigin = [
-  [
-    0,
-    0
-  ],
-  [
-    100,
-    100
-  ]
-];
-
-var lineStart = first(lineFromOrigin);
-
-var lineStartX = first(lineStart);
-
-var listStartY = second(lineStart);
-
-var lineEnd = second(lineFromOrigin);
-
-var lineEndX = first(lineEnd);
-
-var lineEndY = second(lineEnd);
 
 var progLangCreators = [
   [
@@ -106,22 +47,6 @@ var progLangCreators = [
     "Niklaus Wirth"
   ]
 ];
-
-var arrayLength = progLangCreators.length;
-
-var arrayFirstItem = Caml_array.get(progLangCreators, 0);
-
-var arrayLastItem = Caml_array.get(progLangCreators, arrayLength - 1 | 0);
-
-function progLangCreatorToString(param) {
-  return param[0] + ": " + param[1];
-}
-
-progLangCreators.map(function (x) {
-      return x;
-    });
-
-progLangCreators.map(progLangCreatorToString);
 
 progLangCreators.filter(function (x) {
       return x[0].startsWith("P");
@@ -308,7 +233,7 @@ if (whatNumberAmIThinking(undefined) !== "I'm not thinking of any number!") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          325,
+          360,
           0
         ],
         Error: new Error()
@@ -320,7 +245,7 @@ if (whatNumberAmIThinking(7) !== "My number is: 7") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          326,
+          361,
           0
         ],
         Error: new Error()
@@ -357,7 +282,7 @@ if (mapOption($$double, undefined) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          369,
+          404,
           9
         ],
         Error: new Error()
@@ -369,7 +294,7 @@ if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          371,
+          406,
           9
         ],
         Error: new Error()
@@ -381,7 +306,7 @@ if (Belt_Option.map(undefined, $$double) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          389,
+          424,
           0
         ],
         Error: new Error()
@@ -393,7 +318,7 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          390,
+          425,
           0
         ],
         Error: new Error()
@@ -476,23 +401,7 @@ var nothing;
 
 var nothing2;
 
-exports.center = center;
-exports.leroy = leroy;
-exports.mediumFontSize = mediumFontSize;
-exports.first = first;
-exports.second = second;
-exports.lineFromOrigin = lineFromOrigin;
-exports.lineStart = lineStart;
-exports.lineStartX = lineStartX;
-exports.listStartY = listStartY;
-exports.lineEnd = lineEnd;
-exports.lineEndX = lineEndX;
-exports.lineEndY = lineEndY;
 exports.progLangCreators = progLangCreators;
-exports.arrayLength = arrayLength;
-exports.arrayFirstItem = arrayFirstItem;
-exports.arrayLastItem = arrayLastItem;
-exports.progLangCreatorToString = progLangCreatorToString;
 exports.mh = mh;
 exports.ka = ka;
 exports.dl = dl;
