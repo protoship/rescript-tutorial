@@ -261,6 +261,51 @@ let totalRecovered = Js.Array.reduce((acc, {count}) => {
 // exercise
 //
 /*
+  -----------------------------------------------------------------------------
+  Exercise 5
+  -----------------------------------------------------------------------------
+  Use `Js.Array.reduce` to generate table rows HTML string from the array
+  `languagesAndAuthors`.
+
+  The tuple `("Java", "James Gosling")` gets transformed to the following
+  HTML:
+
+    <tr>
+      <td>Java</td>
+      <td>James Gosling</td>
+    </tr>
+
+  For indentation use 2 spaces. For this use the `Js.String.repeat` function.
+
+  Save the result of table rows into a binding named: `tableRowsHTML`.
+
+  Use `Js.String.trim` to strip spaces from the beginning or end of a string
+  when needed.
+
+  Note: Please do _not_ use `Js.Array.map` and `Js.Array.joinWith` for
+  implementing this exercise. 
+  -----------------------------------------------------------------------------
+ */
+/*
+let languagesAndAuthors = [("Java", "James Gosling"), ("C", "Dennis Ritchie")]
+
+let tableRowsHTML = ""
+
+let expectedTableHTML = `<tr>
+  <td>Java</td>
+  <td>James Gosling</td>
+</tr>
+<tr>
+  <td>C</td>
+  <td>Dennis Ritchie</td>
+</tr>`
+SimpleTest.assertEqual(
+  ~expected=expectedTableHTML,
+  ~actual=tableRowsHTML,
+  ~msg="[exercise 4] Use Js.Array.reduce to generate table rows HTML",
+)
+*/
+/*
   Transform the value,
 
   ("Java", "James Gosling") 

@@ -233,7 +233,7 @@ if (whatNumberAmIThinking(undefined) !== "I'm not thinking of any number!") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          423,
+          468,
           0
         ],
         Error: new Error()
@@ -245,7 +245,7 @@ if (whatNumberAmIThinking(7) !== "My number is: 7") {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          424,
+          469,
           0
         ],
         Error: new Error()
@@ -282,7 +282,7 @@ if (mapOption($$double, undefined) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          467,
+          512,
           9
         ],
         Error: new Error()
@@ -294,7 +294,7 @@ if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          469,
+          514,
           9
         ],
         Error: new Error()
@@ -306,7 +306,7 @@ if (Belt_Option.map(undefined, $$double) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          487,
+          532,
           0
         ],
         Error: new Error()
@@ -318,7 +318,7 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          488,
+          533,
           0
         ],
         Error: new Error()
