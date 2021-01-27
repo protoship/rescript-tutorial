@@ -3,254 +3,10 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
-var Belt_List = require("bs-platform/lib/js/belt_List.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
-
-var progLangCreators = [
-  [
-    "Java",
-    "James Gosling"
-  ],
-  [
-    "C",
-    "Dennis Ritchie"
-  ],
-  [
-    "Python",
-    "Guido van Rossum"
-  ],
-  [
-    "PHP",
-    "Rasmus Lerdorf"
-  ],
-  [
-    "Perl",
-    "Larry Wall"
-  ],
-  [
-    "JavaScript",
-    "Brendan Eich"
-  ],
-  [
-    "Ruby",
-    "Yukihiro Matsumoto"
-  ],
-  [
-    "Lisp",
-    "John McCarthy"
-  ],
-  [
-    "Pascal",
-    "Niklaus Wirth"
-  ]
-];
-
-progLangCreators.filter(function (x) {
-      return x[0].startsWith("P");
-    });
-
-var mh = {
-  state: "Maharasthra",
-  count: 2342
-};
-
-var ka = {
-  state: "Karnataka",
-  count: 745
-};
-
-var dl = {
-  state: "Delhi",
-  count: 385
-};
-
-var wb = {
-  state: "West Bengal",
-  count: 621
-};
-
-var jh = {
-  state: "Jharkand",
-  count: 111
-};
-
-var tn = {
-  state: "Tamil Nadu",
-  count: 770
-};
-
-var totalRecovered = [
-    mh,
-    ka,
-    dl,
-    wb,
-    jh,
-    tn
-  ].reduce((function (acc, param) {
-        return acc + param.count | 0;
-      }), 0);
-
-var dailyRecovered_1 = {
-  hd: ka,
-  tl: {
-    hd: dl,
-    tl: {
-      hd: wb,
-      tl: {
-        hd: jh,
-        tl: {
-          hd: tn,
-          tl: /* [] */0
-        }
-      }
-    }
-  }
-};
-
-var dailyRecovered = {
-  hd: mh,
-  tl: dailyRecovered_1
-};
-
-function toDisplayMetric(metric) {
-  return [
-          metric.state,
-          String(metric.count)
-        ];
-}
-
-var convertedMetrics = Belt_List.map(dailyRecovered, toDisplayMetric);
-
-var filteredMetrics = Belt_List.keep(dailyRecovered, (function (param) {
-        return param.count >= 500;
-      }));
-
-var totalRecovered2 = Belt_List.reduce(dailyRecovered, 0, (function (acc, param) {
-        return acc + param.count | 0;
-      }));
-
-function myCustomMap(xs, f) {
-  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
-                    return {
-                            hd: Curry._1(f, x),
-                            tl: acc
-                          };
-                  })));
-}
-
-function myCustomFilter(xs, f) {
-  return Belt_List.reverse(Belt_List.reduce(xs, /* [] */0, (function (acc, x) {
-                    if (Curry._1(f, x)) {
-                      return {
-                              hd: Curry._1(f, x),
-                              tl: acc
-                            };
-                    } else {
-                      return acc;
-                    }
-                  })));
-}
-
-function describeList(xs) {
-  if (xs) {
-    return "The first item in this list is: " + xs.hd + " and there are other " + String(Belt_List.length(xs.tl)) + " items.";
-  } else {
-    return "This list is empty";
-  }
-}
-
-describeList({
-      hd: "hello",
-      tl: {
-        hd: "world",
-        tl: {
-          hd: "good",
-          tl: {
-            hd: "bye",
-            tl: /* [] */0
-          }
-        }
-      }
-    });
-
-function getSecondListItem(xs) {
-  if (!xs) {
-    return ;
-  }
-  var match = xs.tl;
-  if (match) {
-    return Caml_option.some(match.hd);
-  }
-  
-}
-
-var secondListItem2 = getSecondListItem({
-      hd: 1,
-      tl: /* [] */0
-    });
-
-var secondListItem3 = getSecondListItem({
-      hd: "hello",
-      tl: {
-        hd: "world",
-        tl: /* [] */0
-      }
-    });
-
-var secondListItem4 = getSecondListItem({
-      hd: mh,
-      tl: {
-        hd: ka,
-        tl: {
-          hd: dl,
-          tl: {
-            hd: wb,
-            tl: {
-              hd: jh,
-              tl: {
-                hd: tn,
-                tl: /* [] */0
-              }
-            }
-          }
-        }
-      }
-    });
-
-function whatNumberAmIThinking(myNumber) {
-  if (myNumber !== undefined) {
-    return "My number is: " + String(myNumber);
-  } else {
-    return "I'm not thinking of any number!";
-  }
-}
-
-if (whatNumberAmIThinking(undefined) !== "I'm not thinking of any number!") {
-  throw {
-        RE_EXN_ID: "Assert_failure",
-        _1: [
-          "chap_4_polymorphic.res",
-          468,
-          0
-        ],
-        Error: new Error()
-      };
-}
-
-if (whatNumberAmIThinking(7) !== "My number is: 7") {
-  throw {
-        RE_EXN_ID: "Assert_failure",
-        _1: [
-          "chap_4_polymorphic.res",
-          469,
-          0
-        ],
-        Error: new Error()
-      };
-}
 
 function safeDivide(dividend, divisor) {
   return Caml_int32.div(dividend, divisor);
@@ -282,7 +38,7 @@ if (mapOption($$double, undefined) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          512,
+          558,
           9
         ],
         Error: new Error()
@@ -294,7 +50,7 @@ if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          514,
+          560,
           9
         ],
         Error: new Error()
@@ -306,7 +62,7 @@ if (Belt_Option.map(undefined, $$double) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          532,
+          578,
           0
         ],
         Error: new Error()
@@ -318,7 +74,7 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          533,
+          579,
           0
         ],
         Error: new Error()
@@ -395,36 +151,42 @@ function renderHTML(html) {
   return aux(0, html);
 }
 
-var secondListItem;
+var mh = {
+  state: "Maharasthra",
+  count: 2342
+};
 
-var nothing;
+var ka = {
+  state: "Karnataka",
+  count: 745
+};
 
-var nothing2;
+var dl = {
+  state: "Delhi",
+  count: 385
+};
 
-exports.progLangCreators = progLangCreators;
+var wb = {
+  state: "West Bengal",
+  count: 621
+};
+
+var jh = {
+  state: "Jharkand",
+  count: 111
+};
+
+var tn = {
+  state: "Tamil Nadu",
+  count: 770
+};
+
 exports.mh = mh;
 exports.ka = ka;
 exports.dl = dl;
 exports.wb = wb;
 exports.jh = jh;
 exports.tn = tn;
-exports.totalRecovered = totalRecovered;
-exports.dailyRecovered = dailyRecovered;
-exports.toDisplayMetric = toDisplayMetric;
-exports.convertedMetrics = convertedMetrics;
-exports.filteredMetrics = filteredMetrics;
-exports.totalRecovered2 = totalRecovered2;
-exports.myCustomMap = myCustomMap;
-exports.myCustomFilter = myCustomFilter;
-exports.describeList = describeList;
-exports.getSecondListItem = getSecondListItem;
-exports.secondListItem = secondListItem;
-exports.secondListItem2 = secondListItem2;
-exports.secondListItem3 = secondListItem3;
-exports.secondListItem4 = secondListItem4;
-exports.nothing = nothing;
-exports.nothing2 = nothing2;
-exports.whatNumberAmIThinking = whatNumberAmIThinking;
 exports.safeDivide = safeDivide;
 exports.bukowski = bukowski;
 exports.printMessage = printMessage;

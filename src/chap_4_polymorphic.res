@@ -97,6 +97,7 @@ let (lineEndX, lineEndY) = (first(lineEnd), second(lineEnd))
 
 type progLangCreator = pair<string>
 
+/*
 let progLangCreators: array<progLangCreator> = [
   ("Java", "James Gosling"),
   ("C", "Dennis Ritchie"),
@@ -108,7 +109,6 @@ let progLangCreators: array<progLangCreator> = [
   ("Lisp", "John McCarthy"),
   ("Pascal", "Niklaus Wirth"),
 ]
-/*
 
 let arrayLength = Js.Array.length(progLangCreators)
 
@@ -210,10 +210,12 @@ SimpleTest.assertEqual(
 */
 
 // filter - languages that start with the letter p
+/*
 Js.Array.filter(x => {
   let (language, _) = x
   Js.String.startsWith("P", language)
 }, progLangCreators)
+*/
 
 /*
   -----------------------------------------------------------------------------
@@ -253,9 +255,11 @@ let wb = {state: "West Bengal", count: 621}
 let jh = {state: "Jharkand", count: 111}
 let tn = {state: "Tamil Nadu", count: 770}
 
+/*
 let totalRecovered = Js.Array.reduce((acc, {count}) => {
   acc + count
 }, 0, [mh, ka, dl, wb, jh, tn])
+*/
 
 // reduce / fold
 // exercise
@@ -305,42 +309,6 @@ SimpleTest.assertEqual(
   ~msg="[exercise 4] Use Js.Array.reduce to generate table rows HTML",
 )
 */
-/*
-  Transform the value,
-
-  ("Java", "James Gosling") 
-
-  into the table row html
-
-  <tr>
-    <td>Java</td>
-    <td>James Gosling</td>
-  </tr>
-
-  Reduce/Fold the list of language creators to create a table,
-
-  the table header is,
-
-  <tr>
-    <th>Programming Langauge</th>
-    <th>Creator</th>
-  </tr>
-
-
-  final output:
-
-  <table>
-    <tr>
-      <th>Programming Langauge</th>
-      <th>Creator</th>
-    </tr>
-    <tr>
-      <td>Java</td>
-      <td>James Gosling</td>
-    </tr>
-    ...
-  </table>
-*/
 
 // list
 // map, filter
@@ -348,43 +316,111 @@ SimpleTest.assertEqual(
 // immutable
 // fast prepend
 // fast tail
-let dailyRecovered: list<metric> = list{mh, ka, dl, wb, jh, tn}
+
+// --- UNCOMMENT BELOW
+// let dailyRecovered: list<metric> = list{mh, ka, dl, wb, jh, tn}
 
 type displayMetric = pair<string>
 
 // TODO
 // data first vs data last
+/*
 let toDisplayMetric = (metric: metric): displayMetric => (
   metric.state,
   Belt.Int.toString(metric.count),
 )
+*/
 
+/*
 let convertedMetrics = Belt.List.map(dailyRecovered, toDisplayMetric)
 
+// iterate
+convertedMetrics->Belt.List.forEach(((state, count)) => {
+  // comment out to see
+  // keep it commented to keep console output tidy for
+  // later exercises
+  // Js.log("State: " ++ state ++ ", Count: " ++ count)
+  // return unit, because we must
+  ()
+})
+*/
+
 // recovered over 500 or more
-let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
+//let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
 
 // reduce
-let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
+//let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
 
 // custom map implementation using reduce
-// exercises to implement map & filter
+// exercises to implement map & filter & iter
 // implementing iter can be done after introducing unit later
+/*
+  -----------------------------------------------------------------------------
+  Exercise 6
+  -----------------------------------------------------------------------------
+  Implement the following list higher-order functions:
+
+    myCustomMap: (list<'a>, 'a => 'b) => list<'b>
+    myCustomFilter: (list<'a>, 'a => bool) => list<'a>
+    myCustomForEach: (list<'a>, 'a => unit) => unit
+
+  All three of the above functions can be derived from `reduce`. So use the
+  function `Belt.List.reduce` to implement these.
+  -----------------------------------------------------------------------------
+ */
+/*
 let myCustomMap = (xs: list<'a>, f: 'a => 'b): list<'b> =>
   Belt.List.reduce(xs, list{}, (acc, x) => list{f(x), ...acc})->Belt.List.reverse
 
+let myCustomForEach = (xs: list<'a>, f: 'a => unit): unit =>
+  Belt.List.reduce(xs, (), (_, x) => f(x))
+
 // pattern matching
-let myCustomFilter = (xs, f: 'a => bool): list<'a> => Belt.List.reduce(xs, list{}, (acc, x) =>
+let myCustomFilter = (xs: list<'a>, f: 'a => bool): list<'a> =>
+  Belt.List.reduce(xs, list{}, (acc, x) =>
     if f(x) {
-      list{f(x), ...acc}
+      list{x, ...acc}
     } else {
       acc
     }
   )->Belt.List.reverse
+*/
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 7
+  -----------------------------------------------------------------------------
+  Use your custom functions for map, filter & forEach in the following
+  data pipeline:
+
+    dailyRecovered
+    ->myCustomFilter(x => x.count > 500)
+    ->myCustomMap(toDisplayMetric)
+    ->myCustomMap(((f, s)) => `${f}: ${s}`)
+    ->myCustomForEach(Js.log)
+
+  If your implementation is correct you should see the following being
+  logged to console,
+
+    Maharasthra: 2342
+    Karnataka: 745
+    West Bengal: 621
+    Tamil Nadu: 770
+  -----------------------------------------------------------------------------
+ */
+
+/*
+dailyRecovered
+->myCustomFilter(x => x.count > 500)
+->myCustomMap(toDisplayMetric)
+->myCustomMap(((f, s)) => `${f}: ${s}`)
+->myCustomForEach(Js.log)
+*/
 
 // pattern matching
 // case 1: list is empty
 // case 2: head, and tail
+/*
 let describeList = xs =>
   switch xs {
   | list{} => "This list is empty"
@@ -397,6 +433,7 @@ let describeList = xs =>
 
 describeList(list{})
 describeList(list{"hello", "world", "good", "bye"})
+*/
 
 // option
 // Tony Hoare had this to say this regarding the invention
@@ -429,6 +466,8 @@ describeList(list{"hello", "world", "good", "bye"})
 // 1. list could be empty in which case there is no first element
 // 2. list could have only a single item
 // 3. list could have 2 or more items
+
+/*
 let getSecondListItem = xs =>
   switch xs {
   | list{} => None
@@ -440,6 +479,7 @@ let secondListItem = getSecondListItem(list{})
 let secondListItem2 = getSecondListItem(list{1})
 let secondListItem3 = getSecondListItem(list{"hello", "world"})
 let secondListItem4 = getSecondListItem(list{mh, ka, dl, wb, jh, tn})
+*/
 
 // confusing at first!
 // why is the inferred type 'a
@@ -450,13 +490,18 @@ let secondListItem4 = getSecondListItem(list{mh, ka, dl, wb, jh, tn})
 // type checker infers the principal type
 // that means the most general purpose type which is
 // applicable here.
+
+/* UNCOMMENT BELOW
 let nothing = None
+ UNCOMMENT ABOVE */
+
 // You can always manually annotate to force a specialized
 // type. Often this is not necessary in application code
 // because the evaluation context would have enough
 // information to infer the type. But if that does not
 // happen, then you can fallback to manually annotating
 // the type
+/*
 let nothing2: option<int> = None
 
 let whatNumberAmIThinking = (myNumber: option<int>) =>
@@ -467,6 +512,7 @@ let whatNumberAmIThinking = (myNumber: option<int>) =>
 
 assert (whatNumberAmIThinking(None) == "I'm not thinking of any number!")
 assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
+*/
 
 /*
   Implement the function [safeDivide(~dividend, ~divisor)], which takes two
