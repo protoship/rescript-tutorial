@@ -1,6 +1,7 @@
 // modules
 // module interfaces
 // module opaque types
+/*
 
 module GithubProject__WithoutReScriptInterface = {
   type t = {
@@ -25,6 +26,9 @@ module Github1 = GithubProject__WithoutReScriptInterface
 let atom: Github1.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 atom->Github1.linkTo // <a href="https://atom.io">Atom</a>
 
+*/
+
+/*
 module GithubProject__WithoutDataHiding: {
   type t = {
     name: string,
@@ -56,7 +60,9 @@ let node: Github2.t = {name: "Node.js", url: "https://nodejs.org", repositories:
 node->Github2.linkTo
 let node2 = {...node, people: node.people + 10}
 let node3 = {...node2, repositories: node2.repositories + 1}
+*/
 
+/*
 module GithubProject__WithOpaqueType: {
   type t
 
@@ -96,6 +102,20 @@ let rails = Github3.make(
 rails->Github3.linkTo
 
 let rails2 = rails->Github3.updatePeople(5)
+*/
 
-// exercise define name, url, repositories, people accessors
-// exercise define addRepositories (immutable)
+/*
+  -----------------------------------------------------------------------------
+  Exercise 1
+  -----------------------------------------------------------------------------
+  Implement the following (immutable) functions:
+
+  rails->Github3.name         // returns: "Ruby on Rails"
+  rails->Github3.url          // returns: "https://rubyonrails.org"
+  rails->Github3.repositories // returns: 99
+  rails->Github3.people       // returns: 66
+
+  let rails2 = rails->Github3.updateRepositories(1)
+  rails2->Github3.repositories // returns: 100
+  -----------------------------------------------------------------------------
+*/
