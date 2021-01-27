@@ -341,12 +341,14 @@ projectLink(rails)
 
 type book = {title: string, tagline: string, format: bookFormat, availableInStock: int}
 
+/*
 let codersAtWork = {
   title: "Coders at Work",
   tagline: "Reflections on the Craft of Programming",
   format: Paperback,
   availableInStock: 10,
 }
+*/
 
 /*
   -----------------------------------------------------------------------------
@@ -422,6 +424,7 @@ type shape =
   | Line(line)
   | Text(text)
 
+/*
 // functions for rendering shapes
 
 // rectangle => unit
@@ -463,3 +466,4 @@ let drawShape = shape =>
   | Line(line) => drawLine(line)
   | Text(text) => drawText(text)
   }
+*/
