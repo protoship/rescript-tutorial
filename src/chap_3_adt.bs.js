@@ -14,72 +14,6 @@ function bookFormatToString(format) {
   }
 }
 
-function displayName(user) {
-  if (typeof user === "number") {
-    return "Anonymous";
-  }
-  switch (user.TAG | 0) {
-    case /* Guest */0 :
-        return "Guest#" + String(user._0);
-    case /* LoggedInUser */1 :
-    case /* Moderator */2 :
-        break;
-    
-  }
-  return user._1 + ", " + String(user._0) + " points";
-}
-
-var anonymous = displayName(/* Anonymous */0);
-
-var guest42 = displayName({
-      TAG: /* Guest */0,
-      _0: 42
-    });
-
-var milner1934 = displayName({
-      TAG: /* LoggedInUser */1,
-      _0: 2010,
-      _1: "Robin Milner"
-    });
-
-var grace1906 = displayName({
-      TAG: /* Moderator */2,
-      _0: 1992,
-      _1: "Grace Hopper"
-    });
-
-function formInputToHTML(x) {
-  if (typeof x === "number") {
-    return "<input type=\"submit\" />";
-  }
-  switch (x.TAG | 0) {
-    case /* Text */0 :
-        return "<input type=\"text\" name=\"" + x._0 + "\" />";
-    case /* Number */1 :
-        return "<input type=\"number\" name=\"" + x._0 + "\" min=\"" + String(x._1) + " max=\"" + String(x._2) + "\"/>";
-    case /* Email */2 :
-        return "<input type=\"email\" name=\"" + x._0 + "\" />";
-    
-  }
-}
-
-var nameInput = formInputToHTML({
-      TAG: /* Text */0,
-      _0: "name"
-    });
-
-var ageInput = formInputToHTML({
-      TAG: /* Number */1,
-      _0: "age",
-      _1: 18,
-      _2: 25
-    });
-
-var emailInput = formInputToHTML({
-      TAG: /* Email */2,
-      _0: "email"
-    });
-
 var name = "age-limit";
 
 var ageLimit = [
@@ -171,8 +105,6 @@ function drawShape(shape) {
   }
 }
 
-var submit = "<input type=\"submit\" />";
-
 var min = 18;
 
 var max = 25;
@@ -232,16 +164,6 @@ var textLabel = {
 };
 
 exports.bookFormatToString = bookFormatToString;
-exports.displayName = displayName;
-exports.anonymous = anonymous;
-exports.guest42 = guest42;
-exports.milner1934 = milner1934;
-exports.grace1906 = grace1906;
-exports.formInputToHTML = formInputToHTML;
-exports.nameInput = nameInput;
-exports.ageInput = ageInput;
-exports.emailInput = emailInput;
-exports.submit = submit;
 exports.name = name;
 exports.min = min;
 exports.max = max;
@@ -268,4 +190,4 @@ exports.block2 = block2;
 exports.block1ToBlock2 = block1ToBlock2;
 exports.textLabel = textLabel;
 exports.drawShape = drawShape;
-/* anonymous Not a pure module */
+/*  Not a pure module */

@@ -195,6 +195,7 @@ type user =
   | LoggedInUser(int, string)
   | Moderator(int, string)
 
+/*
 let displayName = user =>
   switch user {
   | Anonymous => "Anonymous"
@@ -208,6 +209,7 @@ let anonymous = displayName(Anonymous)
 let guest42 = displayName(Guest(42))
 let milner1934 = displayName(LoggedInUser(2010, "Robin Milner"))
 let grace1906 = displayName(Moderator(1992, "Grace Hopper"))
+*/
 
 // --
 
@@ -217,13 +219,34 @@ type formInput =
   | Email(string)
   | Submit
 
+/*
+  -----------------------------------------------------------------------------
+  Exercise 5
+  -----------------------------------------------------------------------------
+  Generate the HTML string for a given form input in the below formats.
+
+  1. Text
+  <input type="text" name="first_name" />
+
+  2. Number
+  <input type="number" name="age" min=18 max=25 />
+
+  3. Email
+  <input type="email" name="work_email" />
+
+  4. Submit
+  <input type="submit" />
+  -----------------------------------------------------------------------------
+*/
+
+/*
 let formInputToHTML = x =>
   switch x {
   | Text(name) => `<input type="text" name="${name}" />`
   | Number(name, min, max) =>
-    `<input type="number" name="${name}" min="${Belt.Int.toString(min)} max="${Belt.Int.toString(
+    `<input type="number" name="${name}" min=${Belt.Int.toString(min)} max=${Belt.Int.toString(
       max,
-    )}"/>`
+    )}/>`
   | Email(name) => `<input type="email" name="${name}" />`
   | Submit => `<input type="submit" />`
   }
@@ -232,6 +255,28 @@ let nameInput = formInputToHTML(Text("name"))
 let ageInput = formInputToHTML(Number("age", 18, 25))
 let emailInput = formInputToHTML(Email("email"))
 let submit = formInputToHTML(Submit)
+
+SimpleTest.assertEqual(
+  ~expected=`<input type="text" name="first_name" />`,
+  ~actual=formInputToHTML(Text("first_name")),
+  ~msg="[exercise 5] text input for entering first name",
+)
+SimpleTest.assertEqual(
+  ~expected=`<input type="number" name="tickets" min=0 max=5/>`,
+  ~actual=formInputToHTML(Number("tickets", 0, 5)),
+  ~msg="[exercise 5] input for buying upto 5 tickets",
+)
+SimpleTest.assertEqual(
+  ~expected=`<input type="email" name="work_email" />`,
+  ~actual=formInputToHTML(Email("work_email")),
+  ~msg="[exercise 5] email input for entering work email",
+)
+SimpleTest.assertEqual(
+  ~expected=`<input type="submit" />`,
+  ~actual=formInputToHTML(Submit),
+  ~msg="[exercise 5] a submit button",
+)
+*/
 
 // tuples
 let (name, min, max) = ("age-limit", 18, 25)
