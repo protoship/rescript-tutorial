@@ -611,6 +611,10 @@ let () = assert (mapOption(double, Some(2)) == Some(4))
     <a href="mailto:nowhere@mozilla.org">Send email to nowhere</a>
   </div>
 */
+
+// Revisiting variants
+// Move it outside exercise (self-contained)
+/*
 type href = Fragment(string) | MailTo(string)
 
 type rec markup =
@@ -659,3 +663,4 @@ let renderHTML = html => {
 
   aux(0, html)
 }
+*/
