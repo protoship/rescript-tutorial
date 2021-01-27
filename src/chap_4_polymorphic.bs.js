@@ -73,42 +73,6 @@ function renderHTML(html) {
   return aux(0, html);
 }
 
-var mh = {
-  state: "Maharasthra",
-  count: 2342
-};
-
-var ka = {
-  state: "Karnataka",
-  count: 745
-};
-
-var dl = {
-  state: "Delhi",
-  count: 385
-};
-
-var wb = {
-  state: "West Bengal",
-  count: 621
-};
-
-var jh = {
-  state: "Jharkand",
-  count: 111
-};
-
-var tn = {
-  state: "Tamil Nadu",
-  count: 770
-};
-
-exports.mh = mh;
-exports.ka = ka;
-exports.dl = dl;
-exports.wb = wb;
-exports.jh = jh;
-exports.tn = tn;
 exports.exampleHTML = exampleHTML;
 exports.hrefToHTML = hrefToHTML;
 exports.anchorToHTML = anchorToHTML;

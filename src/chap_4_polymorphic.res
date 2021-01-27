@@ -247,6 +247,7 @@ SimpleTest.assertEqual(
 // demonstrate fold with a simple example
 type metric = {state: string, count: int}
 
+/*
 // daily recovered counts by state
 let mh = {state: "Maharasthra", count: 2342}
 let ka = {state: "Karnataka", count: 745}
@@ -255,7 +256,6 @@ let wb = {state: "West Bengal", count: 621}
 let jh = {state: "Jharkand", count: 111}
 let tn = {state: "Tamil Nadu", count: 770}
 
-/*
 let totalRecovered = Js.Array.reduce((acc, {count}) => {
   acc + count
 }, 0, [mh, ka, dl, wb, jh, tn])
