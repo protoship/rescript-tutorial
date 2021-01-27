@@ -10,3 +10,4 @@
 ## TODO
 
 - pass string formatter to simple test (see playerA/B/C)
+- diff expected/received for large inputs

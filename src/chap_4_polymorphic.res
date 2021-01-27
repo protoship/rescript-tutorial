@@ -150,6 +150,14 @@ type programmingLanguage = {name: string, creator: string}
  */
 
 /*
+SimpleTest.assertEqual(
+  ~expected={name: "Name", creator: "Creator"},
+  ~actual=toProgrammingLanguage(("Name", "Creator")),
+  ~msg="[exercise 1] convert tuple to record value",
+)
+*/
+
+/*
   -----------------------------------------------------------------------------
   Exercise 2
   -----------------------------------------------------------------------------
@@ -160,24 +168,79 @@ type programmingLanguage = {name: string, creator: string}
   a string to lowercase.
 
     Js.String.toLocaleLowerCase: string => string
+
+  Name the binding `lowercaseLanguages`
   -----------------------------------------------------------------------------
  */
+
+/*
+SimpleTest.assertEqual(
+  ~expected=["java", "c", "python", "php", "perl", "javascript", "ruby", "lisp", "pascal"],
+  ~actual=lowercaseLanguages,
+  ~msg="[exercise 2] array of languages in lowercase",
+)
+*/
 
 /*
   -----------------------------------------------------------------------------
   Exercise 3
   -----------------------------------------------------------------------------
   Generate an array of programming language creators from `progLangCreators`.
+
+  Name the binding `creators`
   -----------------------------------------------------------------------------
  */
+
+/*
+SimpleTest.assertEqual(
+  ~expected=[
+    "James Gosling",
+    "Dennis Ritchie",
+    "Guido van Rossum",
+    "Rasmus Lerdorf",
+    "Larry Wall",
+    "Brendan Eich",
+    "Yukihiro Matsumoto",
+    "John McCarthy",
+    "Niklaus Wirth",
+  ],
+  ~actual=creators,
+  ~msg="[exercise 3] array of language creators",
+)
+*/
 
 // filter - languages that start with the letter p
 Js.Array.filter(x => {
   let (language, _) = x
   Js.String.startsWith("P", language)
 }, progLangCreators)
-// exercise - provide array of compiled languages
-// create array of dynamic languages
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 4
+  -----------------------------------------------------------------------------
+  Create a binding `dynamicLanguages` which contains all the dynamic languages
+  in `progLangCreators`.!
+
+  You need to filter out any value in `compiledLanguages` provided below.
+
+  You may use `Js.Array.includes`,
+
+    Js.Array.includes("PHP", compiledLanguages) // returns false
+    Js.Array.includes("Java", compiledLanguages) // returns true
+  -----------------------------------------------------------------------------
+ */
+
+/*
+let compiledLanguages = ["Java", "C"]
+
+
+SimpleTest.assertEqual(
+  ~expected=["Python", "PHP", "Perl", "JavaScript", "Ruby", "Lisp", "Pascal"],
+  ~actual=dynamicLanguages,
+  ~msg="[exercise 4] list of dynamic languages",
+)
+*/
 
 // demonstrate fold with a simple example
 type metric = {state: string, count: int}
