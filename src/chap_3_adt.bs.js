@@ -14,26 +14,6 @@ function bookFormatToString(format) {
   }
 }
 
-function isElectronic(format) {
-  return format >= 2;
-}
-
-function nextMoveBy(current) {
-  switch (current) {
-    case /* PlayerA */0 :
-        return /* PlayerB */1;
-    case /* PlayerB */1 :
-        return /* PlayerC */2;
-    case /* PlayerC */2 :
-        return /* PlayerA */0;
-    
-  }
-}
-
-var secondMove = nextMoveBy(/* PlayerA */0);
-
-var thirdMove = nextMoveBy(secondMove);
-
 function displayName(user) {
   if (typeof user === "number") {
     return "Anonymous";
@@ -191,10 +171,6 @@ function drawShape(shape) {
   }
 }
 
-var bookFormat2 = "Kindle Edition";
-
-var firstMove = /* PlayerA */0;
-
 var submit = "<input type=\"submit\" />";
 
 var min = 18;
@@ -256,12 +232,6 @@ var textLabel = {
 };
 
 exports.bookFormatToString = bookFormatToString;
-exports.bookFormat2 = bookFormat2;
-exports.isElectronic = isElectronic;
-exports.nextMoveBy = nextMoveBy;
-exports.firstMove = firstMove;
-exports.secondMove = secondMove;
-exports.thirdMove = thirdMove;
 exports.displayName = displayName;
 exports.anonymous = anonymous;
 exports.guest42 = guest42;
@@ -298,4 +268,4 @@ exports.block2 = block2;
 exports.block1ToBlock2 = block1ToBlock2;
 exports.textLabel = textLabel;
 exports.drawShape = drawShape;
-/*  Not a pure module */
+/* anonymous Not a pure module */

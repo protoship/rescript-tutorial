@@ -45,14 +45,13 @@ type bookFormat =
 */
 // let bookFormatToString = (x: bookFormat): string =>
 
-/*
 let bookFormatToString = format =>
   switch format {
   | Hardcover => "Hardcover"
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
   }
-
+/*
 bookFormatToString(Hardcover) == "Hardcover"
 bookFormatToString(Paperback)
 let bookFormat2 = bookFormatToString(KindleEdition)
@@ -136,16 +135,6 @@ type player =
   | PlayerB
   | PlayerC
 
-let nextMoveBy = current =>
-  switch current {
-  | PlayerA => PlayerB
-  | PlayerB => PlayerC
-  | PlayerC => PlayerA
-  }
-
-let firstMove = PlayerA
-let secondMove = nextMoveBy(firstMove)
-let thirdMove = nextMoveBy(secondMove)
 /*
   -----------------------------------------------------------------------------
   Exercise 4 (easy)
@@ -158,8 +147,44 @@ let thirdMove = nextMoveBy(secondMove)
   Implement the function which returns the next player in the chain when
   given the current player,
 
-    `let nextMoveBy: player => player`
+    `let nextMoveAfter: player => player`
   -----------------------------------------------------------------------------
+*/
+
+/*
+let playerToString = player =>
+  switch player {
+  | PlayerA => "Player A"
+  | PlayerB => "Player B"
+  | PlayerC => "Player C"
+  }
+
+let nextMoveAfter = current =>
+  switch current {
+  | PlayerA => PlayerB
+  | PlayerB => PlayerC
+  | PlayerC => PlayerA
+  }
+
+let firstMove = PlayerA
+let secondMove = nextMoveAfter(firstMove)
+let thirdMove = nextMoveAfter(secondMove)
+
+SimpleTest.assertEqual(
+  ~expected=playerToString(PlayerB),
+  ~actual=playerToString(nextMoveAfter(PlayerA)),
+  ~msg="[exercise 4] next move after Player A",
+)
+SimpleTest.assertEqual(
+  ~expected=playerToString(PlayerC),
+  ~actual=playerToString(nextMoveAfter(PlayerB)),
+  ~msg="[exercise 4] next move after Player B",
+)
+SimpleTest.assertEqual(
+  ~expected=playerToString(PlayerA),
+  ~actual=playerToString(nextMoveAfter(PlayerC)),
+  ~msg="[exercise 4] next move after Player C",
+)
 */
 
 // Variant with constructor arguments
