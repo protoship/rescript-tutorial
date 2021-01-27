@@ -539,6 +539,8 @@ SimpleTest.assertEqual(
 */
 
 // pattern matching - simple example
+// Add the whole quote
+/*
 let bukowski = Some("If you're going to try, go all the way...")
 let printMessage = message =>
   switch message {
@@ -547,6 +549,7 @@ let printMessage = message =>
   }
 
 printMessage(bukowski)
+*/
 
 // Belt combinators
 // especially map
@@ -564,6 +567,7 @@ printMessage(bukowski)
 // option values. Rewriting them to pattern match
 // on an option type value is painfully unnecessary.
 
+/*
 let mapOption = (f, opt) =>
   switch opt {
   | None => None
@@ -575,6 +579,7 @@ let double = i => 2 * i
 let () = assert (mapOption(double, None) == None)
 
 let () = assert (mapOption(double, Some(2)) == Some(4))
+*/
 
 // The function is not applied or computed when the
 // input argument is None. The computation is
@@ -592,8 +597,8 @@ let () = assert (mapOption(double, Some(2)) == Some(4))
 // We don't need to implement mapOption ourselves
 // We can use Belt.Option.map
 
-assert (Belt.Option.map(None, double) == None)
-assert (Belt.Option.map(Some(2), double) == Some(4))
+// assert (Belt.Option.map(None, double) == None)
+// assert (Belt.Option.map(Some(2), double) == Some(4))
 
 // self-referential structures
 // recursive functions over them
