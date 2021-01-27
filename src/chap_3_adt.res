@@ -12,6 +12,8 @@
   * Types
  */
 
+// types do not generate any code in JavaScript
+
 type bookFormat =
   | Hardcover
   | Paperback
@@ -26,13 +28,6 @@ type bookFormat =
  */
 // let bookFormat: bookFormat = HardCover
 
-// let bookFormatToString = (x: bookFormat): string =>
-let bookFormatToString = format =>
-  switch format {
-  | Hardcover => "Hardcover"
-  | Paperback => "Paperback"
-  | KindleEdition => "Kindle Edition"
-  }
 /*
   TODO: explain function syntax with annotation for input arguments and
   the returned value
@@ -42,16 +37,25 @@ let bookFormatToString = format =>
 
   TODO: introduction to reading function type signatures 
         bookFormat => string
+
+  TODO: explain function call-site / application
+
+  TODO: hover for types
+
 */
+// let bookFormatToString = (x: bookFormat): string =>
+
+/*
+let bookFormatToString = format =>
+  switch format {
+  | Hardcover => "Hardcover"
+  | Paperback => "Paperback"
+  | KindleEdition => "Kindle Edition"
+  }
 
 bookFormatToString(Hardcover) == "Hardcover"
 bookFormatToString(Paperback)
 let bookFormat2 = bookFormatToString(KindleEdition)
-/*
-  TODO: explain function call-site / application
-
-  TODO: hover for types
- */
 
 let isElectronic = format =>
   switch format {
@@ -62,6 +66,7 @@ let isElectronic = format =>
 
 isElectronic(Hardcover)
 isElectronic(KindleEdition)
+*/
 
 /*
  Case analysis is exhaustive
