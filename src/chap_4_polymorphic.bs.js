@@ -4,13 +4,8 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
-var Caml_int32 = require("bs-platform/lib/js/caml_int32.js");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
-
-function safeDivide(dividend, divisor) {
-  return Caml_int32.div(dividend, divisor);
-}
 
 var bukowski = "If you're going to try, go all the way...";
 
@@ -38,7 +33,7 @@ if (mapOption($$double, undefined) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          558,
+          575,
           9
         ],
         Error: new Error()
@@ -50,7 +45,7 @@ if (!Caml_obj.caml_equal(mapOption($$double, 2), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          560,
+          577,
           9
         ],
         Error: new Error()
@@ -62,7 +57,7 @@ if (Belt_Option.map(undefined, $$double) !== undefined) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          578,
+          595,
           0
         ],
         Error: new Error()
@@ -74,7 +69,7 @@ if (!Caml_obj.caml_equal(Belt_Option.map(2, $$double), 4)) {
         RE_EXN_ID: "Assert_failure",
         _1: [
           "chap_4_polymorphic.res",
-          579,
+          596,
           0
         ],
         Error: new Error()
@@ -187,7 +182,6 @@ exports.dl = dl;
 exports.wb = wb;
 exports.jh = jh;
 exports.tn = tn;
-exports.safeDivide = safeDivide;
 exports.bukowski = bukowski;
 exports.printMessage = printMessage;
 exports.mapOption = mapOption;

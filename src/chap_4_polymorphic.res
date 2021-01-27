@@ -515,11 +515,28 @@ assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
 */
 
 /*
+  -----------------------------------------------------------------------------
+  Exercise 8
+  -----------------------------------------------------------------------------
   Implement the function [safeDivide(~dividend, ~divisor)], which takes two
   ints and returns an int option. It should return None if [divisor = 0], and
   otherwise returns [Some(x)] where [x] is the division result
+  -----------------------------------------------------------------------------
  */
-let safeDivide = (~dividend, ~divisor) => Some(dividend / divisor)
+/*
+let safeDivide = (~dividend, ~divisor) =>
+  if divisor == 0 {
+    None
+  } else {
+    Some(dividend / divisor)
+  }
+
+SimpleTest.assertEqual(
+  ~expected=Some(9),
+  ~actual=safeDivide(~dividend=1, ~divisor=0),
+  ~msg="[exercise 8] unsafe divide by zero",
+)
+*/
 
 // pattern matching - simple example
 let bukowski = Some("If you're going to try, go all the way...")
