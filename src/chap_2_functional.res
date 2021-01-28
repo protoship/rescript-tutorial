@@ -136,14 +136,6 @@ SimpleTest.assertEqual(
     ```
  */
 
-// refactor the above code to use functions
-// explain this example
-// -- uses if/else-if/else
-// -- inlines the helper functions to the function block scope
-// -- type annotations for input & output
-// -- -- input type is `int`
-// -- -- output type is `int`
-
 /*
   -----------------------------------------------------------------------------
   Exercise 2
