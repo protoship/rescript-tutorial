@@ -395,58 +395,60 @@ makeDiv3(makeParagraph("Hello, world!"))
   to do the same thing.
  */
 
-/* --- BEGIN 
-// ---
-
-// how do you make wrapTagAroundText & wrapTagAroundHTML better
-// for the reader of the code?
-// use labelled arguments when possible
-// when the types of the function are (string, string) you have
-// a designed an API where the user of that code should now either
-// remember or go lookup documentation to figure out the correct
-// way to use it. If you switch up the argument order , there is
-// no compilation error. Because they are the correct types, but
-// now you have a logical error.
-// It's better to not depend on the position of an argument, and
-// instead use named arguments.
-
-let betterWrapTagAroundHTML = (~tag: string, ~indent, ~html) =>
-  `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
-
-let makeBetterDiv = betterWrapTagAroundHTML(~tag="div", ~indent)
-let div3 = makeBetterDiv(~html=para1)
-
-// labelled arguments are not positional
-// all these functions return the same result
-// application order does not matter
-betterWrapTagAroundHTML(~indent, ~tag="div", ~html=para1)
-betterWrapTagAroundHTML(~html=para1, ~indent, ~tag="div")
-
-// anonymous function
-
-betterWrapTagAroundHTML(~indent=x => Js.String.repeat(2, x), ~tag="div", ~html=para1)
-
- --- END */
-
-// what is going on here?
-// indent is a function
-// it has type string => string
-// string input, string output
-// we did not use the named function `indent`
-// instead the function body was inlined
-// no name, this function has
-// anonymous, we then call it
-// exact same as indent, except no name
-// this is a handy techinque when working with some functions
-// like Belt.Array.map/filter etc which you  will encounter
-// in parametric polymorphism section
-
-// yet another different way of writing the wrapper function
 /*
-let altWrapTagAroundHTML = (~depth, ~tag, ~html) => {
-  let indent = x => Js.String.repeat(depth, x)
-  `<${tag}>\n${indent(" ")}${html}\n</${tag}>`
+  In functions like `fullname`, `wrapTagAroundText` or
+  `wrapTagAroundText2` there are multiple input arguments which
+  belong to the same type.
+
+  It becomes easy to mix up the order of the arguments when
+  calling the function like this:
+
+    ```
+    wrapTagAroundText("abc", "p") // <abc>p</abc>
+    ```
+  
+  This code will compile. It may also slip through code review. 
+  And you  may only be notified when it causes a bug in production. 
+  Such an easy mistake to make!
+
+  Also how often do you end up having to Google and lookup
+  documentation to check the right order in which arguments have
+  to passed to a function.
+
+  So far we've been defining functions where the arguments are
+  positionally ordered. To correctly use `wrapTagAroundText` you
+  have to remember that the tag name is in the first position
+  and the text is in the second position.
+
+  This can be improved if instead of depending on positions, the
+  parameters could be labelled. The parameters are not tied to
+  a specific position anymore. They are identified by a label.
+
+  This also has the effect of improving the readability of the 
+  code. It becomes difficult to confuse between tag name and
+  the inner text.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let betterWrapTagAroundText = (~tag, ~indent, ~text) => {
+  let indentSpaces = indent(" ")
+
+  `<${tag}>
+${indentSpaces}${text}
+</${tag}>`
 }
+
+// <div>
+//   <p>Hello, world!</p>
+// </div>
+betterWrapTagAroundText(
+  ~tag="div",
+  ~indent=Js.String.repeat(2),
+  ~text=makeParagraph("Hello, world!"),
+)
 */
 
 // let's build a function like repeat ourselves
