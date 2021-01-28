@@ -1,6 +1,21 @@
-// control flow - branching
-// if else is also an expression
-// The type of the return expression should be same
+/*
+  The (if/else-if/.../else) syntax is a "control flow" construct familiar
+  to you. Here it is an **expression**. 
+
+  Depending on the branch which evaluates true, a value is returned and
+  it has an associated type inferred by the compiler, or you may have
+  manually annotated the type yourself. The types of the values returned
+  from any branch should always match.
+
+  This is consistent with what you learned earlier when declaring immutable
+  bindings. A binding cannot be both `int` and `string` at the same time.
+  So therefore the if/else expression can only return a value belonging
+  to a single type.
+
+  You will see a compiler error if you try returning a `string` value
+  in one branch and a `float` value in another branch. The type checker
+  will catch this and inform you that the types do not match. 
+ */
 
 /*
   Uncomment the block below.
@@ -35,7 +50,7 @@ let cssClassName = if upvotes < downvotes {
  */
 /*
 let cartTotal = 200
-let discount = failwith("implement ex.1")
+let discount = 0
 SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calculate discount for 200")
  */
 
