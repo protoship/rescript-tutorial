@@ -590,33 +590,68 @@ myCharRepeat(~char='@', ~count=6) // @@@@@@
   * etc.
  */
 
-// pipeline
-// key - string
-// value - 'a
-// don't talk about the type because we will
-// encounter polymorphic parametrism in the span
-// of a few examples. Let's elide this detail and
-// focus on the pipeline aspect
 /*
-let cache = Belt.Map.String.empty
-let cache1 = Belt.Map.String.set(cache, "key1", "value1")
-let cache2 = Belt.Map.String.set(cache1, "key2", "value2")
-let cache3 = Belt.Map.String.set(cache2, "key3", "value3")
-let cache4 = Belt.Map.String.set(cache3, "key4", "value4")
-let cache5 = Belt.Map.String.set(cache4, "key5", "value5")
+  One of the downsides of functions being first-class and can be passed
+  around as arguments to other functions is that you can end up with
+  deeply nested code like:
 
-// there is an easier way to write this without any
-// intermediate variables
-let anotherCache = Belt.Map.String.empty
-anotherCache
-->Belt.Map.String.set("key1", "value1")
-->Belt.Map.String.set("key2", "value2")
-->Belt.Map.String.set("key3", "value3")
-->Belt.Map.String.set("key4", "value4")
-->Belt.Map.String.set("key5", "value5")
+    ```
+    // <body><div><p>Hello, world!</p></div></body>
+    wrapTagAroundText("body", 
+      wrapTagAroundText("div", 
+        wrapTagAroundText("p", "Hello, world!")))
+    ```
 
-assert (cache->Belt.Map.String.size == anotherCache->Belt.Map.String.size)
+  The code formatting makes it a bit better, but you still have to begin
+  reading from the inner expression which contains the "Hello, world!"
+  value. This is not easy to scan.
+
+  To improve readability and be able to construct a pipeline of data
+  transformation you have access to the nifty **pipe** operator `->`.
+
+  It is not an operator you can easily Google unless you know the name.
+
+  The `->` operator makes it possible to change a function call like,
+  
+    `nameOfFunction(arg1, arg2)`
+
+  into,
+
+    `arg1->nameOfFunction(arg2)`
+
+  The `wrapTagAroundText` is not pipe friendly at the moment. The `text`
+  needs to be first argument, not the second. Let us proceed.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+// <body><div><p>Hello, world!</p></div></body>
+wrapTagAroundText("body", wrapTagAroundText("div", wrapTagAroundText("p", "Hello, world!")))
+
+let wrapTagAroundText3 = (~tag, text) => `<${tag}>${text}</${tag}>`
+
+// <body><div><p>Hello, world!</p></div></body>
+"Hello, world!"
+->wrapTagAroundText3(~tag="p")
+->wrapTagAroundText3(~tag="div")
+->wrapTagAroundText3(~tag="body")
 */
+
+/*
+ The code above creates value transformation pipeline.
+
+ The starting value is "Hello, world!" and at the end of the pipeline
+ the value is "<body><div><p>Hello, world!</p></div></body>"
+
+ This data flow is easier to read when compared to the original nested
+ function application.
+
+ Both are functionally the same. Using the `->`(pipe) operator has no
+ additional runtime costs. You can look at the compiled JavaScript code 
+ to see that both the call sites are identical in the runtime.
+ */
 
 // functions which return unit
 // side-effects
