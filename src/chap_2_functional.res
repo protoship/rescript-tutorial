@@ -480,32 +480,98 @@ betterWrapTagAroundText(
     1. ~count - number of times to be repeated
     2. ~char - a `char` (primitive) value.
 
-  The function has the following signature:
+  The `char` type values are enclosed in single quotes. 
+  The `string` type values are enclosed in double quotes.
+
+  This function has the type signature:
 
     ```
     let myCharRepeat: (~count: int, ~char: char) => string
     ```
+
+  The usage of the function is as follows:
+
+    ```
+    myCharRepeat(~char='*', ~count=6) // ******
+    myCharRepeat(~char='$', ~count=2) // $$
+    myCharRepeat(~char='+', ~count=1) // +
+    ```
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 let myCharRepeat = (~count, ~char) => {
-  // convert char to a string
+  // Memoize the conversion of `char` value to a `string` value once
+  // here. We do not want to keep invoking this function again and
+  // again from within the recursive inner function `aux`
   let s = String.make(1, char)
 
+  // First argument is an accumulator. See the else branch to understand
+  // how the accumulator grows. When the function terminates the
+  // accumulator holds the result of the computation
   let rec aux = (acc, times) => {
     if times < 2 {
       acc
     } else {
-      let acc' = acc ++ s
-      aux(acc', times - 1)
+      aux(acc ++ s, times - 1) // `s` is memoized outside
     }
   }
 
+  // Call recursive function
   aux(s, count)
 }
 
-myCharRepeat(~char='*', ~count=6) // ******
-
+// call site
+myCharRepeat(~char='@', ~count=6) // @@@@@@
+*/
 /*
+  If you are not used to writing recursive functions it is going to take
+  a while before you wrap your head around it.
+  
+  Let us follow what happens when you call this:
+
+    `myCharRepeat(~count=3, ~char='@')`
+
+  Inside `myCharRepeat` the '@' char value is memoized as a string,
+
+    `s = "@"`
+
+  Then the recursion starts with the call to `aux("@", 3)`.
+
+  The call trace looks like this:
+
+    aux("@", 3)
+    aux("@" ++ "@", 3 - 1)  // else branch calls -> aux("@@", 2)
+    aux("@@" ++ "@", 2 - 1) // else branch calls -> aux("@@@", 1)
+
+  And finally we hit the terminal condition for ending recursion with
+  the call to:
+    
+    aux("@@@", 1) // returns "@@@" to caller
+  
+  This may be a bit too much at first if you are not comfortable with
+  function recursion. The best way to understand is to pick up a pen
+  and some paper and try tracing a few different calls yourself.
+
+  A recursive function has to be explicitly marked as recursive using
+  the `rec` keyword.
+
+  The inlined `aux` function is recursive. The reason it is inlined is
+  to provide a clean API to the users of the function. If we made the
+  the `myCharRepeat` itself a recursive function, then it would also
+  require an accumulator in its parameters. We avoided that by making
+  the recursion internal to the `myCharRepeat` function.
+
+  Which is a cleaner & safer API for the end user? (1 or 2)
+
+  1. myCharRepeat(~count=3, ~char='@', ~acc="")
+  2. myCharRepeat(~count=3, ~char='@)
+
+  The recursive `aux` (inlined) is a common technique used by functional 
+  programmers to hide the accumulator parameter from the end users of the
+  function.
  */
 
 // having to implement recursive functions is an uncommon
