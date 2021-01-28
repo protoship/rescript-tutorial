@@ -1,4 +1,17 @@
 /*
+  Uncomment the block below.
+ */
+/*
+let downvotes = 10
+let upvotes = 5
+let cssClassName = if upvotes < downvotes {
+  "Comment Comment-hidden"
+} else {
+  "Comment"
+}
+*/
+
+/*
   The (if/else-if/.../else) syntax is a "control flow" construct familiar
   to you. Here it is an **expression**. 
 
@@ -16,19 +29,6 @@
   in one branch and a `float` value in another branch. The type checker
   will catch this and inform you that the types do not match. 
  */
-
-/*
-  Uncomment the block below.
- */
-/*
-let downvotes = 10
-let upvotes = 5
-let cssClassName = if upvotes < downvotes {
-  "Comment Comment-hidden"
-} else {
-  "Comment"
-}
-*/
 
 /*
   -----------------------------------------------------------------------------
