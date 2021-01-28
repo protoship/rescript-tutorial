@@ -60,48 +60,61 @@ SimpleTest.assertEqual(
 
 /*
   The code above is not reusable. You need functions for creating reusable
-  units of computation.
-
-  Here is an example of how to write a function,
-
-    ```
-    let fullname = (firstName, lastName) => firstName ++ " " ++ lastName
-    ```
-
-  This is how it would look if you manually annotated the type of the
-  above function,
+  units of computation. By rewriting the above as a function you can now
+  compute the discount for any value of total. Here is an example:
 
     ```
-    let fullname = (firstName: string, lastName: string): string =>
+    let fullname = (firstName, lastName) => 
       firstName ++ " " ++ lastName
     ```
 
-  Manual annotation is not necessary, as the compiler can automatically
-  infer the same for the above example. 
+  Just like regular value bindings, you can also manually annotate
+  the types of each input argument and the output value.
 
-  When you lookup the documentation for a library function you need to
-  use in your code, you will across a **type signature**. The type 
-  signature for the `fullName` function is:
+    ```
+    //                                     output type
+    //                                       ||||||
+    //                                       vvvvvv  
+    let fullname = (fn: string, ln: string): string =>
+      fn ++ " " ++ ln
+    ```
+
+  Manual annotation is often unnecessary. The compiler is capable of
+  automatically inferring the correct type from your implementation. 
+  But when there comes a time when you need to manually annotate the 
+  type, you use the above syntax.
+
+  If you need to lookup the documentation of a library function you
+  will see **type signatures** being used everywhere. The type signature
+  for the `fullname` function looks like:
 
     ```
     let fullname: (string, string) => string
     ```
 
-  Most of the times by seeing only the type signature, you can infer a
-  great deal about the implementation without seeing it. Types are
-  therefore a form of documentation. It is the kind of documentation
-  which does not go stale, because it is derived directly from the
-  implementation.
+  From this you can infer that the function `fullname` accepts two
+  input arguments. Both of them are of the `string` type. It returns
+  a value of the `string` type. You can pretty much infer the behavior
+  of `fullname` without seeing the actual implementation.
 
-  This is how you call the function a.k.a "function application":
+  Types are therefore a useful form of documentation. It will not go
+  stale unlike other pieces of documentation. How can it? It is taken
+  directly from the implementation. If the implementation types change,
+  the type signature will also change.
+
+  How do you call or apply this function?
 
     ```
     let turing = fullname("Alan", "Turing") // "Alan Turing"
+
+    // Not assigned to any binding
+    fullname("Barbara", "Liskov") // "Barbara Liskov"
     ```
 
-  The `fullname` implementation is simple. It consists of a single
-  expression. You have to create a block scope with curly braces to
-  write more than a single expression. Here is an example:
+  The implementation of `fullname` is simple. There is just a single
+  expression to evaluate. If you need multiple expressions in your
+  function body, you can create a new block scope with curly braces.
+  Like this:
 
     ```
     let nameToInitials = (firstName, lastName) => {
@@ -117,6 +130,9 @@ SimpleTest.assertEqual(
 
     ```
     let curry = nameToInitials("Haskell", "Curry") // "H. C."
+
+    // Not assigned to any binding
+    nameToInitials("Alonzo", "Church") // "A. C."
     ```
  */
 
