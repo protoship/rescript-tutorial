@@ -451,13 +451,43 @@ betterWrapTagAroundText(
 )
 */
 
-// let's build a function like repeat ourselves
-// the string binding is immutable in ReScript
-// so no looping and mutating a string reference
-// instead we'll do it immutably
-// and this requires recursion
 /*
-let myCharRepeat = (~count: int, ~char: char): string => {
+  The bindings you declare refer to **immutable** values. Immutability
+  is the default setting in this language. You can attach new values
+  to an existing binding through shadow binding.
+  
+  But that is not very useful in situations where you need to change an
+  immutable value dynamically based on external configuration. For example
+  the String `repeat` function you used earlier, takes a string argument
+  and another count argument. It returns a new string where the input
+  string arguments is repeated count times.
+
+  Loops will not work for immutable values. Even if you shadow the binding
+  in the outer scope of a loop, the changes you shadow within the block
+  scope will not survive when the scope end. So it has no effect on the
+  binding in the outer scope.
+
+  You need function recursion to modify immutable values.
+
+  The compiler smartly optimizes away the recursive function to an
+  equivalent iterative version in JavaScript. So you do not pay any
+  penalty for recursive functions.
+
+  Let us implement a function `myCharRepeat` similar to the `repeat`
+  function you used earlier.
+
+  This function accepts two labelled arguments as input:
+    1. ~count - number of times to be repeated
+    2. ~char - a `char` (primitive) value.
+
+  The function has the following signature:
+
+    ```
+    let myCharRepeat: (~count: int, ~char: char) => string
+    ```
+ */
+
+let myCharRepeat = (~count, ~char) => {
   // convert char to a string
   let s = String.make(1, char)
 
@@ -472,7 +502,11 @@ let myCharRepeat = (~count: int, ~char: char): string => {
 
   aux(s, count)
 }
-*/
+
+myCharRepeat(~char='*', ~count=6) // ******
+
+/*
+ */
 
 // having to implement recursive functions is an uncommon
 // activity when building user interfaces. That being
