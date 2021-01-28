@@ -312,28 +312,90 @@ let para2 = makeParagraph("This is the second paragraph...")
   they hover over the type signature it may not be evident to them that
   `makeHeading3` is a function, and not a final value. 
   
-  In larger codebases this cognitive load will add up. When in doubt err
-  on the side of readability of code, and stick to the first form where 
-  the input argument is explicitly stated.
+  In larger codebases this cognitive load will add up fast. So when in 
+  doubt err on the side of readability of code. Use the first form where
+  the input argument is explicitly stated for the benefit of the reader.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let wrapTagAroundText2 = (tagName, indent: string => string, text) => {
+  let indentSpaces = indent(" ")
+
+  `<${tagName}>
+${indentSpaces}${text}
+</${tagName}>`
+}
+
+let indent = x => Js.String.repeat(2, x)
+
+// same function defined in 3 different ways
+let makeDiv1 = text => wrapTagAroundText2("div", indent, text)
+let makeDiv2 = text => wrapTagAroundText2("div", x => Js.String.repeat(2, x), text)
+let makeDiv3 = text => wrapTagAroundText2("div", Js.String.repeat(2), text)
+
+// <div>
+//   <p>Hello, world!</p>
+// </div>
+makeDiv3(makeParagraph("Hello, world!"))
+*/
+
+/*
+  You can pass a function as an argument to another function.
+
+  In `wrapTagAroundText2` function, the second argument is a function
+  parameter named `indent`. The type signature of `indent` is:
+
+    ```
+    string => string
+    ```
+  
+  This is a function which accepts a single `string` argument as its
+  input and then produces an output `string` value.
+
+  The type checker will complain if you do not pass a function which
+  does not match this signature as the second argument.
+
+  The type of `indent` has been manually annotated for your benefit.
+  Again this is not required, as the compiler is capable of inferring
+  this exact same type by itself.
+
+  In the body of the `wrapTagAroundText2` you can see `indent(" ")`.
+  The argument is an empty string value. It is used inside string
+  interpolation, so the output value must also be a string value.
+  This is how the compiler is able to infer the type even if you
+  did not annotate it as: `string => string`
+  
+  Go ahead, remove the type annotation from indent and hover on the
+  binding `wrapTagAroundText2` to see the compiler inferred type. Does
+  the second parameter have the type `string => string`?
+
+  The partially applied function `makeDiv*` has been defined with 
+  identical second argument in three different ways:
+
+    1. The named function `indent` is passed as an argument.
+    2. The anonymous function is passed as an argument.
+    3. The JS String API `repeat` function is passed after
+       fixing the first argument as `2`.
+
+  All of them demonstrate the different ways in which you can pass
+  functions around as arguments to another function.
+
+  When functional programmers say that functions are first-class
+  citizens in a specific language, they are often referring to
+  the ability to pass functions around to other functions as
+  arguments. Since there is no special syntax to differentiate
+  a function expression from a value expression, functions are
+  considered to be first-class in the language.
+
+  In languages where functions are not first-class special syntax
+  is introduced often known as `lambda` expressions to be able
+  to do the same thing.
  */
 
 /* --- BEGIN 
-
-// ---
-
-// pass function as argument (indent)
-// pretty limited because we would not have introduced arrays by this point
-let wrapTagAroundHTML = (tagName: string, indent: string => string, html: string): string =>
-  `<${tagName}>\n${indent(" ")}${html}\n</${tagName}>`
-
-// exercise is to write the below callsite
-// hint: Use Js.String.repeat with fixed argument 2
-let indent = x => Js.String.repeat(2, x)
-let makeDiv = wrapTagAroundHTML("div", indent)
-
-let div1 = makeDiv(para1)
-let div2 = makeDiv(para2)
-
 // ---
 
 // how do you make wrapTagAroundText & wrapTagAroundHTML better
