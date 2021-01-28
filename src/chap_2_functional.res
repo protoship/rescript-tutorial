@@ -58,6 +58,68 @@ SimpleTest.assertEqual(
 )
 */
 
+/*
+  The code above is not reusable. You need functions for creating reusable
+  units of computation.
+
+  Here is an example of how to write a function,
+
+    ```
+    let fullname = (firstName, lastName) => firstName ++ " " ++ lastName
+    ```
+
+  This is how it would look if you manually annotated the type of the
+  above function,
+
+    ```
+    let fullname = (firstName: string, lastName: string): string =>
+      firstName ++ " " ++ lastName
+    ```
+
+  Manual annotation is not necessary, as the compiler can automatically
+  infer the same for the above example. 
+
+  When you lookup the documentation for a library function you need to
+  use in your code, you will across a **type signature**. The type 
+  signature for the `fullName` function is:
+
+    ```
+    let fullname: (string, string) => string
+    ```
+
+  Most of the times by seeing only the type signature, you can infer a
+  great deal about the implementation without seeing it. Types are
+  therefore a form of documentation. It is the kind of documentation
+  which does not go stale, because it is derived directly from the
+  implementation.
+
+  This is how you call the function a.k.a "function application":
+
+    ```
+    let turing = fullname("Alan", "Turing") // "Alan Turing"
+    ```
+
+  The `fullname` implementation is simple. It consists of a single
+  expression. You have to create a block scope with curly braces to
+  write more than a single expression. Here is an example:
+
+    ```
+    let nameToInitials = (firstName, lastName) => {
+      let firstNameInitials = Js.String.get(firstName, 0)
+      let lastNameInitials = Js.String.get(lastName, 0)
+
+      firstNameInitials ++ ". " ++ lastNameInitials ++ ". "
+    }
+    ```
+  
+  There is no explicit `return` keyword. The value from evaluating
+  the final expression is returned to the caller.
+
+    ```
+    let curry = nameToInitials("Haskell", "Curry") // "H. C."
+    ```
+ */
+
 // refactor the above code to use functions
 // explain this example
 // -- uses if/else-if/else
