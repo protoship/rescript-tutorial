@@ -251,30 +251,73 @@ SimpleTest.assertEqual(
   later. 
  */
 
-// ---
-/* --- BEGIN 
-
-// partial application example
-// helper for partial application
+/*
+  Uncomment the block below.
+ */
+/*
 let wrapTagAroundText = (tagName: string, text: string): string => {
   `<${tagName}>${text}</${tagName}>`
 }
-// long form
+
+// Partial application (first form)
 let makeHeading1 = (text: string): string => wrapTagAroundText("h1", text)
-// long form without type annotation
 let makeHeading2 = text => wrapTagAroundText("h2", text)
 
-// short form this is also correct
-// but the one above is better for readability
-// types are the same
-let makeHeading3 = wrapTagAroundText("h2")
+// Partial application (second form)
+let makeHeading3 = wrapTagAroundText("h3")
 let makeParagraph = wrapTagAroundText("p")
 
-// call sites, full application
+// both first & second forms are identical
+// call sites with complete application
 let mainHeading = makeHeading1("This is the title of the document")
 let subHeading = makeHeading2("A simple tagline...")
 let para1 = makeParagraph("Text content....")
 let para2 = makeParagraph("This is the second paragraph...")
+*/
+
+/*
+  Partial application is useful for fixing an argument and then binding
+  this specialized function to a name.
+
+  The `makeHeading1` is a partial application of `wrapTagAroundText`
+  function. It fixes the `tagName` argument to the value "h1".
+
+  This is a simple example. 
+  
+  You will commonly see this type of usage in the presence of computations
+  which requires I/O. The arguments required for completing an application
+  may be dependent on the successful completion of the I/O operation. This
+  means you are probably waiting to fetch some value from either a remote
+  resource like an API, database or the file system.
+
+  You can construct partially applied functions by fixing the values which
+  are already known. Then once the remaining arguments becomes available
+  the function application can be completed.
+
+  In the 2nd form `makeHeading3` and `makeParagraph` the input argument
+  `text` has been omitted. There is no difference between the 1st form
+  of syntax, and the 2nd form. If you hover over all 4 partially applied
+  functions you'll see that they have identical type signatures:
+
+    ```
+    string => string
+    ```
+  
+  The `text` argument can be omitted because of currying. When you supply
+  the `text` argument to `makeHeading3`, it is in turn applied to
+  `wrapTagARoundText("h3")` to complete the function application.
+
+  Even though this is valid syntax, try not to use this in practice. It
+  obscures the partial application from the reader of the code. Unless
+  they hover over the type signature it may not be evident to them that
+  `makeHeading3` is a function, and not a final value. 
+  
+  In larger codebases this cognitive load will add up. When in doubt err
+  on the side of readability of code, and stick to the first form where 
+  the input argument is explicitly stated.
+ */
+
+/* --- BEGIN 
 
 // ---
 
