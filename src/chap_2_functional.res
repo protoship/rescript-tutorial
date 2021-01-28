@@ -574,13 +574,21 @@ myCharRepeat(~char='@', ~count=6) // @@@@@@
   function.
  */
 
-// having to implement recursive functions is an uncommon
-// activity when building user interfaces. That being
-// said there are legitimate uses for recursion like
-// walking the HTML DOM tree structure in the browser,
-// building a directory/file tree structure UI component,
-// or for that matter any tree UI component.
-// similar exercise is `renderHTML` encountered later
+/*
+  In practice implementing recursion is not that common when building
+  CRUD applications, or user interfaces. But it is useful to learn about
+  recrusion. It allows you tackle problems which require traversing,
+  and updating **immutable** tree like structures when you encounter
+  them.
+
+  Real world examples which need recursion include,
+  * Scraping content from an HTML page
+  * Tree like UI components,
+    * Directory/File navigation (file backup)
+  * Browser extension which needs to traverse the DOM
+  * Rendering SVG charts
+  * etc.
+ */
 
 // pipeline
 // key - string
