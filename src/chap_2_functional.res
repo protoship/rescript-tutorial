@@ -175,12 +175,84 @@ SimpleTest.assertEqual(
 )
 */
 
-/* --- BEGIN 
+/*
+  Functions support **currying** of input arguments. This is evident
+  when there are 2 or more input arguments to a function. The function
+  is converted into a sequence of functions which takes a single
+  argument.
 
-  - partial application
-  - passing function as arugments
+  This is the curried form of the `fullname` function from earlier:
+
+    ```
+    let fullname = firstName => {
+      lastName => {
+        firstName ++ " " ++ lastName
+      }
+    }
+    ```
+  
+  The function `fullname` takes a single argument `firstName`. It then
+  returns another function in its body. This inner function which
+  does not have a name(anoynmous) takes a single argument `lastName`.
+  At this point all the arguments have been applied and the inner
+  body evaluates and returns the full name string.
+
+  The implication of function currying is that when you want to call
+  a function, you do not necessarily need to have all the arguments
+  available with you. So you can write this:
+  
+    ```
+    let hindleyPartial = fullName("J. Roger")
+    ```
+  
+  The `hindleyPartial` is a **partial application** of the function
+  and, is waiting for one more argument. It is a function waiting
+  for one more argument of the `string` type. 
+  
+  Look at the type signatures of both functions:
+
+    ```
+    let fullName: (string, string) => string
+
+    let hindleyPartial: string => string
+    ```
+  
+  You can complete the function application by calling `hindleyPartial`
+  with one more `string` argument.
+
+    ```
+    let hindley = hindleyPartial("Hindley") // J. Roger
+    ```
+
+  In languages which does not support currying, and thereby partial
+  application of functions - you can emulate it by returning functions
+  from the body of the function. The curried form of `fullname` was
+  shown earlier for demonstrating the technique, but you do not need
+  to do that here. The language supports it natively. So you can write
+  your functions normally, and the arguments will be curried by default.
+
+  Caveat
+  ------
+  
+  ReScript compiles to JavaScript. JavaScript does **not** have currying. 
+  
+  If you call a JavaScript function with 3 arguments, with only two arguments
+  it will still execute. It might result in a runtime error, or exhibit some 
+  undefined behavior. This makes it extremely difficult to figure out if a 
+  function application is complete in JavaScript.
+
+  This is a problem when you are using a JavaScript API from ReScript through
+  a binding. It not possible to verify through static analysis of code whether
+  a function application is complete. 
+
+  The term *binding* is new here. You can think of a binding as the machinery
+  which makes it possible for a language like ReScript to reuse code already 
+  written in another language like JavaScript. You will learn more about this
+  later. 
+ */
 
 // ---
+/* --- BEGIN 
 
 // partial application example
 // helper for partial application
