@@ -148,12 +148,10 @@ SimpleTest.assertEqual(
   -----------------------------------------------------------------------------
   Exercise 2
   -----------------------------------------------------------------------------
-  The code above can be easily refactored into a function. 
-  
-  The input argument is the total value of the cart of type `int`.
-  The output argument is the discount value which is also of type `int`
+  The discount implementation is the same as exercise 1.
 
-  The rules for computing the discount are the same Exercise 1.
+  Put your implementation within the body of `calculateDiscount` to pass the
+  tests.
   -----------------------------------------------------------------------------
  */
 /*
@@ -161,8 +159,7 @@ SimpleTest.assertEqual(
  */
 /*
 let calculateDiscount = (total: int): int => {
-  total
-  // Put your implementation here
+  total // tests are failing
 }
 SimpleTest.assertEqual(
   ~expected=0,
