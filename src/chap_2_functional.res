@@ -46,13 +46,17 @@ let cssClassName = if upvotes < downvotes {
  */
 
 /*
-  Uncomment the block below.
+  Uncomment the block below for completing exercise 1.
  */
 /*
-let cartTotal = 200
+let cartTotal = 220
 let discount = 0
-SimpleTest.assertEqual(~expected=25, ~actual=discount, ~msg="[exercise 1] Calculate discount for 200")
- */
+SimpleTest.assertEqual(
+  ~expected=26,
+  ~actual=discount,
+  ~msg="[exercise 1] Calculate discount for total amount of shopping cart",
+)
+*/
 
 // refactor the above code to use functions
 // explain this example
