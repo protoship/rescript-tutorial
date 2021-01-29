@@ -779,52 +779,115 @@ let wrapTagAroundText4 = (text, ~tag) => `<${tag}>${text}</${tag}>`
   preventing value transformation mistakes from hiding in your code. 
  */
 
-// functions which return unit
-// side-effects
-// functions so far have been pure
-// they do not mutate state
-// but what if we want to log something
-// into the console
-// now that is not a pure function
-// because it interacts with the real
-// world. This could be getting user
-// input keyboard, mouse, touch etc
-// through browser events, reading a file
-// etc. The most common one though is logging
-// something to the console. For that you
-// can use Js.log which is pretty much
-// console.log in javascript. Except
-// it can take only a single argument
-// but that can be of any type. But that may
-// not make sense yet. But it will in the next
-// section, how a function can take an argument
-// of any type.
-// Use Js.log to debug your code
-// Js.log("hello there") // would print it
-// to console on running this from the command
-// line.
-
-// Js.log("This is the penultimate step in this section...")
-
-// there is a primitive type named unit
-// what is unit
-// represented by the value ()
+/*
+  Uncomment the line below.
+ */
+// let unitValue: unit = ()
 
 /*
-let whatIsTheNatureOfTheVoid = ()
+  The `unit` type is a primitive. It has only a single value represented
+  as `()`.
 
-let aFunctionWhichReturnsNothing = (_: int): unit => {
-  // does somethign else here ...
-  ()
+  The manual type annotation above is unnecessary. If you remove it, and
+  hover over `unitValue` the type will be displayed as `unit`.
+
+  When you see  `unit` in a function type signature it signals that the
+  function has side-effects.
+
+  Side-effects could be:
+    * reading/writing to the file system
+    * fetching data from a remote service
+    * logging to the console
+    * etc.
+  
+  These are all computations which introduces some state change in the
+  application outside the realm of the function.
+
+  You could read from a file, and the contents of the file may change
+  in subsequent read calls. 
+  
+  You could fetch data from a remote API, and it may return successfully 
+  most of the times, except when the remote service is unresponsive/down. 
+  It may also return different results each time it is called.  
+ */
+
+/*
+  Uncomment the line below.
+ */
+// let timestamp = Js.Date.now()
+
+/*
+  The JS Date API `now()` returns the current time as number of milliseconds
+  since Unix epoch.
+
+  The type signature of `now` is: (hover over `now()` to see it)
+
+    ```
+    unit => float
+    ```
+  
+  This function takes zero inputs, yet produces an output of type `float`.
+  
+  How does a function without any input produce an output? 
+  Side-effects.
+ */
+
+/*
+  Uncomment the line below.
+ */
+// Js.log("takes one input, returns nothing!")
+
+/*
+  The `Js.log` is the binding for JS API `console.log`.
+
+  The type signature of `log` is:
+
+    ```
+    'a => unit
+    ```
+  
+  This function takes a single input, but returns `unit`.
+
+  The type `'a` means that this is a function which can accept arguments
+  of any type. Don't worry about this detail. This will be covered 
+  extensively later.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let addThreeNumbers = (x, y, z) => {
+  Js.log("x : " ++ Belt.Int.toString(x))
+  Js.log("y : " ++ Belt.Int.toString(y))
+  Js.log("z : " ++ Belt.Int.toString(z))
+
+  let result = x + y + z
+  Js.log("sum (x + y + z) = " ++ Belt.Int.toString(result))
+
+  result
 }
 
-// neither takes any argument
-// nor does it return anything
-// if it takes no input, then it can only side-effect within
-let whatIsThisFunction = () => {
-  Js.log("A debug statement....")
-  // maybe something else is going on here
-  // but there is no contact with the outside world
-  () // return nothing
-}
+addThreeNumbers(1, 2, 3)
 */
+
+/*
+  ReScript is not a **pure** functional language. You can use a side-effects 
+  inside a function like logging to console for purposes of debugging.
+
+  In a **pure** language if the type of the function is:
+  
+    ```
+    (int, int, int) => int
+    ```
+
+  you are not allowed to do side-effects inside the function. You are
+  expected to separate the side-effecting parts in your program from
+  the pure computational parts. To do debug logging additional code
+  is involved to make it type safe.
+
+  The type signature for `addThreeNumbers` does not indicate anything
+  about side-effects. But you can still perform side-effects from
+  within it. Use your good judgement here. It will get better as you
+  become more fluent in the langauge.
+ */
