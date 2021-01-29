@@ -255,8 +255,8 @@ SimpleTest.assertEqual(
   Uncomment the block below.
  */
 /*
-let wrapTagAroundText = (tagName: string, text: string): string => {
-  `<${tagName}>${text}</${tagName}>`
+let wrapTagAroundText = (tag: string, text: string): string => {
+  `<${tag}>${text}</${tag}>`
 }
 
 // Partial application (first form)
@@ -591,9 +591,8 @@ myCharRepeat(~char='@', ~count=6) // @@@@@@
  */
 
 /*
-  One of the downsides of functions being first-class and can be passed
-  around as arguments to other functions is that you can end up with
-  deeply nested code like:
+  Readability is affected when you have deeply nested function calls
+  like this:
 
     ```
     // <body><div><p>Hello, world!</p></div></body>
@@ -602,55 +601,182 @@ myCharRepeat(~char='@', ~count=6) // @@@@@@
         wrapTagAroundText("p", "Hello, world!")))
     ```
 
-  The code formatting makes it a bit better, but you still have to begin
-  reading from the inner expression which contains the "Hello, world!"
-  value. This is not easy to scan.
+  You have to scan the inner most expression, and begin parsing this
+  expression inside out. This does not help readability.
 
-  To improve readability and be able to construct a pipeline of data
-  transformation you have access to the nifty **pipe** operator `->`.
+  To workaround this problem you have access to the **pipe** `->` operator.
+  Infix operators are not easy to Google if you do not already know it's
+  name.
 
-  It is not an operator you can easily Google unless you know the name.
+  The `->` (pipe) operator makes it possible to transform this:
 
-  The `->` operator makes it possible to change a function call like,
-  
-    `nameOfFunction(arg1, arg2)`
+    `someFunction(arg1, arg2)`
 
-  into,
+  into:
 
-    `arg1->nameOfFunction(arg2)`
+    `arg1->someFunction(arg2)`
 
-  The `wrapTagAroundText` is not pipe friendly at the moment. The `text`
-  needs to be first argument, not the second. Let us proceed.
+  The argument order in `wrapTagAroundText` can be modified so that
+  the incoming data parameter - `text` - is the first argument. This
+  will allow us to construct a data transformation pipeline when
+  repeatedly applying `wrapTagArondText`.
+
+  Let us see how that works.
  */
 
 /*
   Uncomment the block below.
  */
 /*
-// <body><div><p>Hello, world!</p></div></body>
-wrapTagAroundText("body", wrapTagAroundText("div", wrapTagAroundText("p", "Hello, world!")))
 
-let wrapTagAroundText3 = (~tag, text) => `<${tag}>${text}</${tag}>`
+// original nested call site
+//
+// returns:
+//  <div><div><div><p>Hello, world!</p></div></div></div>
+//
+wrapTagAroundText(
+  "div",
+  wrapTagAroundText("div", wrapTagAroundText("div", wrapTagAroundText("p", "Hello, world!"))),
+)
+let wrapTagAroundText3 = (text, tag) => `<${tag}>${text}</${tag}>`
 
-// <body><div><p>Hello, world!</p></div></body>
+// transformed into a data pipeline
+//
+// returns:
+// <div><div><div><p>Hello, world!</p></div></div></div>
+//
 "Hello, world!"
-->wrapTagAroundText3(~tag="p")
-->wrapTagAroundText3(~tag="div")
-->wrapTagAroundText3(~tag="body")
-*/
+->wrapTagAroundText3("p")
+->wrapTagAroundText3("div")
+->wrapTagAroundText3("div")
+->wrapTagAroundText3("div")
+
+// use labelled ~tag parameter which makes it position less
+let wrapTagAroundText4 = (text, ~tag) => `<${tag}>${text}</${tag}>`
+
+// transformed into a data pipeline
+//
+// returns:
+// <div><div><div><p>Hello, world!</p></div></div></div>
+//
+"Hello, world!"
+->wrapTagAroundText4(~tag="p")
+->wrapTagAroundText4(~tag="div")
+->wrapTagAroundText4(~tag="div")
+->wrapTagAroundText4(~tag="div")
+ */
 
 /*
- The code above creates value transformation pipeline.
+  There are 3 different call-sites above:
 
- The starting value is "Hello, world!" and at the end of the pipeline
- the value is "<body><div><p>Hello, world!</p></div></body>"
+  1. Regular nested function calls.
+  2. The data parameter `text` is in first argument position.
+  3. Use labelled `~tag` parameter making it position less.
 
- This data flow is easier to read when compared to the original nested
- function application.
+  The code above creates value transformation pipeline. You can inspect
+  the compiled JavaScript code to see how they look.
 
- Both are functionally the same. Using the `->`(pipe) operator has no
- additional runtime costs. You can look at the compiled JavaScript code 
- to see that both the call sites are identical in the runtime.
+  The beginning data parameter is "Hello, world!". After the first
+  function application in the pipeline it becomes:
+
+    ```
+    <p>Hello, world!</p>
+    ```
+
+  This transformed value becomes the input into the second function
+  application and it continues till the end until you get:
+
+    ```
+    <div><div><div><p>Hello, world!</p></div></div></div>
+    ```
+
+  This is known as function *composition*. 
+  
+  Your challenge is to design your computations in such a manner that the 
+  incoming **immutable** data parameter is transformed through a sequence
+  of function applications.
+
+  You should think breaking down your computation into a sequence of
+  functions which **compose**. Then construct a value transformation
+  pipeline to get from input to output.
+
+  The type signature of `wrapAroundText3` is:
+
+    ```
+    (string, string) => string
+    ```
+
+  The type signature of `wrapAroundText4` is:
+
+    ```
+    (string, ~tag: string) => string
+    ```
+
+  In both cases the output is `string` type value which can then again
+  become the input into one of these functions. So you end up with
+  types lining up like this in a pipeline:
+
+    ```
+    string (input) 
+      -> string (1st transform) 
+      -> string (2nd transform)
+      -> string (3rd transform)
+      -> string (output)
+    ```
+  
+  You can compose your functions in a pipeline only when the types
+  line up. If the type output by a function is `string`, you can compose
+  it with a function which accepts `string` input. Now if this function
+  outputs a `float` type, you can then compose it with another function
+  which accepts a `float` type, and the chain of value transformations
+  can continue until you reach your final output value. There can be
+  any number of intermediate steps.
+
+    `string(input) -> float -> float -> int(output)`
+
+  When the types do not line up it will result in a compilation error.
+  This happens when your assumption regarding the shape of the data
+  does not match what has been written in code. This is so powerful.
+  You catch these errors at the time of compilation, without having
+  to think very hard about them. The compiler does the heavy lifting
+  of catching these errors for you.
+
+    ```
+    let doA: (string, int) => string
+    let doB: (string) => float
+    let doC: (float, float) => float
+    let doD: (float) => int
+    let doE: (int, int) => int
+    ```
+
+  It is possible to transform a `string` to an `int` by applying 
+  the functions above in sequence. The types line up.
+
+    ```
+    "testing"
+      ->doA(100) // string output
+      ->doB      // string input, float output
+      ->doC(0.5) // float input, float output
+      ->doD      // float input, int output
+      ->doE(2)   // int input, int output
+    ```
+
+  On the other hand this is a compilation error:
+
+    ```
+    "testing"
+      ->doA(100) // string output
+      ->doB      // string input, float output
+      ->doE(2)   // int input <-- does not line up with incoming float ouput
+    ```
+  
+  The challenge for you is to begin thinking in **immutable** transformation
+  of values by composing functions sequentially in a pipeline. It may take
+  some adjusting to get used to when you are used to **mutating** values in
+  other languages.
+
+  The benefits you will reap is in legibility of code for the reader, and 
+  preventing value transformation mistakes from hiding in your code. 
  */
 
 // functions which return unit
