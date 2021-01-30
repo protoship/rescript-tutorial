@@ -190,6 +190,7 @@ Js.Array.map(tupleToString, languagesAndAuthors)
       "Lisp: John McCarthy",
       "Pascal: Niklaus Wirth",
     ]
+
   __DO NOT UNCOMMENT. THIS IS NOT CODE.__
  */
 
@@ -273,7 +274,7 @@ languagesAndAuthors->Belt.Array.map(tupleToString)
   affects most of the code you will write. But when it does you have
   the option of using the JavaScript API.
 
-  Also not every function available in the JavaScript API may be able
+  Also not every function available in the JavaScript API may be available
   in the Belt library. In this case you do not have a choice but use
   the JS API.
  */
@@ -394,12 +395,54 @@ SimpleTest.assertEqual(
 )
 */
 
-// filter - languages that start with the letter p
 /*
-Js.Array.filter(x => {
-  let (language, _) = x
-  Js.String.startsWith("P", language)
-}, progLangCreators)
+  The `filter` function returns a new array that keeps all the array
+  items which satisfies a condition.
+
+    ```
+    let filter: ('a => bool, array<'a>) => array<'a>
+    ```
+  
+  The condition to satisfy for keeping an array item is specified by
+  the first argument which is a function with the type: `'a => bool`.
+
+  In the below example we check if the first value of the string
+  tuple begins with the letter "P". (case-sensitive)
+
+  The underscore is used as a name for destructuring the second
+  argument of the tuple. This is because we have no use for the
+  second value in the the function. This binding is therefore ignored.
+
+  In contrast when using `map` you could transform an array of values
+  from one type to an array of values of a different or even the same
+  type.
+
+  In the case of filter both the input and output array values belong
+  to the same type.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let filtered =
+  Js.Array.filter(
+    ((language, _)) => Js.String.startsWith("P", language),
+    languagesAndAuthors,
+  )
+*/
+/*
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
+  Result: 
+
+    [
+      ("Python", "Guido van Rossum"),
+      ("PHP", "Rasmus Lerdorf"),
+      ("Perl", "Larry Wall"),
+      ("Pascal", "Niklaus Wirth"),
+    ]
+  
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
 */
 
 /*
