@@ -379,38 +379,107 @@ SimpleTest.assertEqual(
 )
  */
 
-/* --- BEGIN TUPLES
+/*
+  The **tuple** is a immutable data structure available to you. It can
+  contain different types of values.
 
-// tuples
+  You can create a tuple value without having to define a type for it.
+ */
+
+/*
+  Uncomment the line below.
+ */
+// let numberFormInput = ("age-limit", 18, 25)
+
+/*
+  The inferred type of numberFormInput is `(string, int, int)`. Hover
+  over `numberFormInput` binding to see the type.
+
+  You can **destructure* a tuple value into separate bindings using
+  pattern matching syntax in the let binding. Hover over the individual
+  bindings to see the type.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
 let (name, min, max) = ("age-limit", 18, 25)
+let ageLimit = (name, min, max)
+*/
 
-// this can also be defined as a type
-type numberFormInput = (string, int, int) // name, min, max
+/*
+  Tuples are **immutable**.
+  
+  So to update `budget` you have to construct a new tuple value. The tuple
+  values in `budget` is used to construct the tuple `budget2`.
+ */
 
-let ageLimit: numberFormInput = (name, min, max)
-let budget: numberFormInput = ("price-range", 500, 1500)
-let ratingFilter = ("rating-3-and-above", 3, 5)
-
-// tuples are immutable
+/*
+  Uncomment the block below.
+ */
+/*
+let budget = ("price-range", 500, 1500)
 let (label, low, high) = budget
 let budget2 = (label, low - 100, high + 1000)
+*/
 
-// passing a tuple as an argument into the function
+/*
+  Just like any other value, you can pass a tuple as an argument to a
+  function.
+ */
 
-let toNumberFormHTML = (input: numberFormInput) => {
+/*
+  Uncomment the block below.
+ */
+/*
+let toNumberFormHTML = input => {
   let (name, min, max) = input
   `<input type="number" name="${name}" min="${Belt.Int.toString(min)}" max="${Belt.Int.toString(
     max,
   )}"`
 }
+*/
 
-// passing a tuple and destructing in the arguments
-let toNumberFormHTML2 = ((name, min, max): numberFormInput) =>
+/*
+  Alternatively you can destructure the tuple in place in the arguments of
+  the function itself.
+
+  **Caution**
+
+  The destructured tuple has parenthesis around it:
+  
+     `... = ( (name, min, max) ) => ...`
+  
+  The type signature of the function `toNumberFormHTML` is:
+
+    ```
+    ( (string, int, int) ) => string
+    ```
+  
+  This means the function takes a tuple with 3 values as input and 
+  produces a `string` type value as output.
+
+  It is easy to confuse this with a type signature like:
+
+    ```
+    (string, int, int) => string
+    ```
+
+  The above signature means the functions take 3 separate arguments
+  of type `string`, `int` & `int` and then produces a `string` type
+  value as output.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let toNumberFormHTML2 = ((name, min, max)) =>
   `<input type="number" name="${name}" min="${Belt.Int.toString(min)}" max="${Belt.Int.toString(
     max,
   )}"`
-
-  --- END TUPLES */
+*/
 
 // tuples are positional
 // give names to fields with record types
