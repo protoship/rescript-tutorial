@@ -278,24 +278,34 @@ languagesAndAuthors->Belt.Array.map(tupleToString)
   the JS API.
  */
 
-type programmingLanguage = {name: string, creator: string}
+type pl = {language: string, author: string}
 
 /*
   -----------------------------------------------------------------------------
   Exercise 1 
   -----------------------------------------------------------------------------
-  Implement the following function which converts the tuple type to a 
-  record type,
+  Write a function to parse a tuple value like:
+  
+     `("JavaScript", "Brendan Eich")`
 
-  let toProgrammingLanguage: progLangCreator => programmingLanguage
+  into a `pl` record type value like:
+
+    `{language: "JavaScript", author: "Brendan Eich"}`
+
+  The type signature of the funtion you need to implement is:
+
+    `let parsePL: ((string, string)) => pl`
   -----------------------------------------------------------------------------
  */
 
 /*
+  Uncomment the block below. It contains test code for exercise 1.
+ */
+/*
 SimpleTest.assertEqual(
-  ~expected={name: "Name", creator: "Creator"},
-  ~actual=toProgrammingLanguage(("Name", "Creator")),
-  ~msg="[exercise 1] convert tuple to record value",
+  ~expected={language: "JavaScript", author: "Brendan Eich"},
+  ~actual=parsePL(("JavaScript", "Brendan Eich")),
+  ~msg="[exercise 1] parse `pl` record type value from string tuple",
 )
 */
 
@@ -303,23 +313,25 @@ SimpleTest.assertEqual(
   -----------------------------------------------------------------------------
   Exercise 2
   -----------------------------------------------------------------------------
-  Generate an array of languages (in lowercase) from `progLangCreators`. The
-  language values must be made lowercase.
+  Transform the array `languagesAndAuthors` into an array which contains
+  only the lowercased language values.
 
-  You can us the JS API function `Js.String.toLocaleLowerCase` to convert
-  a string to lowercase.
+  Assign the newly created array to the binding `lowercaseLanguages`.
 
-    Js.String.toLocaleLowerCase: string => string
-
-  Name the binding `lowercaseLanguages`
+  Hint: Use `Js.String.toLocaleLowerCase` to convert a string to lowercase.
   -----------------------------------------------------------------------------
  */
 
 /*
+  Uncomment the block below. It contains test code for exercise 2.
+ */
+/*
+let lowercaseLanguages = []
+
 SimpleTest.assertEqual(
   ~expected=["java", "c", "python", "php", "perl", "javascript", "ruby", "lisp", "pascal"],
   ~actual=lowercaseLanguages,
-  ~msg="[exercise 2] array of languages in lowercase",
+  ~msg="[exercise 2] languages in lowercase",
 )
 */
 
@@ -327,38 +339,44 @@ SimpleTest.assertEqual(
   -----------------------------------------------------------------------------
   Exercise 3
   -----------------------------------------------------------------------------
-  Use `names` which is pair of first and last names to create `fullnames`
-  like shown below:
+  Transform the values in `names` array into a new array `fullnames` by
+  joining the first and last names together.
 
     ("Jhumpa", "Lahiri") => "Jhumpa Lahiri"
   -----------------------------------------------------------------------------
  */
-/*
-let names: array<pair<string>> = [
-  ("Jhumpa", "Lahiri"),
-  ("J. K", "Rowling"),
-  ("Devdutt", "Pattanaik"),
-]
 
+/*
+  Uncomment the block below. It contains test code for exercise 3.
+ */
+/*
+let names = [("Jhumpa", "Lahiri"), ("J. K", "Rowling"), ("Devdutt", "Pattanaik")]
 let fullnames = []
 
 SimpleTest.assertEqual(
   ~expected=["Jhumpa Lahiri", "J. K Rowling", "Devdutt Pattanaik"],
   ~actual=fullnames,
-  ~msg="[exercise 3] generate array of full names",
+  ~msg="[exercise 3] full names",
 )
 */
+
 /*
   -----------------------------------------------------------------------------
   Exercise 4
   -----------------------------------------------------------------------------
-  Generate an array of programming language creators from `progLangCreators`.
+  Transform the array `languagesAndAuthors` into an array which contains
+  only names of the authors.
 
-  Name the binding `creators`
+  Assign the newly created array to the binding `authors`.
   -----------------------------------------------------------------------------
  */
 
 /*
+  Uncomment the block below. It contains test code for exercise 4.
+ */
+/*
+let authors = []
+
 SimpleTest.assertEqual(
   ~expected=[
     "James Gosling",
@@ -371,8 +389,8 @@ SimpleTest.assertEqual(
     "John McCarthy",
     "Niklaus Wirth",
   ],
-  ~actual=creators,
-  ~msg="[exercise 4] array of language creators",
+  ~actual=authors,
+  ~msg="[exercise 4] programming language authors",
 )
 */
 
