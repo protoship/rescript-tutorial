@@ -631,6 +631,10 @@ SimpleTest.assertEqual(
  */
 
 type book = {name: string, author: string}
+
+/*
+  Uncomment the block below.
+ */
 /*
 let books = ["Design as Art", "Anathem", "Shogun"]
 let authors = ["Bruno Munari", "Neal Stephenson", "James Clavell"]
@@ -647,95 +651,72 @@ let expectedBooks = SimpleTest.assertEqual(
   ~msg="[exercise 7] merge two array values into an array of record values",
 )
 */
-// list
-// map, filter
-// pattern matching
-// immutable
-// fast prepend
-// fast tail
 
-// --- UNCOMMENT BELOW
-// let dailyRecovered: list<metric> = list{mh, ka, dl, wb, jh, tn}
-
-type displayMetric = pair<string>
-
-// TODO
-// data first vs data last
 /*
-let toDisplayMetric = (metric: metric): displayMetric => (
-  metric.state,
-  Belt.Int.toString(metric.count),
-)
+  The list<'a> is single linked list. It is an immutable data structure.
+
+  Hover over `statewiseMetrics` to see its type. It will be `list<metric>`.  
+ */
+
+/*
+  Uncomment the line below.
+ */
+// let statewiseMetrics = list{mh, ka, dl, wb, jh, tn}
+
+/*
+  You can prepend a value to to create a new list using the spread
+  syntax. This is an immutable operation.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let gj = {state: "Gujarat", count: 500}
+let statewiseMetrics2 = list{gj, ...statewiseMetrics}
 */
 
 /*
-let convertedMetrics = Belt.List.map(dailyRecovered, toDisplayMetric)
+ You can reverse a list like this.
+ */
 
-// iterate
-convertedMetrics->Belt.List.forEach(((state, count)) => {
-  // comment out to see
-  // keep it commented to keep console output tidy for
-  // later exercises
-  // Js.log("State: " ++ state ++ ", Count: " ++ count)
-  // return unit, because we must
-  ()
-})
-*/
+/*
+  Uncomment the line below.
+ */
+// let reversed = statewiseMetrics2->Belt.List.reverse
 
-// recovered over 500 or more
-//let filteredMetrics = Belt.List.keep(dailyRecovered, ({count}) => count >= 500)
-
-// reduce
-//let totalRecovered2 = Belt.List.reduce(dailyRecovered, 0, (acc, {count}) => acc + count)
-
-// custom map implementation using reduce
-// exercises to implement map & filter & iter
-// implementing iter can be done after introducing unit later
 /*
   -----------------------------------------------------------------------------
   Exercise 8
   -----------------------------------------------------------------------------
-  Implement the following list higher-order functions:
+  Implement a custom `map` & `filter` function for list values:
 
     myCustomMap: (list<'a>, 'a => 'b) => list<'b>
     myCustomFilter: (list<'a>, 'a => bool) => list<'a>
-    myCustomForEach: (list<'a>, 'a => unit) => unit
 
-  All three of the above functions can be derived from `reduce`. So use the
-  function `Belt.List.reduce` to implement these.
+  Hint: You can implement `map` & `filter` using `Belt.List.reduce`. 
+        
+  The function `Belt.List.reduce` has the following type signature:
+
+    ```
+    let reduce: (list<'a>, 'b, ('b, 'a) => 'b) => 'b
+    ```
   -----------------------------------------------------------------------------
  */
-/*
-let myCustomMap = (xs: list<'a>, f: 'a => 'b): list<'b> =>
-  Belt.List.reduce(xs, list{}, (acc, x) => list{f(x), ...acc})->Belt.List.reverse
-
-let myCustomForEach = (xs: list<'a>, f: 'a => unit): unit =>
-  Belt.List.reduce(xs, (), (_, x) => f(x))
-
-// pattern matching
-let myCustomFilter = (xs: list<'a>, f: 'a => bool): list<'a> =>
-  Belt.List.reduce(xs, list{}, (acc, x) =>
-    if f(x) {
-      list{x, ...acc}
-    } else {
-      acc
-    }
-  )->Belt.List.reverse
-*/
 
 /*
   -----------------------------------------------------------------------------
   Exercise 9
   -----------------------------------------------------------------------------
-  Use your custom functions for map, filter & forEach in the following
-  data pipeline:
+  Use your custom functions for map, filter to test this pipeline:
 
-    dailyRecovered
+    ```
+    statewiseMetrics
     ->myCustomFilter(x => x.count > 500)
-    ->myCustomMap(toDisplayMetric)
-    ->myCustomMap(((f, s)) => `${f}: ${s}`)
-    ->myCustomForEach(Js.log)
-
+    ->myCustomMap(({state, count}) => `${state}: ${count->Belt.Int.toString}`)
+    ->Belt.List.forEach(Js.log)
+    ```
+  
   If your implementation is correct you should see the following being
   logged to console,
 
@@ -747,11 +728,13 @@ let myCustomFilter = (xs: list<'a>, f: 'a => bool): list<'a> =>
  */
 
 /*
-dailyRecovered
+  Uncomment the block below.
+ */
+/*
+statewiseMetrics
 ->myCustomFilter(x => x.count > 500)
-->myCustomMap(toDisplayMetric)
-->myCustomMap(((f, s)) => `${f}: ${s}`)
-->myCustomForEach(Js.log)
+->myCustomMap(({state, count}) => `${state}: ${count->Belt.Int.toString}`)
+->Belt.List.forEach(Js.log)
 */
 
 // pattern matching
