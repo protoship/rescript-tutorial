@@ -450,25 +450,26 @@ let filtered =
   Exercise 5
   -----------------------------------------------------------------------------
   Create a binding `dynamicLanguages` which contains all the dynamic languages
-  in `progLangCreators`.!
+  in `languagesAndAuthors`. Keep the values which are not present in the
+  array binding `compiledLanguages`.
 
-  You need to filter out any value in `compiledLanguages` provided below.
+  Hint: Use `Js.Array.includes`
 
-  You may use `Js.Array.includes`,
-
+    ```
     Js.Array.includes("PHP", compiledLanguages) // returns false
     Js.Array.includes("Java", compiledLanguages) // returns true
+    ```
   -----------------------------------------------------------------------------
  */
 
 /*
 let compiledLanguages = ["Java", "C"]
-
+let dynamicLanguages = []
 
 SimpleTest.assertEqual(
   ~expected=["Python", "PHP", "Perl", "JavaScript", "Ruby", "Lisp", "Pascal"],
   ~actual=dynamicLanguages,
-  ~msg="[exercise 5] list of dynamic languages",
+  ~msg="[exercise 5] dynamic languages",
 )
 */
 
