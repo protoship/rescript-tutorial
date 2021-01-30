@@ -583,10 +583,32 @@ let projectLinkHTML2 = project => {
 }
 */
 
-// record where one of the field types is a variant type
+/*
+  So far you have learned about the following types,
+
+  - Primitive types
+    - int
+    - float
+    - bool
+    - string
+    - char
+    - unit
+  - Custom types defined by you
+    - Variants
+    - Tuples
+    - Records
+
+  When combined together you can construct complex data structures which
+  best fit & describe your programs. For example, see the `book` record
+  type defined below. The `format` field is not a primitive type. It is
+  the `bookFormat` variant which was defined in the beginning.  
+ */
 
 type book = {title: string, tagline: string, format: bookFormat, availableInStock: int}
 
+/*
+  Uncomment the block below.
+ */
 /*
 let codersAtWork = {
   title: "Coders at Work",
@@ -594,7 +616,7 @@ let codersAtWork = {
   format: Paperback,
   availableInStock: 10,
 }
-*/
+ */
 
 /*
   -----------------------------------------------------------------------------
@@ -602,7 +624,7 @@ let codersAtWork = {
   -----------------------------------------------------------------------------
   Implement the function: 
   
-    let bookHTML: book => string
+    let bookToHTML: book => string
 
   Generate the HTML string for a book like this:
 
@@ -611,20 +633,18 @@ let codersAtWork = {
       <p>10 new Paperback avialable in stock</p>
     </div>
 
-  You will need the `bookFormatToString` function defined earlier.
+  Notes:
+    1. You will need the `bookFormatToString` function defined earlier.
+    2. Use the `Belt.Int.toString` function to convert an `int` to a 
+      `string` value.
   -----------------------------------------------------------------------------
 */
-/*
-let bookHTML = book => {
-  let count = Belt.Int.toString(book.availableInStock)
 
-  `<div>
-    <h2>${book.title}: ${book.tagline}</h2>
-    <p>${count} new ${bookFormatToString(
-    book.format,
-  )} avialable in stock</p>
-</div>`
-}
+/*
+  Uncomment the block below. It contains test code for exercise 6.
+ */
+/*
+let bookToHTML = book => ""
 
 let expectedBookHTML = `<div>
     <h2>Coders at Work: Reflections on the Craft of Programming</h2>
@@ -632,10 +652,10 @@ let expectedBookHTML = `<div>
 </div>`
 SimpleTest.assertEqual(
   ~expected=expectedBookHTML,
-  ~actual=bookHTML(codersAtWork),
+  ~actual=bookToHTML(codersAtWork),
   ~msg="[exercise 6] book => string (html formatted)",
 )
-*/
+ */
 
 // variant + record
 // simple, not recursive
