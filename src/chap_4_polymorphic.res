@@ -37,8 +37,14 @@ type pair<'a> = ('a, 'a)
  */
 /*
 let center: pair<int> = (960, 540)
-let leroy: pair<string> = ("firstavier", "Leroy")
+let leroy: pair<string> = ("Xavier", "Leroy")
 let coords: pair<float> = (101.5, 42.3)
+ */
+
+/*
+  Next let us look at functions which operates on polymorphic or generic
+  types. The implementation of such a function cannot know anything about
+  concrete types like `int`, `string`, etc.
  */
 
 /*
@@ -47,6 +53,27 @@ let coords: pair<float> = (101.5, 42.3)
 /*
 let firstInPair = ((first, _): pair<'a>) => first
 let secondInPair = ((_, second): pair<'a>) => second
+ */
+
+/*
+  The same function impelmentation can be reused for `pair<int>`, 
+  `pair<string>` & `pair<float>`.
+
+  This is possible because the implemenation of `firstInPair` &
+  `secondInPair` does not know anything about those concrete types like
+  `int`, `string` or `float`. So you may confidently use it with any type 
+  and it will work.
+ */
+
+/*
+firstInPair(center) // 960
+secondInPair(center) // 540
+
+firstInPair(leroy) // Xavier
+secondInPair(leroy) // Leroy
+
+firstInPair(coords) // 101.5
+secondInPair(coords) // 42.3
 */
 
 /*
