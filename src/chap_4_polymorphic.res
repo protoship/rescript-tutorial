@@ -104,7 +104,7 @@ secondInPair(coords) // 42.3
   Uncomment the block below.
  */
 /*
-let languagesAndAuthors: array<pair<string>> = [
+let languagesAndAuthors = [
   ("Java", "James Gosling"),
   ("C", "Dennis Ritchie"),
   ("Python", "Guido van Rossum"),
@@ -118,8 +118,7 @@ let languagesAndAuthors: array<pair<string>> = [
 */
 
 /*
-  Above you have an array of `pair<string>`. And `pair<string>` is a
-  tuples `string`.
+  Above you have an array of`(string, string)` tuples.
  */
 
 /*
@@ -167,59 +166,117 @@ let arrayLastItem = languagesAndAuthors[arrayLength - 1]
   or binding to an array value.
  */
 
-let languagesAndAuthors: array<pair<string>> = [
-  ("Java", "James Gosling"),
-  ("C", "Dennis Ritchie"),
-  ("Python", "Guido van Rossum"),
-  ("PHP", "Rasmus Lerdorf"),
-  ("Perl", "Larry Wall"),
-  ("JavaScript", "Brendan Eich"),
-  ("Ruby", "Yukihiro Matsumoto"),
-  ("Lisp", "John McCarthy"),
-  ("Pascal", "Niklaus Wirth"),
-]
+/*
+  Uncomment the block below.
+ */
+/*
+let tupleToString = ((first, second)) => `${first}: ${second}`
 
-let pairToString = ((first, second): pair<'a>) => `${first}: ${second}`
-
-// Js API
-Js.Array.map(pairToString, languagesAndAuthors)
-
-// Belt
-languagesAndAuthors->Belt.Array.map(pairToString)->Js.log
-
-// The most common generic container types you will be familiar
-// from other programming languages are arrays. Also look at
-// polymorphic functions which transforms an array like -
-// map, fold, filter.
-
-// Arrays are implicitly mutable, because ReScript compiles them
-// down to JavaScript arrays. It's a shared data type. There is
-// no difference in behavior between a JavaScript and ReScript
-// array. So there is no immutability. You can change the contents
-// of an array without changing it's reference. That is mutation.
-
-// So arrays...
+// Using JS API
+Js.Array.map(tupleToString, languagesAndAuthors)
+*/
+/*
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
+  Result: 
+    
+    [
+      "Java: James Gosling",
+      "C: Dennis Ritchie",
+      "Python: Guido van Rossum",
+      "PHP: Rasmus Lerdorf",
+      "Perl: Larry Wall",
+      "JavaScript: Brendan Eich",
+      "Ruby: Yukihiro Matsumoto",
+      "Lisp: John McCarthy",
+      "Pascal: Niklaus Wirth",
+    ]
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
+ */
 
 /*
+  You use the `map` to transform an array of values.
 
-// INVESTIGATE!!!
-// The documentations shows that the shared array data
-// type compiles down to JavaScript array. But when
-// this code compiles to using OCaml arrays. That is
-// weird.
-let arrayFirstItem = progLangCreators[0]
-let arrayLastItem = progLangCreators[arrayLength - 1]
+    ```
+    let map: ('a => 'b, array<'a>) => array<'b>
+    ```
 
-// Let's use Belt now?
-// But why are we using Belt when it adds a runtime
-// ergonomics
-// does not raise exceptions
-// but we haven't yet learned about options
-// so let's stick to Js.Array itself
-// and introduce Belt later
+  Let us deconstruct the type signature.
 
-// map
+  There are two input arguments to the map function.
+    1. A function which maps a value of type 'a to type 'b
+    2. An array of values of type 'a
+
+  The map function applies the function(1st argument) to each item in the
+  input array and returns a new array as output.
+
+  The `languagesAndAuthors` is an array of string tuples. So `'a` is the
+  string tuples `(string, string)`. [2nd argument]
+
+  The `tupleToString` function has the following type:
+
+    ```
+    let tupleToString: ((string , string)) => string
+    ```
+  
+  The output type is `string`. So `'b` is `string`. [1st argument]
+
+  The output type for the map function is `array<'b>`. By substitution
+  we know that the output type will be `array<string>`.
+
+  So we used `map` to transform an array of type `array<(string, string)>`
+  to a new array of type `array<string>`.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+// Using Belt API (The ReScript standard library)
+languagesAndAuthors->Belt.Array.map(tupleToString)
 */
+/*
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
+  Result: 
+    
+    [
+      "Java: James Gosling",
+      "C: Dennis Ritchie",
+      "Python: Guido van Rossum",
+      "PHP: Rasmus Lerdorf",
+      "Perl: Larry Wall",
+      "JavaScript: Brendan Eich",
+      "Ruby: Yukihiro Matsumoto",
+      "Lisp: John McCarthy",
+      "Pascal: Niklaus Wirth",
+    ]
+  __DO NOT UNCOMMENT. THIS IS NOT CODE.__
+ */
+
+/*
+  Belt is the name of ReScript standard library.
+
+  The argument order is different in the `Belt.Array.map` function
+  which allows you to use it with the pipe operator like shown
+  above.
+
+  The advantage of using Belt over JavaScript API is that it implemented
+  with ReScript ergonomics in mind. But the most important advantage is
+  that a Belt function will never throw an exception. You will soon
+  encounter in this lesson the specific type & programming techniques 
+  which makes this possible.
+
+  Unlike the JavaScript API, the Belt requires a runtime. Meaning there
+  is additional JavaScript code which needs to execute. JavaScript APIs
+  on the other hand are implemented internally in the browser engine.
+
+  Belt is optimized for performance, so this is not a concern which
+  affects most of the code you will write. But when it does you have
+  the option of using the JavaScript API.
+
+  Also not every function available in the JavaScript API may be able
+  in the Belt library. In this case you do not have a choice but use
+  the JS API.
+ */
 
 type programmingLanguage = {name: string, creator: string}
 
