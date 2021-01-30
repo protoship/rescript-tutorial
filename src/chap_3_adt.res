@@ -489,9 +489,25 @@ let toNumberFormHTML2 = ((name, min, max)) =>
   )}"`
 */
 
-// tuples are positional
-// give names to fields with record types
-// records
+/*
+  Tuples values have a fixed order when they are created. Tuples are
+  positional.
+
+  There is a recurring concern when it comes to dealing with positional
+  values. You end up identifying them by position, rather than by a name.
+  This is similar to functions with positional arguments.
+
+  The readability improves when you start labelling the arguments to a
+  function. There are less chances of confusing the order of arguments
+  or values when they share the same type.
+
+  This brings us to **record** types.
+
+  In a record type we can define the name for the individual fields of
+  values.
+
+  Like tuples, record values are also **immutable**.
+ */
 
 type project = {
   name: string,
@@ -501,18 +517,70 @@ type project = {
 }
 
 /*
+  Type definitions will not generate any JavaScript code in the compiled
+  output.
+
+  Below you will find three bindings whose compiler inferred type belongs
+  to the record type `project`. Hover over the bindings to see it.
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
 let atom = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 let node = {name: "Node.js", url: "https://nodejs.org", repositories: 182, people: 375}
 let rails = {name: "Ruby on Rails", url: "https://rubyonrails.org", repositories: 99, people: 66}
+ */
 
-// destructuring record in parameters
-let projectLink = ({url, name}) => {
+/*
+  Just like tuples, the record values can be destructured into the field
+  names defined by its type.
+
+  You can perform this destructuring in the function argument itself.
+
+  In the function `projectLinkHTML` the fields `url` & `name` belonging
+  to the `project` record type are destructured.
+
+  The type signature of the function is:
+
+    ```
+    let projectLinkHTML: project => string
+    ```
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let projectLinkHTML = ({url, name}) => {
   `<a href="${url}">${name}</a>`
 }
 
-projectLink(atom)
-projectLink(node)
-projectLink(rails)
+projectLinkHTML(atom) // <a href="https://atom.io">Atom</a>
+projectLinkHTML(node) // <a href="https://nodejs.org">Node.js</a>
+projectLinkHTML(rails) // <a href="https://rubyonrails.org">Ruby on Rails</a>
+*/
+
+/*
+  You can also pass the record without destructuring. In this case
+  you can access the fields using the dot operator.
+
+    ```
+    atom.name           // Atom
+    atom.url            // https://atom.io
+    atom.repositories   // 255
+    atom.people         // 56
+    ```
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
+let projectLinkHTML2 = project => {
+  `<a href="${project.url}">${project.name}</a>`
+}
 */
 
 // record where one of the field types is a variant type
