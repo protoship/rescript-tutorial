@@ -238,6 +238,8 @@ type player =
  */
 
 /*
+let nextMoveAfter = current => current
+
 let playerToString = player =>
   switch player {
   | PlayerA => "Player A"
@@ -262,8 +264,6 @@ SimpleTest.assertEqual(
 )
  */
 
-// Variant with constructor arguments
-
 type user =
   | Anonymous
   | Guest(int)
@@ -271,22 +271,60 @@ type user =
   | Moderator(int, string)
 
 /*
-let displayName = user =>
+  The variant type `user` has constructors with additional arguments.
+
+  The value `Guest(100)` is a valid value belonging to the `user` variant
+  type defined by the constructor `Guest(int)`. The types match.
+
+  But a value like `Guest` or `Guest("Sam")` are illegal. They do not match
+  the type of the arguments in the constructor.
+
+  Additional values can be added to a constructor separated by a comma.
+
+  The `LoggedInUser(int, string)` has two arguments. The first argument is
+  of type `int` and the second argument is of type `string`.
+
+  The `userDescription` function takes a value of the variant type `user`
+  and returns a `string` description. The pattern-matching on the left-hand
+  side binds the constructor arguments to names. The bindings are available
+  for use in expressions on the right-hand side.
+
+  The first argument `LoggedInUser(int, string)` and `Moderator(int, string)`
+  are both `int` type values. It is bound to the name `karma`. This represents
+  the karma (or points) accumulated by a user through their contributions.
+
+  The `Guest(int)` constructor also has a `int` type value, but it has a
+  different meaning in this context. The `int` value here represents some
+  random number assigned to guest users.
+
+  You can use the variant type to model data structures with disjoint values.
+  The individual values can be also contextualized through additional 
+  arguments in the constructor.
+
+  In this example we are able to represent an anonymous user, guest users,
+  logged in users, and moderators. They all belong to the same type `user`.
+  There is no opportunity for you to get confused between values belonging
+  to different constructors.
+ */
+
+/*
+  Uncomment the block below.
+ */
+
+/*
+let userDescription = user =>
   switch user {
   | Anonymous => "Anonymous"
   | Guest(guestId) => `Guest#${Belt.Int.toString(guestId)}`
-  | LoggedInUser(karma, username)
-  | Moderator(karma, username) =>
-    `${username}, ${Belt.Int.toString(karma)} points`
+  | LoggedInUser(karma, displayName) => `${displayName}, ${Belt.Int.toString(karma)} points`
+  | Moderator(karma, displayName) => `(mod) ${displayName}, ${Belt.Int.toString(karma)} points`
   }
 
-let anonymous = displayName(Anonymous)
-let guest42 = displayName(Guest(42))
-let milner1934 = displayName(LoggedInUser(2010, "Robin Milner"))
-let grace1906 = displayName(Moderator(1992, "Grace Hopper"))
-*/
-
-// --
+userDescription(Anonymous) // "Anonymous"
+userDescription(Guest(42)) // "Guest#42"
+userDescription(LoggedInUser(2010, "Robin Milner")) // "Robin Milner, 2010 points"
+userDescription(Moderator(1992, "Grace Hopper")) // "(mod) Grace Hopper, 1992 points"
+ */
 
 type formInput =
   | Text(string) // name
@@ -300,36 +338,24 @@ type formInput =
   -----------------------------------------------------------------------------
   Generate the HTML string for a given form input in the below formats.
 
-  1. Text
-  <input type="text" name="first_name" />
+  Text("first_name")    => <input type="text" name="first_name" />
+  Number("age", 18, 25) => <input type="number" name="age" min=18 max=25 />
+  Email("work_email")   => <input type="email" name="work_email" />
+  Submit                => <input type="submit" />
 
-  2. Number
-  <input type="number" name="age" min=18 max=25 />
+  Implement the function `formInputToHTML`:
 
-  3. Email
-  <input type="email" name="work_email" />
-
-  4. Submit
-  <input type="submit" />
+    ```
+    let formInputToHTML: formInput => string
+    ```
   -----------------------------------------------------------------------------
 */
 
 /*
-let formInputToHTML = x =>
-  switch x {
-  | Text(name) => `<input type="text" name="${name}" />`
-  | Number(name, min, max) =>
-    `<input type="number" name="${name}" min=${Belt.Int.toString(min)} max=${Belt.Int.toString(
-      max,
-    )}/>`
-  | Email(name) => `<input type="email" name="${name}" />`
-  | Submit => `<input type="submit" />`
-  }
-
-let nameInput = formInputToHTML(Text("name"))
-let ageInput = formInputToHTML(Number("age", 18, 25))
-let emailInput = formInputToHTML(Email("email"))
-let submit = formInputToHTML(Submit)
+  Uncomment the block below. It contains test code for exercise 5.
+ */
+/*
+let formInputToHTML = formInput => `<input type="submit" />`
 
 SimpleTest.assertEqual(
   ~expected=`<input type="text" name="first_name" />`,
@@ -351,7 +377,7 @@ SimpleTest.assertEqual(
   ~actual=formInputToHTML(Submit),
   ~msg="[exercise 5] a submit button",
 )
-*/
+ */
 
 /* --- BEGIN TUPLES
 
