@@ -473,11 +473,20 @@ SimpleTest.assertEqual(
 )
 */
 
-// demonstrate fold with a simple example
-type metric = {state: string, count: int}
+/*
+  The `reduce` function is used when you need to summarize an array of
+  values into a single value.
+
+  In the below example we use `reduce` to find the total count from
+  an array of statewise counts.
+ */
 
 /*
-// daily recovered counts by state
+  Uncomment the block below.
+ */
+/*
+type metric = {state: string, count: int}
+
 let mh = {state: "Maharasthra", count: 2342}
 let ka = {state: "Karnataka", count: 745}
 let dl = {state: "Delhi", count: 385}
@@ -485,14 +494,72 @@ let wb = {state: "West Bengal", count: 621}
 let jh = {state: "Jharkand", count: 111}
 let tn = {state: "Tamil Nadu", count: 770}
 
-let totalRecovered = Js.Array.reduce((acc, {count}) => {
+let totalCount = Js.Array.reduce((acc, {count}) => {
   acc + count
-}, 0, [mh, ka, dl, wb, jh, tn])
+}, 0, [mh, ka, dl, wb, jh, tn]) // 4974
 */
 
-// reduce / fold
-// exercise
-//
+/*
+  The type of `Js.Array.reduce` is:
+
+    ```
+    let reduce: (('b, 'a) => 'b, 'b, array<'a>) => 'b
+    ```
+
+  Let us deconstruct the arguments one by one.
+
+  This function has three input arguments,
+    1. A reducer function
+    2. An initial value for the accumulator
+    3. The input array
+
+  The output of the function is a single value which has the same type as
+  the accumulator.
+
+  In the above function the reducer (type annotated) function is,
+
+    ```
+    (acc: 'b, {count}: 'a): 'b => {
+      acc + count
+    }
+    ```
+  
+  All it does is take destructure the `count` from the `metric` record
+  value, and add it to the accumulator.
+
+  The initial value of the accumulator is 0 (`'b`).
+
+  The input has the type array<metric> (`array<'a>`).
+
+  Let us trace the iterative execution:
+
+    index | acc(input)  | {count} | (acc + count) returned 
+    ------------------------------------------------------
+      [0] |         0   |    2342 |       0 + 2342 = 2342
+      [1] |      2342   |     745 |    2342 +  745 = 3087
+      [2] |      3087   |     385 |    3087 + 385  = 3472
+      [3] |      3472   |     621 |    3472 + 621  = 4093
+      [4] |      4093   |     111 |    4093 + 111  = 4204
+      [5] |      4204   |     770 |    4204 + 770  = 4974
+    ------------------------------------------------------
+
+  At the end of the execution the value in the accumulator is returned.
+
+  The `reduce` function took an `array<metric>` values and aggregated it
+  into a `int` value.
+
+  The initial value for an accumulator depends on the type and operation
+  being peformed. If you were multiplying the initial value of the
+  accumulator should be `1`. If it was `0`, then the result returned
+  will also be zero because of multiplication with zero.
+
+  If the accumulator is a string type value, and you were concatenating
+  string values, then the initial value could be an empty string.
+
+  The initial value should be considered carefully depending on the type
+  of aggregation you want to perform.
+ */
+
 /*
   -----------------------------------------------------------------------------
   Exercise 6
