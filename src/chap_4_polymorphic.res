@@ -565,7 +565,7 @@ let totalCount = Js.Array.reduce((acc, {count}) => {
   Exercise 6
   -----------------------------------------------------------------------------
   Use `Js.Array.reduce` to generate table rows HTML string from the array
-  `languagesAndAuthors`.
+  `tableRows`.
 
   The tuple `("Java", "James Gosling")` gets transformed to the following
   HTML:
@@ -575,20 +575,26 @@ let totalCount = Js.Array.reduce((acc, {count}) => {
       <td>James Gosling</td>
     </tr>
 
-  For indentation use 2 spaces. For this use the `Js.String.repeat` function.
+  Notes:-
+  
+  1. Use 2 spaces for indentation.
+  2. Save the result to the `tableRowsHTML` binding.
 
-  Save the result of table rows into a binding named: `tableRowsHTML`.
+  Hint: If the tests are not passing even when the output is identical you
+  may have a leading/trailing space in your output. Use `Js.String.trim` if
+  necessary.
 
-  Use `Js.String.trim` to strip spaces from the beginning or end of a string
-  when needed.
-
-  Note: Please do _not_ use `Js.Array.map` and `Js.Array.joinWith` for
-  implementing this exercise. 
+  This exercise can also be completed by using `Js.Array.map` and then joining
+  the `array<string>` using `Js.Array.joinWith` function. But instead of that
+  try to complete this exercise by using `Js.Array.reduce`.
   -----------------------------------------------------------------------------
  */
-/*
-let languagesAndAuthors = [("Java", "James Gosling"), ("C", "Dennis Ritchie")]
 
+/*
+  Uncomment the block below.
+ */
+/*
+let tableRows = [("Java", "James Gosling"), ("C", "Dennis Ritchie")]
 let tableRowsHTML = ""
 
 let expectedTableHTML = `<tr>
@@ -602,9 +608,9 @@ let expectedTableHTML = `<tr>
 SimpleTest.assertEqual(
   ~expected=expectedTableHTML,
   ~actual=tableRowsHTML,
-  ~msg="[exercise 6] Use Js.Array.reduce to generate table rows HTML",
+  ~msg="[exercise 6] Use `Js.Array.reduce` to generate table rows HTML",
 )
-*/
+ */
 
 /*
   -----------------------------------------------------------------------------
