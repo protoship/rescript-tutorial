@@ -141,20 +141,26 @@ isElectronic(KindleEdition) // true
 */
 
 /*
- Case analysis is exhaustive
+  The value of exhaustive pattern matching becomes evident when the time comes
+  to extend your code. You can go into autopilot mode, and allow the compiler
+  to guide you through all the places in code where you need handle the newly
+  added case.
 
   -----------------------------------------------------------------------------
-  Exercise 2 (easy)
+  Exercise 2
   -----------------------------------------------------------------------------
-  Add a new constructor `Audible` for audio books from Audible.
+  Add a new constructor `Audible` to `bookFormat`.
 
-  Follow compiler warnings, and handle the case for Audible. You'll need to
-  fix the code in two functions for all the warnings to go away.
+  Follow compiler warnings, and handle the case for `Audible`. Repeat until
+  there are zero compiler warnings remaining.
+
+  Uncomment the tests below to verify your changes are correct.
   -----------------------------------------------------------------------------
-
-  TODO: Make exhaustive case analysis a compiler error (instead of warning)?
-
 */
+
+/*
+  Uncomment the block below. It contains test code for exercise 2.
+ */
 /*
 SimpleTest.assertEqual(
   ~expected="Audible",
