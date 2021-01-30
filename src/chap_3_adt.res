@@ -57,22 +57,43 @@ let kindleEdition = KindleEdition
 // let bookFormat: bookFormat = HardCover
 
 /*
-  TODO: explain function syntax with annotation for input arguments and
-  the returned value
+  The `bookFormatToString` function has the following type signature:
 
-  TODO: introduction to pattern matching syntax on variants
-  case analysis is exhaustive
+    ```
+    let bookFormatToString: bookFormat => string
+    ```
 
-  TODO: introduction to reading function type signatures 
-        bookFormat => string
+  You can hover over `bookFormatToString` to see the type signature.
+  
+  The function does pattern-matching on the constructors of the variant
+  data type `bookFormat`. Since there are three fixed constructors, there
+  are three cases to be handled in the pattern-matching.
 
-  TODO: explain function call-site / application
+  The string conversion function returns a value of type `string`. So all
+  three branches of pattern-matching should return a `string` type value
+  on the right-hand side. The code will fail to compile otherwise. Try
+  changing one the string values on the right-hand side to an int to
+  see the compilation error.
 
-  TODO: hover for types
+  Say if you remove or comment out one of the branches like `Paperback`,
+  the compiler will issue a warning. It will inform you that you forgot
+  to handle the `Paperback` case. The compiler helps you eliminate a
+  common source of bug in programming - forgetting to handle a case in
+  code.
 
+  In real world projects it is considered a good practice to configure
+  the compiler to elevate this warning to a compilation error. Warnings
+  can be ignored. But you cannot check-in code with a compilation error.
+  You most definitely don't want to check-in code which forgets to handle
+  a case in pattern-matching.
+
+  The compiler exhaustively checks if you have handled all the cases in
+  pattern-matching.
 */
-// let bookFormatToString = (x: bookFormat): string =>
 
+/*
+  Uncomment the block below.
+ */
 /*
 let bookFormatToString = format =>
   switch format {
@@ -80,10 +101,33 @@ let bookFormatToString = format =>
   | Paperback => "Paperback"
   | KindleEdition => "Kindle Edition"
   }
-bookFormatToString(Hardcover) == "Hardcover"
-bookFormatToString(Paperback)
-let bookFormat2 = bookFormatToString(KindleEdition)
 
+bookFormatToString(Hardcover) // "Hardcover"
+bookFormatToString(Paperback) // "Paperback"
+bookFormatToString(KindleEdition) // "Kindle Edition"
+*/
+
+/*
+  You can write functions which transforms a value from one type to
+  another type.
+
+  The `isElectronic` function has the following type signature:
+
+    ```
+    let isElectronic: bookFormat => bool
+    ```
+
+  If you need to return the identical expression for multiple branches
+  you can combine them on the right-hand side. It does not have to be
+  repeated multiple times. 
+  
+  Both the `Hardcover` & `Paperback` branches returns `false`.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
 let isElectronic = format =>
   switch format {
   | Hardcover
@@ -91,8 +135,9 @@ let isElectronic = format =>
   | KindleEdition => true
   }
 
-isElectronic(Hardcover)
-isElectronic(KindleEdition)
+isElectronic(Hardcover) // false
+isElectronic(Paperback) // false
+isElectronic(KindleEdition) // true
 */
 
 /*
