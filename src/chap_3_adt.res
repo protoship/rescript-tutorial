@@ -680,13 +680,6 @@ SimpleTest.assertEqual(
 )
  */
 
-// variant + record
-// simple, not recursive
-// does not requires lists/arrays
-
-// composing variants & records
-// for a drawing tool where the user can draw
-// vector diagrams (excalidraw)
 type fontSize =
   | Small
   | Medium
@@ -703,56 +696,125 @@ type simpleShape =
   | Line(int, int, int) // x, y, length
   | Text(fontSize, fontFamily, string)
 
+/*
+  The `simpleShape` has three shape variants which has additional data
+  arguments.
+
+  This type definition can be improved.
+
+  You can define a separate record type for each of the constructor
+  arguments. The record type can better communicate to the reader
+  the meaning of the various fields.
+*/
+
 type rectangle = {x: int, y: int, width: int, height: int}
-type line = {x: int, y: int, length: int}
+type line = {x1: int, y1: int, x2: int, y2: int}
 type text = {text: string, fontSize: fontSize, fontFamily: fontFamily}
 
-// refactor `simpleShape` to use records
+/*
+  After refactoring we have a new variant type `shape` below.
+
+  The multiple arguments are now replaced by a single argument which are
+  record types.
+
+  It is a good practice to use records when you define your own variants
+  and end up with:
+    - 3 or more constructor arguments or,
+    - 2 or more arguments with the same type
+
+*/
 type shape =
   | Rectangle(rectangle)
   | Line(line)
   | Text(text)
 
 /*
-// functions for rendering shapes
+  Now let us create some values belonging to the `shape` type.
 
-// rectangle => unit
-// explain unit
-// what is a side-effect?
-// unit is a primitive type
-// signalling side-effects through the type system
-// explain the underscore prefix
-// maybe this should be introduced earlier in the bindings section
-let drawRectangle = (_rectangle: rectangle) => {
-  // pretend to draw a rectangle at (x, y) which width x height pixels
-  ()
-}
+  Hover over the bindings to verify that they all indeed belong to the
+  type `shape`.
+ */
 
-let drawLine = (_line: line) => {
-  // pretend to draw a line at (x, y) with length pixels
-  ()
-}
-
-let drawText = (_text: text) => {
-  // pretend to render text
-  ()
-}
-
-// construct values
-let block1 = Rectangle({x: 100, y: 100, width: 50, height: 50})
-let block2 = Rectangle({x: 200, y: 100, width: 50, height: 50})
-let block1ToBlock2 = Line({x: 150, y: 125, length: 50})
+/*
+  Uncomment the block below.
+ */
+/*
+let block = Rectangle({x: 100, y: 100, width: 50, height: 50})
+let line = Line({x1: 150, y1: 125, x2: 250, y2: 125})
 let textLabel = Text({text: "Connect", fontSize: Medium, fontFamily: Monospace})
+ */
 
-// type narrowing - after pattern matching call the draw for shape
-// common mistake is to pattern match within the draw function
-// point out this anti-pattern
-// don't pattern match inside drawRectangle on `shape`
-// the `rectangle` constructor argument has already been narrowed
-let drawShape = shape =>
-  switch shape {
-  | Rectangle(rectangle) => drawRectangle(rectangle)
-  | Line(line) => drawLine(line)
-  | Text(text) => drawText(text)
-  }
+/*
+  To draw these shapes we can define a few functions which each know
+  how to draw a specific shape.
+
+  We'll skip any actual drawing code because it is not relevant here.
+  Let us pretend that once these functions are called, the shape is
+  drawn.
+
+  Drawing is a side-effect. So the type signatures will be:
+
+    ```
+    let drawRectangle: rectangle => unit
+    let drawLine: line => unit
+    let drawText: text => unit
+    ```
+  
+  Each of these functions consumes a values, and returns nothing. This is
+  indicated by the return type being `unit`.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+// pretend to draw a rectangle at (x, y) with width x height pixels
+let drawRectangle = rect => {
+  Js.log("Drawing a rectangle:")
+  Js.log(`\tCoordinates: (${rect.x->Belt.Int.toString}, ${rect.y->Belt.Int.toString})`)
+  Js.log(`\tDimensions: ${rect.width->Belt.Int.toString} x ${rect.height->Belt.Int.toString}`)
+}
+
+// pretend to draw a line at (x, y) with length pixels
+let drawLine = line => {
+  Js.log("Drawing a line:")
+  Js.log(`\tFrom: (${line.x1->Belt.Int.toString}, ${line.y1->Belt.Int.toString})`)
+
+  Js.log(`\tTo: (${line.x2->Belt.Int.toString}, ${line.y2->Belt.Int.toString})`)
+}
+
+// pretend to draw text
+let drawText = text => {
+  Js.log("Drawing text:")
+  Js.log(`\tText: ${text.text}`)
+}
+*/
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 7
+  -----------------------------------------------------------------------------
+  Implement the function `drawShape` which has the following type signature:
+
+    ```
+    let drawShape: shape => unit
+    ```
+
+  Hint: After destructuring the constructor arguments in the pattern-matching
+  call the specialized `draw*` functions defined above.
+
+  Check the console output to see if you are able to see the `Js.log` debug
+  statements for all three call-sites.
+  -----------------------------------------------------------------------------
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
+let drawShape = shape => ()
+
+drawShape(block)
+drawShape(line)
+drawShape(textLabel)
 */
