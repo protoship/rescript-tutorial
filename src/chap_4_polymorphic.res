@@ -1,3 +1,54 @@
+type pair<'a> = ('a, 'a)
+
+/*
+  This type defines a pair of values both of which are of the same type.
+  The `'a` is known as a type parameter or type variable. This means you
+  can substitute `'a` with any type to create a `pair<'a>` type for that
+  value.
+
+  The type `pair<int>` represents a pair of `int` values.
+  The type `pair<float>` represents a par of `float` values.
+
+  You can have more than one type variable separated by a comma. For
+  example,
+
+    ```
+    type triple<'a, 'b> = ('a, 'b, 'a)
+    ```
+
+  The `triple<'a, 'b>` is tuple with three values. The first and third
+  values belong to type `'a` and the middle value must belong to the
+  type `'b`.
+
+  The type `triple<int, float>` is one of the many possible concrete 
+  manifestation of this type.
+
+  Both `pair<'a>` and `triple<'a, 'b>` are generic or polymorphic types.
+  The concrete type is substituted only when you create a value belonging
+  to this type.
+
+  This is also know as **parametric polymorphism**.
+
+  Since the types are parametrized by type variables.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let center: pair<int> = (960, 540)
+let leroy: pair<string> = ("firstavier", "Leroy")
+let coords: pair<float> = (101.5, 42.3)
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let firstInPair = ((first, _): pair<'a>) => first
+let secondInPair = ((_, second): pair<'a>) => second
+*/
+
 /*
   Section 3: Parametric Polymorphism
 
@@ -9,7 +60,6 @@
  */
 
 // intro to parametric polymorophism
-type pair<'a> = ('a, 'a)
 
 // the right-hand can also be a record
 // with the fields first, and second
@@ -17,43 +67,37 @@ type pair<'a> = ('a, 'a)
 // we are dealing with this type
 // positionally.
 
-type coord2d = pair<int>
+// type coord2d = pair<int>
 
-type name = pair<string>
+// type name = pair<string>
 
-type cssDeclaration = pair<string>
-
+// type cssDeclaration = pair<string>
 /*
-let center: coord2d = (960, 540)
-let leroy: name = ("Xavier", "Leroy")
-let mediumFontSize: cssDeclaration = ("font-size", "16px")
+ */
 
 // write generic functions first, and second
 // this should be an exercise
-let first = ((x, _): pair<'a>) => x
-let second = ((_, y): pair<'a>) => y
+// let first = ((x, _): pair<'a>) => x
+// let second = ((_, y): pair<'a>) => y
 
 // call sites
-first(center)
-first(leroy)
-first(mediumFontSize)
+// first(center)
+// first(leroy)
+// first(mediumFontSize)
 
-second(center)
-second(leroy)
-second(mediumFontSize)
-*/
+// second(center)
+// second(leroy)
+// second(mediumFontSize)
 
 // using types like lego bricks to compose more complex
 // types from simple types
-type lineSegment = pair<coord2d>
+// type lineSegment = pair<coord2d>
 
-/*
-let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
-let lineStart = first(lineFromOrigin)
-let (lineStartX, listStartY) = (first(lineStart), second(lineStart))
-let lineEnd = second(lineFromOrigin)
-let (lineEndX, lineEndY) = (first(lineEnd), second(lineEnd))
-*/
+// let lineFromOrigin: lineSegment = ((0, 0), (100, 100))
+// let lineStart = first(lineFromOrigin)
+// let (lineStartX, listStartY) = (first(lineStart), second(lineStart))
+// let lineEnd = second(lineFromOrigin)
+// let (lineEndX, lineEndY) = (first(lineEnd), second(lineEnd))
 
 // parametric polymorphism enables building container types
 // the concrete type is only determined when it is used
