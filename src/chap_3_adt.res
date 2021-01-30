@@ -1,30 +1,58 @@
-/*
-  Section 2: Variants
-
-  * Define a custom type
-  * Construct values
-  * transform 
-
-  Pitfalls:
-  * Confusing binding and type name
-
-  Notes:
-  * Types
- */
-
-// types do not generate any code in JavaScript
-
 type bookFormat =
   | Hardcover
   | Paperback
   | KindleEdition
 
 /*
+  The `bookFormat` is a **variant** data type. 
+  
+  It has 3 fixed constructors separated by `|`. Each of the constructor
+  represents a valid value for the type `bookFormat`. A constructor should 
+  always be capitalized. The code will fail to compile otherwise.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let paperback = Paperback
+let kindleEdition = KindleEdition
+*/
+
+/*
+  The binding can refer to only a single constructor value at any time.
+  You cannot have a binding which is both `Paperback` & `KindleEdition`
+  simultaneously. Hover over the bindings to see the inferred type.
+
+  You may have also noticed that the type defintion by itself does not 
+  generate any JavaScript. The compiler generates JavaScript only when
+  you use the constructor values in code. 
+  
+  A common source of confusion when you are beginning is to confuse
+  between a type defintion and values. 
+  
+  The `type` is for defining your custom data structure type. A value is
+  an instance of either a primitive type, or a custom defined type.
+
+  Here `bookFormat` is a variant type. The `paperback` & `kindleEdition`
+  are bindings which represents values of this variant type.
+
+  Even though the type is named `bookFormat`, it does not prevent you
+  from creating a let-binding with the same name.
+ */
+
+/*
   -----------------------------------------------------------------------------
-  Exercise 1 (easy)
+  Exercise 1
   -----------------------------------------------------------------------------
-  Uncomment the `bookFormat` binding. Fix the compilation error.  
+  The binding named `bookFormat` belongs to the variant type `bookFormat`.
+
+  Fix the compilation error to proceed.
   -----------------------------------------------------------------------------
+ */
+
+/*
+  Uncomment the line below.
  */
 // let bookFormat: bookFormat = HardCover
 
