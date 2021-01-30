@@ -653,7 +653,7 @@ let expectedBooks = SimpleTest.assertEqual(
 */
 
 /*
-  The list<'a> is single linked list. It is an immutable data structure.
+  The list<'a> is single linked-list. It is an immutable data structure.
 
   Hover over `statewiseMetrics` to see its type. It will be `list<metric>`.  
  */
@@ -737,9 +737,25 @@ statewiseMetrics
 ->Belt.List.forEach(Js.log)
 */
 
-// pattern matching
-// case 1: list is empty
-// case 2: head, and tail
+/*
+  You can also pattern-match on lists.
+
+  A list can be an empty. So exhaustive pattern-matching in lists includes
+  at least two cases. The empty list, and the list with at least one value
+  in it.
+
+  The second pattern-match uses the list spread syntax,
+
+    ```
+    list{head, ...rest}
+    ```
+
+  to destructure the first value into `head` and the remaining items into
+  the `rest` binding.
+ */
+/*
+  Uncomment the block below.
+ */
 /*
 let describeList = xs =>
   switch xs {
@@ -751,7 +767,13 @@ let describeList = xs =>
     Belt.Int.toString(Belt.List.length(rest)) ++ " items."
   }
 
+// This list is empty
 describeList(list{})
+
+// The first item in this list is: alone and there are other 0 items.
+describeList(list{"alone"})
+
+// The first item in this list is: hello and there are other 3 items.
 describeList(list{"hello", "world", "good", "bye"})
 */
 
