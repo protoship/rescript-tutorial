@@ -818,3 +818,37 @@ drawShape(block)
 drawShape(line)
 drawShape(textLabel)
 */
+
+/*
+  There is a common mistake beginners to the language make when writing
+  patter-matching code for variants which compose record arguments. 
+
+  The type signatures of the specialized draw functions like `drawText` or
+  `drawRectangle` or `drawLine` would be instead implemented as:
+
+    ```
+    let drawRectangle: shape => unit
+    let drawLine: shape => unit
+    let drawText: shape => unit
+    ```
+
+  They often fail to recognize that the pattern matching in `drawShape` has
+  already narrowed the type down to either `text`, `line` or `rectangle`
+  depending on the value.
+
+  This narrowed type value can be propagated instead of the `shape` type
+  value.
+
+  When the `shape` type value is propagated you end up pattern matching
+  again, or repeating the work you already did in `drawShape` to get
+  the narrowed type value.
+
+  When you propagate the narrowed record type value the signature of
+  the draw functions also become concrete:
+
+    ```
+    let drawRectangle: rectangle => unit
+    let drawLine: line => unit
+    let drawText: text => unit
+    ```
+ */
