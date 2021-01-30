@@ -103,7 +103,7 @@ secondInPair(coords) // 42.3
 /*
   Uncomment the block below.
  */
-
+/*
 let languagesAndAuthors: array<pair<string>> = [
   ("Java", "James Gosling"),
   ("C", "Dennis Ritchie"),
@@ -115,13 +115,17 @@ let languagesAndAuthors: array<pair<string>> = [
   ("Lisp", "John McCarthy"),
   ("Pascal", "Niklaus Wirth"),
 ]
+*/
 
 /*
   Above you have an array of `pair<string>`. And `pair<string>` is a
   tuples `string`.
  */
 
-let arrayLength = Js.Array.length(languagesAndAuthors)
+/*
+  Uncomment the line below.
+ */
+// let arrayLength = Js.Array.length(languagesAndAuthors)
 
 /*
   ReScript array compiles to a JavaScript array. So the JavaScript array
@@ -143,8 +147,13 @@ let arrayLength = Js.Array.length(languagesAndAuthors)
   It returns the number of elements in the array.
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 let arrayFirstItem = languagesAndAuthors[0]
 let arrayLastItem = languagesAndAuthors[arrayLength - 1]
+*/
 
 /*
   You can access the elements in an array by index.
@@ -157,6 +166,18 @@ let arrayLastItem = languagesAndAuthors[arrayLength - 1]
   You can change the contents of an array without changing the reference
   or binding to an array value.
  */
+
+let languagesAndAuthors: array<pair<string>> = [
+  ("Java", "James Gosling"),
+  ("C", "Dennis Ritchie"),
+  ("Python", "Guido van Rossum"),
+  ("PHP", "Rasmus Lerdorf"),
+  ("Perl", "Larry Wall"),
+  ("JavaScript", "Brendan Eich"),
+  ("Ruby", "Yukihiro Matsumoto"),
+  ("Lisp", "John McCarthy"),
+  ("Pascal", "Niklaus Wirth"),
+]
 
 let pairToString = ((first, second): pair<'a>) => `${first}: ${second}`
 

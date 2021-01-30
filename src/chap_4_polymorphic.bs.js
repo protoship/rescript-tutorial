@@ -2,7 +2,6 @@
 'use strict';
 
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
-var Caml_array = require("bs-platform/lib/js/caml_array.js");
 
 var languagesAndAuthors = [
   [
@@ -43,12 +42,6 @@ var languagesAndAuthors = [
   ]
 ];
 
-var arrayLength = languagesAndAuthors.length;
-
-var arrayFirstItem = Caml_array.get(languagesAndAuthors, 0);
-
-var arrayLastItem = Caml_array.get(languagesAndAuthors, arrayLength - 1 | 0);
-
 function pairToString(param) {
   return param[0] + ": " + param[1];
 }
@@ -58,8 +51,5 @@ languagesAndAuthors.map(pairToString);
 console.log(Belt_Array.map(languagesAndAuthors, pairToString));
 
 exports.languagesAndAuthors = languagesAndAuthors;
-exports.arrayLength = arrayLength;
-exports.arrayFirstItem = arrayFirstItem;
-exports.arrayLastItem = arrayLastItem;
 exports.pairToString = pairToString;
-/* arrayLength Not a pure module */
+/*  Not a pure module */
