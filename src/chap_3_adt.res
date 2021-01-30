@@ -176,7 +176,7 @@ SimpleTest.assertEqual(
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 3 (easy)
+  Exercise 3
   -----------------------------------------------------------------------------
   a) Create a variant type `codeEditor` with the constructors
     - VSCode
@@ -191,6 +191,9 @@ SimpleTest.assertEqual(
   -----------------------------------------------------------------------------
 */
 
+/*
+  Uncomment the block below. It contains test code for exercise 3.
+ */
 /*
 SimpleTest.assertEqual(
   ~expected="Microsoft",
