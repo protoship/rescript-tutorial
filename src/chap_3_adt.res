@@ -584,6 +584,29 @@ let projectLinkHTML2 = project => {
 */
 
 /*
+  Since records are immutable, this is how you update the value of a 
+  record field.
+
+  The `...atom` at the beginning of the record destructures the existing
+  field values in the record `atom`. The `people` field is then increased
+  by one.
+ */
+
+/*
+  Uncomment the line below.
+ */
+// let atom2 = {...atom, people: atom.people + 1}
+
+/*
+  There is no limitation on the number of fields you can update.
+ */
+
+/*
+  Uncomment the line below.
+ */
+// let atom3 = {...atom2, people: atom2.people + 5, repositories: atom2.repositories + 2}
+
+/*
   So far you have learned about the following types,
 
   - Primitive types
