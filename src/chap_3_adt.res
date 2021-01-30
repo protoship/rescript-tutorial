@@ -380,8 +380,8 @@ SimpleTest.assertEqual(
  */
 
 /*
-  The **tuple** is a immutable data structure available to you. It can
-  contain different types of values.
+  The **tuple** is a immutable data structure. It can contain different 
+  types of values.
 
   You can create a tuple value without having to define a type for it.
  */
@@ -397,7 +397,7 @@ SimpleTest.assertEqual(
 
   You can **destructure* a tuple value into separate bindings using
   pattern matching syntax in the let binding. Hover over the individual
-  bindings to see the type.
+  bindings below to see the types for `name`, `min` & `max`.
  */
 
 /*
@@ -409,10 +409,15 @@ let ageLimit = (name, min, max)
 */
 
 /*
-  Tuples are **immutable**.
-  
-  So to update `budget` you have to construct a new tuple value. The tuple
-  values in `budget` is used to construct the tuple `budget2`.
+  Since tuples are immutable, you cannot use mutation to update a tuple
+  value.
+
+  You can destructure a tuple, and use the individual values to create
+  a new tuple.
+
+  This is the essence of immutability. No mutation. You construct a 
+  new value from an existing value. There is no in-place update which
+  is possible on immutable values.
  */
 
 /*
@@ -442,8 +447,8 @@ let toNumberFormHTML = input => {
 */
 
 /*
-  Alternatively you can destructure the tuple in place in the arguments of
-  the function itself.
+  Alternatively you can destructure the tuple in place in the arguments 
+  of the function itself.
 
   **Caution**
 
@@ -469,6 +474,9 @@ let toNumberFormHTML = input => {
   The above signature means the functions take 3 separate arguments
   of type `string`, `int` & `int` and then produces a `string` type
   value as output.
+
+  Do not forget the paranthesis when destructuring tuples in function
+  arguments.
  */
 
 /*
