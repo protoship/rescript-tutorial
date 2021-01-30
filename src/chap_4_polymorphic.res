@@ -76,6 +76,96 @@ firstInPair(coords) // 101.5
 secondInPair(coords) // 42.3
 */
 
+/*
+  Arrays are a polymorphic type data structure with the type `array<'a>`.
+  The implication of this type is that all the values in an array must
+  belong to the same type.
+
+  This may not be something you explicitly consider in dynamic languages.
+  Almost always you need the guarantee that values in the array have the
+  same data structure or are the same type. Mixing and matching values
+  of different types in an array are a source of bugs. 
+  
+  For example you may be expecting float values in an array within a 
+  function. Every once in a while this results in a runtime error because
+  you also get string values as input. 
+  
+  There is no explicit notion of types in dynamic langauges. But the code
+  which reads those values have an implict notion of the type of the value
+  or rather its data structure.
+
+  You can still write robust code in dynamic languages by making explicit
+  the type or data structure values. You will not get a compiler to type
+  check your code, but it is still better writing code where the types
+  are implicit.
+ */
+
+/*
+  Uncomment the block below.
+ */
+
+let languagesAndAuthors: array<pair<string>> = [
+  ("Java", "James Gosling"),
+  ("C", "Dennis Ritchie"),
+  ("Python", "Guido van Rossum"),
+  ("PHP", "Rasmus Lerdorf"),
+  ("Perl", "Larry Wall"),
+  ("JavaScript", "Brendan Eich"),
+  ("Ruby", "Yukihiro Matsumoto"),
+  ("Lisp", "John McCarthy"),
+  ("Pascal", "Niklaus Wirth"),
+]
+
+/*
+  Above you have an array of `pair<string>`. And `pair<string>` is a
+  tuples `string`.
+ */
+
+let arrayLength = Js.Array.length(languagesAndAuthors)
+
+/*
+  ReScript array compiles to a JavaScript array. So the JavaScript array
+  functions are available for use in ReScript.
+
+  The JS API begins with the `Js` module namespace. You will learn about
+  modules at the very end. For the time being you can think of them as
+  namespaces.
+
+  The `Js.Array` module contains the functions which you can use with
+  array values.
+
+  The `Js.Array.length` function has the type:
+
+    ```
+    let length: array<'a> => int
+    ```
+  
+  It returns the number of elements in the array.
+ */
+
+let arrayFirstItem = languagesAndAuthors[0]
+let arrayLastItem = languagesAndAuthors[arrayLength - 1]
+
+/*
+  You can access the elements in an array by index.
+
+  If you provide a non-existent index, it will result in a runtime
+  error. This is not something the compiler can catch for you.
+
+  Since arrays are the same as JavaScript arrays, they are also *mutable*.
+
+  You can change the contents of an array without changing the reference
+  or binding to an array value.
+ */
+
+let pairToString = ((first, second): pair<'a>) => `${first}: ${second}`
+
+// Js API
+Js.Array.map(pairToString, languagesAndAuthors)
+
+// Belt
+languagesAndAuthors->Belt.Array.map(pairToString)->Js.log
+
 // The most common generic container types you will be familiar
 // from other programming languages are arrays. Also look at
 // polymorphic functions which transforms an array like -
@@ -89,22 +179,7 @@ secondInPair(coords) // 42.3
 
 // So arrays...
 
-type progLangCreator = pair<string>
-
 /*
-let progLangCreators: array<progLangCreator> = [
-  ("Java", "James Gosling"),
-  ("C", "Dennis Ritchie"),
-  ("Python", "Guido van Rossum"),
-  ("PHP", "Rasmus Lerdorf"),
-  ("Perl", "Larry Wall"),
-  ("JavaScript", "Brendan Eich"),
-  ("Ruby", "Yukihiro Matsumoto"),
-  ("Lisp", "John McCarthy"),
-  ("Pascal", "Niklaus Wirth"),
-]
-
-let arrayLength = Js.Array.length(progLangCreators)
 
 // INVESTIGATE!!!
 // The documentations shows that the shared array data
@@ -123,11 +198,6 @@ let arrayLastItem = progLangCreators[arrayLength - 1]
 // and introduce Belt later
 
 // map
-let progLangCreatorToString = ((language, creator): progLangCreator): string =>
-  language ++ ": " ++ creator
-
-Js.Array.map(x => x, progLangCreators) // identity
-Js.Array.map(progLangCreatorToString, progLangCreators)
 */
 
 type programmingLanguage = {name: string, creator: string}
