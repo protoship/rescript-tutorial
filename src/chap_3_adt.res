@@ -219,7 +219,7 @@ type player =
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 4 (easy)
+  Exercise 4
   -----------------------------------------------------------------------------
   In a turn based game the moves rotate between three palyers in the 
   following order:
@@ -234,6 +234,10 @@ type player =
 */
 
 /*
+  Uncomment the block below. It contains test code for exercise 4.
+ */
+
+/*
 let playerToString = player =>
   switch player {
   | PlayerA => "Player A"
@@ -241,33 +245,22 @@ let playerToString = player =>
   | PlayerC => "Player C"
   }
 
-let nextMoveAfter = current =>
-  switch current {
-  | PlayerA => PlayerB
-  | PlayerB => PlayerC
-  | PlayerC => PlayerA
-  }
-
-let firstMove = PlayerA
-let secondMove = nextMoveAfter(firstMove)
-let thirdMove = nextMoveAfter(secondMove)
-
 SimpleTest.assertEqual(
   ~expected=playerToString(PlayerB),
   ~actual=playerToString(nextMoveAfter(PlayerA)),
-  ~msg="[exercise 4] next move after Player A",
+  ~msg="[exercise 4] A -> B",
 )
 SimpleTest.assertEqual(
   ~expected=playerToString(PlayerC),
   ~actual=playerToString(nextMoveAfter(PlayerB)),
-  ~msg="[exercise 4] next move after Player B",
+  ~msg="[exercise 4] B -> C",
 )
 SimpleTest.assertEqual(
   ~expected=playerToString(PlayerA),
   ~actual=playerToString(nextMoveAfter(PlayerC)),
-  ~msg="[exercise 4] next move after Player C",
+  ~msg="[exercise 4] C -> A",
 )
-*/
+ */
 
 // Variant with constructor arguments
 
