@@ -194,19 +194,21 @@ readFile("./bsconfig.json", "utf8", (error, data) => {
   -----------------------------------------------------------------------------
  */
 
-
-// imperative programming
-// refs (mutating a let-binding)
 /*
-  It is sometimes useful to create a single mutable value. We can do this
-  using a ref. We can create an int ref containing 0 as follows:
- 
-  Then we can access the value in the ref using the ^ operator, and
-  we can update it using the := operator. So, we could increment our
-  ref as follows:
+  So far we have been dealing with immutable values. Arrays were the only
+  mutable type you have worked with so far. Writing correct code becomes
+  a much easier task when immutable value transformations are the default.
+
+  But ReScript does not hold you back from imperative programming or using
+  mutation when it is absolutely necessary.
+
+  Let us see how you can mutate a let-binding using `ref` values.
  */
 
-// a counter example
+/*
+  Uncomment the block below.
+ */
+
 /*
 let counter = ref(0)
 let setCounter = (~step) => {
@@ -217,4 +219,20 @@ setCounter(~step=1) // counter.contents = 1
 setCounter(~step=2) // counter.contents = 3
 setCounter(~step=3) // counter.contents = 6
 setCounter(~step=4) // counter.contents = 10
+
+counter.contents // 10
 */
+
+/*
+  The `counter` binding has the type `ref(int)`. Hover over the binding
+  to reveal its type.
+
+  The special assignment syntax is used for mutating a contents of a
+  binding like,
+
+    `counter := counter.contents + step`
+
+  You can access the value inside of a `ref` like:
+
+    `counter.contents`  
+ */
