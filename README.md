@@ -1,6 +1,8 @@
 # Getting started
 
 ```
+git clone https://github.com/protoship/rescript-tutorial.git
+cd rescript-tutorial
 npm install
 npm run start
 ```
