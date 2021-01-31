@@ -927,74 +927,70 @@ printMessage(None)
 */
 
 /*
-  -----------------------------------------------------------------------------
-  Exercise 10
-  -----------------------------------------------------------------------------
-  Implement the function [safeDivide(~dividend, ~divisor)], which takes two
-  ints and returns an int option. It should return None if [divisor = 0], and
-  otherwise returns [Some(x)] where [x] is the division result
-  -----------------------------------------------------------------------------
+  Earlier we used `map` for arrays & list values. An input function was iteratively
+  applied to each value. The newly minted values are then returned a new array or
+  list.
+
+  Similarly we can use `map` for the option type. An option has two possible values.
+  Either there is a value: `Some(x)` or there is nothing: `None`.
+
+  When you write a function to operate on an option type value, it is natural to
+  pattern match on option. But if you needed the same functionality for a non-option
+  value, you would have to rewrite the same function again. Let us see how this
+  can be avoided with the following example.
+
+  The `repeatTwice` takes an `option<string>` and returns an `option<string>`. Given
+  an `array<option<string>>` values we can use `Belt.Array.map` to create a new
+  array where the messages are repeated twice, and the `None` values are left as
+  they are.
+ */
+
+/*
+  Uncomment the block below.
  */
 /*
-let safeDivide = (~dividend, ~divisor) =>
-  if divisor == 0 {
-    None
-  } else {
-    Some(dividend / divisor)
+let repeatTwice = x =>
+  switch x {
+  | Some(text) => Some(Js.String.repeat(2, text))
+  | None => None
   }
 
-SimpleTest.assertEqual(
-  ~expected=Some(9),
-  ~actual=safeDivide(~dividend=1, ~divisor=0),
-  ~msg="[exercise 8] unsafe divide by zero",
-)
+let messages = [Some("hello"), Some("world"), None, None, Some("goodbye")]
+
+// [Some("hellohello"), Some("worldworld"), None, None, Some("goodbyegoodbye")]
+messages->Belt.Array.map(repeatTwice)
 */
-
-// Belt combinators
-// especially map
-
-// inside a data transformation pipeline when you encounter
-// an option value, you'll pattern match on it. After
-// applying the function to the value inside `Some(value)`
-// like `f(value)`, the computation will move down the
-// chain. When the value is a `None` the function `f`
-// has no argument to be apply.
-// The `printMessage` function above knows how to
-// pattern match on the option<'a> type values.
-// What would you do if you had to construct a pipline
-// where the functions themselves are not aware of
-// option values. Rewriting them to pattern match
-// on an option type value is painfully unnecessary.
 
 /*
-let mapOption = (f, opt) =>
-  switch opt {
-  | None => None
-  | Some(i) => Some(f(i))
-  }
+  The `repeatTwiceZeroKnowledge` function does not pattern match an option
+  value. It is a regular `string => string` function.
 
-let double = i => 2 * i
+  The `Belt.Option.map` function can take this function as input. The `map`
+  function invokes the function only when there is `Some(text)` value. The
+  function is not invoked for `None` values.
 
-let () = assert (mapOption(double, None) == None)
+  If you look at the implementation of `repeatTwice` above, this is exactly
+  what is written there. The None value passes through without any further
+  computation. Only `Some(text)` invokes the repeat function.
 
-let () = assert (mapOption(double, Some(2)) == Some(4))
+  The `Belt.Option.map` takes the value returned by `repeatTwiceZeroKnowledge`
+  and wraps it in `Some(returnedValue)`.
+
+    ```
+    // Some("hellohello")
+    Some("hello")->Belt.Option.map(repeatTwiceZeroKnowledge)
+
+    // None
+    None->Belt.Option.map(repeatTwiceZeroKnowledge)
+    ```
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let repeatTwiceZeroKnowledge = text => Js.String.repeat(2, text)
+
+// [Some("hellohello"), Some("worldworld"), None, None, Some("goodbyegoodbye")]
+messages->Belt.Array.map(x => x->Belt.Option.map(repeatTwiceZeroKnowledge))
 */
-
-// The function is not applied or computed when the
-// input argument is None. The computation is
-// short-circuited. So if you construct a data pipeline
-// where functions are being chained, when a None is
-// computed anywhere it flows to the end of the
-// pipeline without further computation.
-// Only `Some(value)` will have function application
-// happening down the chain.
-//
-// This is a forward reference:
-// We'll revisit this concept when the pipeline operator
-// is introduced.
-
-// We don't need to implement mapOption ourselves
-// We can use Belt.Option.map
-
-// assert (Belt.Option.map(None, double) == None)
-// assert (Belt.Option.map(Some(2), double) == Some(4))
