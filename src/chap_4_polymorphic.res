@@ -777,83 +777,153 @@ describeList(list{"alone"})
 describeList(list{"hello", "world", "good", "bye"})
 */
 
-// option
-// Tony Hoare had this to say this regarding the invention
-// of the null reference in 1965
-// "I call it my billion dollar mistake..."
-// "This has led to innumerable errors, vulenrabilities,..."
-// Ruby uses the special object `nil` to represent and empty
-// or default value.
-// JavaScript has null & undefined. It is common to get type errors
-// like "null is not an object" or "undefined is a not a function"
-//
-// It is also common to raise an exception when encountering an
-// edge case in your code, where there is no result which can
-// be returned.
-//
-// All of these problems has an elegant solution. Use the option
-// variant type
-//
-// type option<'a> = None | Some('a)
-//
-// It has two constructors.
-// None -> there is no value, nothing!
-// Some('a) -> there is some value
-// it's parametrically polymorphic
-// so you can use option to signal the presence or absence of
-// value for any type
-//
-// A concrete example to return the 2nd element in a list
-// what are the cases here,
-// 1. list could be empty in which case there is no first element
-// 2. list could have only a single item
-// 3. list could have 2 or more items
-
 /*
-let getSecondListItem = xs =>
-  switch xs {
-  | list{} => None
-  | list{_first} => None
-  | list{_first, second, ..._rest} => Some(second)
-  }
+  -----------------------------------------------------------------------------
+  Null References: The Billion Dollar Mistake - Tony Hoare
+  -----------------------------------------------------------------------------
+  The null reference was invented in 1965 in the Algol W language designed by
+  Tony Hoare & Niklaus Wirth. 
+  
+  Historically this turned out to be a bad idea. The programming languages
+  which came later adopted the same design. It led to numerous errors in
+  programming, and easily exploitable vulnerabilities in software.
+  
+  After 40 years since the invention Hoare estimates the problems caused by
+  null references would exceed a billion dollars.
 
-let secondListItem = getSecondListItem(list{})
-let secondListItem2 = getSecondListItem(list{1})
-let secondListItem3 = getSecondListItem(list{"hello", "world"})
-let secondListItem4 = getSecondListItem(list{mh, ka, dl, wb, jh, tn})
+  This goes on to also show the difficulty of programming languge design.
+  -----------------------------------------------------------------------------
+
+  Earlier it was mentioned that the JS API would raise expcetions when it
+  enters invalid states. But the Belt API does not raise any exceptions.
+
+  You cannot know through the type that a function will raise an exception.
+  It is something you can know only at runtime. But with experience you
+  will notice that certain APIs have to raise an exception. For example
+  you want to get an array value at a certain index. The API you design
+  would be to get the array, and the index as input and return the value
+  at that index.
+
+  The edge case is when you get an invalid index. How should your function
+  behave in this situation? Do you return null? Do you raise a runtime
+  exception? These are your choices.
+
+  ReScript does not have either `null` or `undefined` values which are
+  available in JavaScript.
+
+  But the idea of a value which does not exist is useful thing to express
+  in code. It would be even better if this could be captured by the type
+  system.
+
+  The solution we have in ReScript is the `option<'a>` type.
+
+    ```
+    type option<'a> = None | Some<'a>
+    ```
+
+  It is a variant with two constructors. The `None` constructor represents
+  idea of nothing, or no value is present. The `Some<'a>` represents a
+  value which is available.
+
+  The type signature for the array function to get a value at an index
+  can then be encoded in the type like this:
+
+    ```
+    let arrayGet: (array<'a>, int) => option<'a>
+    ```
+
+  When you see function type signatures which returns an `option<'a>`
+  value, it is immediately understood that the API may not always be
+  able to return a valid value for all possible inputs.
+
+  This is much better approach than the default of having to raise
+  exceptions. It is also not good program design to use exceptions for
+  control flow.
 */
 
-// confusing at first!
-// why is the inferred type 'a
-// The constructor does not have arguments
-// becaues it is the None constructor
-// only the Some constructor uses the 'a argument
-// so the concrete type is not know here
-// type checker infers the principal type
-// that means the most general purpose type which is
-// applicable here.
-
-/* UNCOMMENT BELOW
-let nothing = None
- UNCOMMENT ABOVE */
-
-// You can always manually annotate to force a specialized
-// type. Often this is not necessary in application code
-// because the evaluation context would have enough
-// information to infer the type. But if that does not
-// happen, then you can fallback to manually annotating
-// the type
 /*
-let nothing2: option<int> = None
+  The `userInputToKey` function takes keyboard input and maps it to
+  a set of valid `key`.
 
-let whatNumberAmIThinking = (myNumber: option<int>) =>
-  switch myNumber {
-  | None => "I'm not thinking of any number!"
-  | Some(number) => "My number is: " ++ string_of_int(number)
+    ```
+    let userInputToKey: string => option<key>
+    ```
+
+  The underscore pattern-match is to ignore any string input we do
+  not care about. It is alright to use this with an infinite sequence
+  like string values. But using the underscore pattern-match syntax
+  with a variant you lose the benefit of exhaustive case-analysis.
+
+  If you have the underscore pattern-match in your function and later
+  you add a new case, the compiler will skip this function. And this
+  could hide a defect. So do not use it with pattern-matching for
+  variants.
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
+type key =
+  | Up
+  | Down
+  | Right
+  | Left
+  | Escape
+  | Space
+
+let userInputToKey = keypress =>
+  switch keypress {
+  | "up" => Some(Up)
+  | "down" => Some(Down)
+  | "right" => Some(Right)
+  | "left" => Some(Left)
+  | "escape" => Some(Escape)
+  | "space" => Some(Space)
+  | _ => None
   }
 
-assert (whatNumberAmIThinking(None) == "I'm not thinking of any number!")
-assert (whatNumberAmIThinking(Some(7)) == "My number is: 7")
+userInputToKey("1234") // None
+userInputToKey("escape") // Some(Escape)
+*/
+
+/*
+  You can pattern-match an option value like any other variant.
+
+  The `printMessage` takes a message and returns a message or
+  returns a default value - "This message is empty"
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
+let printMessage = message =>
+  switch message {
+  | None => "This message is empty"
+  | Some(x) => x
+  }
+
+let bukowski = `If you’re going to try, go all the way.
+Otherwise, don’t even start.
+If you're going to try, go all the way.
+This could mean losing girlfriends, wives, relatives, jobs and maybe even your mind.
+It could mean not eating for three or four days.
+It could mean freezing on a park bench.
+It could mean jail.
+It could mean derision, mockery, isolation.
+Isolation is the gift.
+All the others are a test of your endurance, of how much you really want to do it.
+And, you’ll do it, despite rejection and the worst odds.
+And it will be better than anything else you can imagine.
+If you’re going to try, go all the way.
+There is no other feeling like that.
+You will be alone with the gods, and the nights will flame with fire.
+DO IT. DO IT. DO IT. All the way
+You will ride life straight to perfect laughter. It’s the only good fight there is`
+
+printMessage(Some(bukowski))
+printMessage(None)
 */
 
 /*
@@ -878,19 +948,6 @@ SimpleTest.assertEqual(
   ~actual=safeDivide(~dividend=1, ~divisor=0),
   ~msg="[exercise 8] unsafe divide by zero",
 )
-*/
-
-// pattern matching - simple example
-// Add the whole quote
-/*
-let bukowski = Some("If you're going to try, go all the way...")
-let printMessage = message =>
-  switch message {
-  | None => "The message is empty"
-  | Some(x) => x
-  }
-
-printMessage(bukowski)
 */
 
 // Belt combinators
