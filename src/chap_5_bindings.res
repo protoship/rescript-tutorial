@@ -194,36 +194,6 @@ readFile("./bsconfig.json", "utf8", (error, data) => {
   -----------------------------------------------------------------------------
  */
 
-let configJSON = `{
-  "name": "learn-rescript",
-  "version": "0.0.1",
-  "sources": {
-    "dir": "src",
-    "subdirs": true
-  },
-  "reason": {
-    "react-jsx": 3
-  }
-}`
-
-@bs.scope("JSON") @bs.val
-external parseConfig: string => {
-  "name": string,
-  "version": string,
-  "sources": {"dir": string, "subdirs": bool},
-  "reason": {"react-jsx": int},
-} = "parse"
-
-let config = parseConfig(configJSON)
-config["sources"]["subdirs"]->Js.log
-config["reason"]["react-jsx"]->Js.log
-
-type config = {"sources": {"subdirs": bool}, "reason": {"react-jsx": int}}
-
-@bs.scope("JSON") @bs.val
-external parsePartialConfig: string => config = "parse"
-
-let config2 = parsePartialConfig(configJSON)
 
 // imperative programming
 // refs (mutating a let-binding)
