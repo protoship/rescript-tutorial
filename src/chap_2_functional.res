@@ -34,10 +34,12 @@ let cssClassName = if upvotes < downvotes {
   -----------------------------------------------------------------------------
   Exercise 1
   -----------------------------------------------------------------------------
-  Calculate the discount applicable to shopping cart total amount applying the
-  following rules:
+  Follow these rules to calculate the applicable discount on the shopping cart
+  total:
 
-  1. When the total is either 500 or above apply a flat discount of 10%.
+  1. When the total is 500 or above:
+  
+    * Apply a flat discount of 10%.
 
     ```
     // Example 1: amount = 500
@@ -47,10 +49,10 @@ let cssClassName = if upvotes < downvotes {
     discount = 520 * 0.1
     ```
 
-  2. When the total is either 200 or above, but below 500.
+  2. When the total is 200 or above, but below 500:
 
-    Apply a 5% discount on the amount greater than 200. Add 25 to this
-    intermediate result to reach the final discount total.
+    * Apply a 5% discount on the amount greater than 200. 
+    * Add 25 to the above intermediate result to get the final discount.
 
     ```
     // Example 1: amount = 200
