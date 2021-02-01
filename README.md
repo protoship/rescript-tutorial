@@ -22,3 +22,11 @@ Open the first chapter - `chap_1_immutable.res` and follow the instructions in t
 As you're editing the code, watch the terminal where you ran `npm run start`. It will show any errors from the ReScript compiler and you will have to refer to it often as you're working through the exercises.
 
 The ReScript compiler compiles the `.res` files gets into `.bs.js` files. For the first chapter, that would be `chap_1_immutable.bs.js`. You should open that file as well in a new window by pressing CTRL+O (CMD+O in Mac) and selecting the correct `.bs.js` file. Keep both `.res` file and `.bs.js` file side-by-side so you can see how the ReScript you write gets compiled to JavaScript in real-time.
+
+**Important Note**: You can run the ReScript program by calling `node` on the generated `.bs.js` file: 
+
+```
+node src/chap_1_immutable.bs.js
+```
+
+There are automated tests scattered throughout the exercises - you can see their results by running the generated JavaScript. You can also add `Js.log` in your ReScript code to print any intermediate values for debugging. 
