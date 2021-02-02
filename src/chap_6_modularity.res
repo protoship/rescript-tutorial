@@ -87,6 +87,15 @@ atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
   applying a function, works the same as you learned earlier.
 */
 
+let bookFormat: Chap_3_adt.bookFormat = Paperback
+
+/*
+  Above binding uses the variant type defined the `Chap_3_adt.res` file. Here
+  also manual annotation is necessary. The `bookFormat` variant is not visible
+  in the scope of this module. The type annotation tells the compiler where to
+  find it.
+ */
+
 /*
 module GithubProject__WithoutDataHiding: {
   type t = {

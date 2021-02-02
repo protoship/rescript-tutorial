@@ -21,7 +21,10 @@ linkTo(atom);
 
 var GithubPWI;
 
+var bookFormat = /* Paperback */1;
+
 exports.GithubProject__WithoutInterface = GithubProject__WithoutInterface;
 exports.GithubPWI = GithubPWI;
 exports.atom = atom;
+exports.bookFormat = bookFormat;
 /*  Not a pure module */
