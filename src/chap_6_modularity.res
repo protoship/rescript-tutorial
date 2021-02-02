@@ -1,9 +1,27 @@
-// modules
-// module interfaces
-// module opaque types
 /*
+  Every individual `.res` file compiles into a module. 
 
-module GithubProject__WithoutReScriptInterface = {
+  A file named `hello.res` compiles to a module with the name `Hello`.
+
+  You can put everything you've learned so far - bindings, expressions,
+  control flow and functions within a ReScript module.
+
+  Here is an example `hello.res`:
+
+    ```
+    let greet = name => `Hello, ${name}!`
+    ```
+
+  You can access the greet function from any other module like this:
+
+    ```
+    Hello.greet("visitor") // Hello, visitor!
+    ```
+
+  Modules can also be nested within a file. Here is an example:
+ */
+
+module GithubProject__WithoutInterface = {
   type t = {
     name: string,
     url: string,
@@ -14,18 +32,42 @@ module GithubProject__WithoutReScriptInterface = {
   let linkTo = t => `<a href="${t.url}">${t.name}</a>`
 }
 
-// Convention:
-// types inside a module are named `t`
-//
-// alias for convenience
-// don't want to repeatedly use long name
-module Github1 = GithubProject__WithoutReScriptInterface
+/*
+  The main record type is given an abbreviated name `t`. This is a
+  convention followed by ReScript programs. You can therefore refer
+  to the type in this module as `GithubProject_WithoutInterface.t`.
+ */
 
-// call site
-// type is moduleName dot t
-let atom: Github1.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
-atom->Github1.linkTo // <a href="https://atom.io">Atom</a>
+module GithubPWI = GithubProject__WithoutInterface
 
+/*
+  The module name is long and tedious to type often. Above we create
+  an alias. This is shorter and easier to use. When you write `GithubPWI.t`
+  it still means `GithubProject_WithoutInterface.t`.
+ */
+
+let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
+
+/*
+  The record type inside the module is not visible in this lexical scope.
+  You have to therefore manually annotate the type.
+
+  -----------------------------------------------------------------------------
+  Exercise 1 
+  -----------------------------------------------------------------------------
+  Remove the type annotation from `atom` to see the compiler error.
+
+  The error message prescibes a couple of solutions. Try them out and move
+  on when you are satisfied.
+  -----------------------------------------------------------------------------
+ */
+
+atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
+
+/*
+  Prefix the module name to bring the function you want to call into
+  the current scope. There are no additional rules to learn here. Calling or
+  applying a function, works the same as you learned earlier.
 */
 
 /*
