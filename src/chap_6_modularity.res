@@ -6,6 +6,13 @@
   You can put everything you've learned so far - bindings, expressions,
   control flow and functions within a ReScript module.
 
+  The directory structure of your project has no effect on the name
+  of a compiled module. Only the file name matters.
+
+  There are no explicit import/export statements to bring a module
+  into scope. After successful compilation of a project, every module
+  is available for use anywhere within the project.
+
   Here is an example `hello.res`:
 
     ```
@@ -33,31 +40,41 @@ module GithubProject__WithoutInterface = {
 }
 
 /*
-  The main record type is given an abbreviated name `t`. This is a
-  convention followed by ReScript programs. You can therefore refer
-  to the type in this module as `GithubProject_WithoutInterface.t`.
+  To refer to this nested module type from another module you will have
+  to write:
+
+    `Chap_6_modularity.GithubProject__WithoutInterface.t`
+
+  Inside this module you can simply refer to the nested module as:
+
+    `GithubProject_WithoutInterface.t`
+
+  The main record type of this module has an abbreviated name - `t`.
+
+  This is a convention followed by all ReScript programs. You can
+  access the main type of a module like `TheModuleName.t`.
  */
 
 module GithubPWI = GithubProject__WithoutInterface
 
 /*
-  The module name is long and tedious to type often. Above we create
-  an alias. This is shorter and easier to use. When you write `GithubPWI.t`
-  it still means `GithubProject_WithoutInterface.t`.
+  The module name is long and tedious to type often. So we created an alias
+  above. This is shorter and easier to use. When you write: `GithubPWI.t`, 
+  it still refers to this: `GithubProject_WithoutInterface.t`.
  */
 
 let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 
 /*
-  The record type inside the module is not visible in this lexical scope.
-  You have to therefore manually annotate the type.
-
   -----------------------------------------------------------------------------
   Exercise 1 
   -----------------------------------------------------------------------------
-  Remove the type annotation from `atom` to see the compiler error.
+  The record type defined inside the module is not visible in this lexical
+  scope. Therefore manual type annotation is necessary for the `atom` binding.
 
-  The error message prescibes a couple of solutions. Try them out and move
+  Remove the type annotation from `atom` to see a compiler error.
+
+  The error message prescribes a couple of solutions. Try them out and move
   on when you are satisfied.
   -----------------------------------------------------------------------------
  */
