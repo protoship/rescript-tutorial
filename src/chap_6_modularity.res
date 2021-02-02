@@ -115,6 +115,10 @@ module GithubProject__WithoutInterface = {
   in the scope of this module. The type annotation informs the compiler.
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 module GithubProject: {
   type t = {
     name: string,
@@ -136,6 +140,7 @@ module GithubProject: {
 
   let linkTo = t => `<a href="${t.url}">${t.name}</a>`
 }
+*/
 
 /*
   There is some additional syntax here. The module definition is
@@ -209,6 +214,10 @@ module GithubProject: {
   -----------------------------------------------------------------------------  
  */
 
+/*
+  Uncomment the block below.
+ */
+/*
 let node: GithubProject.t = {
   name: "Node.js",
   url: "https://nodejs.org",
@@ -217,8 +226,40 @@ let node: GithubProject.t = {
 }
 
 node->GithubProject.linkTo
+*/
+
+/*
+  The `node` binding is a record type. So you update it in the same manner
+  you would update **immutable** values.
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
 let node2 = {...node, people: node.people + 10}
 let node3 = {...node2, repositories: node2.repositories + 1}
+*/
+
+/*
+  -----------------------------------------------------------------------------
+  Exercise 3
+  -----------------------------------------------------------------------------
+  Add the `url` function to the interface of `GithubProject` module to pass
+  the test below.
+  -----------------------------------------------------------------------------
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
+SimpleTest.assertEqual(
+  ~expected="https://nodejs.org",
+  ~actual=node3->GithubProject.url,
+  ~msg="[exercise 3] github project url",
+)
+*/
 
 /*
 module GithubProject__WithOpaqueType: {
