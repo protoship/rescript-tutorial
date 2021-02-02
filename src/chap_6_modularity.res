@@ -28,6 +28,10 @@
   Modules can also be nested within a file. Here is an example:
  */
 
+/*
+  Uncomment the line below.
+ */
+/*
 module GithubProject__WithoutInterface = {
   type t = {
     name: string,
@@ -38,6 +42,7 @@ module GithubProject__WithoutInterface = {
 
   let linkTo = t => `<a href="${t.url}">${t.name}</a>`
 }
+*/
 
 /*
   To refer to this nested module type from another module you will have
@@ -55,7 +60,10 @@ module GithubProject__WithoutInterface = {
   access the main type of a module like `TheModuleName.t`.
  */
 
-module GithubPWI = GithubProject__WithoutInterface
+/*
+  Uncomment the line below.
+ */
+// module GithubPWI = GithubProject__WithoutInterface
 
 /*
   The module name is long and tedious to type often. So we created an alias
@@ -63,7 +71,10 @@ module GithubPWI = GithubProject__WithoutInterface
   it still refers to this: `GithubProject_WithoutInterface.t`.
  */
 
-let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
+/*
+  Uncomment the line below.
+ */
+// let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 
 /*
   -----------------------------------------------------------------------------
@@ -79,7 +90,10 @@ let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255
   -----------------------------------------------------------------------------
  */
 
-atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
+/*
+  Uncomment the line below.
+ */
+// atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
 
 /*
   Prefix the module name to bring the function you want to call into
@@ -87,7 +101,10 @@ atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
   applying a function, works the same as you learned earlier.
 */
 
-let bookFormat: Chap_3_adt.bookFormat = Paperback
+/*
+  Uncomment the line below.
+ */
+// let bookFormat: Chap_3_adt.bookFormat = Paperback
 
 /*
   Any binding or type defined in the other modules are also available here.
@@ -98,8 +115,7 @@ let bookFormat: Chap_3_adt.bookFormat = Paperback
   in the scope of this module. The type annotation informs the compiler.
  */
 
-/*
-module GithubProject__WithoutDataHiding: {
+module GithubProject: {
   type t = {
     name: string,
     url: string,
@@ -116,21 +132,75 @@ module GithubProject__WithoutDataHiding: {
     people: int,
   }
 
-  // used in linkTo
-  // unnecessary - but useful for demonstration purposes
-  let name = t => t.name
-  let url = t => t.url
+  // let url = t => t.url
 
-  let linkTo = t => `<a href="${t->url}">${t->name}</a>`
+  let linkTo = t => `<a href="${t.url}">${t.name}</a>`
 }
 
-module Github2 = GithubProject__WithoutDataHiding
+/*
+  There is some additional syntax here. The module definition is
+  annotated with a type.
 
-let node: Github2.t = {name: "Node.js", url: "https://nodejs.org", repositories: 182, people: 375}
-node->Github2.linkTo
+    ```
+    module TheModuleName : TheModuleType = 
+      TheModuleImplementation
+    ```
+
+  This is the type definition for `GithubProject`:
+
+    ```
+    {
+      type t = {
+        name: string,
+        url: string,
+        repositories: int,
+        people: int,
+      }
+
+      let linkTo: t => string
+    }   
+    ```
+
+  This is known as the interface of the module. Only those types
+  and bindings defined in the interface will be publicly available
+  for use in other modules.
+
+  So far everything has been public. This is not ideal, as we do
+  not want to expose every implementation detail to outside modules.
+
+  The interface is the API. The users of this interface are the
+  clients. And clients are nothing but other modules, which calls
+  the functions defined in the interface and depends on the types
+  exposed by the module.
+
+  The interface allows us to cherry pick which parts of the module
+  are available for public use by clients. So modules are more than
+  just namespaces for your types, bindings and functions.
+ */
+
+/*
+  The syntax you see here is applicable only for nested modules. 
+  
+  How do you add an interface for everything else at the top level
+  of this module?
+
+  In ReScript you create an interface file with the `.resi` extension
+  are put your type defintions inside the `.resi` file.
+
+  Within the interface file you can expose types, bindings, functions,
+  and other nested modules.
+ */
+
+let node: GithubProject.t = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 375,
+}
+
+node->GithubProject.linkTo
 let node2 = {...node, people: node.people + 10}
 let node3 = {...node2, repositories: node2.repositories + 1}
-*/
 
 /*
 module GithubProject__WithOpaqueType: {

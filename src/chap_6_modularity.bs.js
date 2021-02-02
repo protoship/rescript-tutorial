@@ -6,25 +6,35 @@ function linkTo(t) {
   return "<a href=\"" + t.url + "\">" + t.name + "</a>";
 }
 
-var GithubProject__WithoutInterface = {
+var GithubProject = {
   linkTo: linkTo
 };
 
-var atom = {
-  name: "Atom",
-  url: "https://atom.io",
-  repositories: 255,
-  people: 56
+var node = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 375
 };
 
-linkTo(atom);
+linkTo(node);
 
-var GithubPWI;
+var node2 = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 182,
+  people: 385
+};
 
-var bookFormat = /* Paperback */1;
+var node3 = {
+  name: "Node.js",
+  url: "https://nodejs.org",
+  repositories: 183,
+  people: 385
+};
 
-exports.GithubProject__WithoutInterface = GithubProject__WithoutInterface;
-exports.GithubPWI = GithubPWI;
-exports.atom = atom;
-exports.bookFormat = bookFormat;
+exports.GithubProject = GithubProject;
+exports.node = node;
+exports.node2 = node2;
+exports.node3 = node3;
 /*  Not a pure module */
