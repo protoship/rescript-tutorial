@@ -261,6 +261,10 @@ SimpleTest.assertEqual(
 )
 */
 
+/*
+  Uncomment the block below.
+ */
+/*
 module GithubProject__OpaqueType: {
   type t
 
@@ -290,7 +294,59 @@ module GithubProject__OpaqueType: {
 }
 
 module Github_OT = GithubProject__OpaqueType
+*/
 
+/*
+  This module `Github_OT` declares an opaque type `t` in its interface.
+
+  Earlier in `GithubProject` the full type was declared like:
+
+    ```
+    type t = {
+      name: string,
+      url: string,
+      repositories: int,
+      people: int,
+    }
+    ```
+
+  Looking at this declaration you know that the type `t` is infact going
+  to be a record in the implementation.
+
+  Now you only have this in the interface:
+
+    ```
+    type t
+    ```
+  
+  The implemenation is opaque. The type is opaque. From the point of view
+  of the client there is no way to know that it is a record.
+
+  This extends the idea of an API further where you hide not only your
+  implementation but also data. You have heard of the phrase "data hiding".
+
+  To update the `node` binding of type `GithubProject.t` you reached inside
+  the record and immutably updated the implementation. The client knew how
+  the type was implemented.
+
+  This has the same issue as function bindings. If your type changes you
+  will end up with changing code in a lot of places. Also this is your
+  modules primary data structure. You do not want clients to depend on its
+  impelmentation details.
+
+  Later if you want to swap the implementation details to make it better -
+  like faster, or more performant - all the call sites will also have to
+  change. The change is not limited to only your module. All the clients
+  have to change as well. That is not good design.
+
+  ReScript modules provide you data encapsulation which cannot be broken
+  by clients.
+ */
+
+/*
+  Uncomment the block below.
+ */
+/*
 let rails = Github_OT.make(
   ~name="Ruby on Rails",
   ~url="https://rubyonrails.org",
@@ -298,21 +354,52 @@ let rails = Github_OT.make(
   ~people=66,
 )
 rails->Github_OT.linkTo
+*/
 
-let rails2 = rails->Github_OT.updatePeople(5)
+/*
+  So if you don't know the implementation is a record, then how do you
+  change a value of type `Github_OT.t`?
+
+  This is why there is an `updatePeople` function declared in the
+  interface. You update the value within the module. The client can
+  use this function to immutably update the value. The client does not
+  need to know the data type. So it cannot come to depend on the
+  implementation of the module type.
+*/
+
+/*
+  Uncomment the line below.
+ */
+// let rails2 = rails->Github_OT.updatePeople(5)
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 1
+  Exercise 4
   -----------------------------------------------------------------------------
-  Implement the following (immutable) functions:
+  Implement the required functions in the `Github_OT` module so that the
+  following code shown below works.
 
-  rails->Github3.name         // returns: "Ruby on Rails"
-  rails->Github3.url          // returns: "https://rubyonrails.org"
-  rails->Github3.repositories // returns: 99
-  rails->Github3.people       // returns: 66
+    ```
+    rails->Github3.name         // returns: "Ruby on Rails"
+    rails->Github3.url          // returns: "https://rubyonrails.org"
+    rails->Github3.repositories // returns: 99
+    rails->Github3.people       // returns: 66
 
-  let rails2 = rails->Github3.updateRepositories(1)
-  rails2->Github3.repositories // returns: 100
+    let rails2 = rails->Github3.updateRepositories(1)
+    rails2->Github3.repositories // returns: 100
+    ```
   -----------------------------------------------------------------------------
+*/
+
+/*
+  Uncomment the block below.
+ */
+/*
+rails->Github3.name // returns: "Ruby on Rails"
+rails->Github3.url // returns: "https://rubyonrails.org"
+rails->Github3.repositories // returns: 99
+rails->Github3.people // returns: 66
+
+let rails2 = rails->Github3.updateRepositories(1)
+rails2->Github3.repositories // returns: 100
 */
