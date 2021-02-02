@@ -90,10 +90,12 @@ atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
 let bookFormat: Chap_3_adt.bookFormat = Paperback
 
 /*
-  Above binding uses the variant type defined the `Chap_3_adt.res` file. Here
-  also manual annotation is necessary. The `bookFormat` variant is not visible
-  in the scope of this module. The type annotation tells the compiler where to
-  find it.
+  Any binding or type defined in the other modules are also available here.
+
+  Above binding uses the variant type defined the `Chap_3_adt.res` file. 
+  
+  Here manual annotation is necessary. The `bookFormat` variant is not visible
+  in the scope of this module. The type annotation informs the compiler.
  */
 
 /*
