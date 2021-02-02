@@ -165,30 +165,48 @@ module GithubProject: {
   and bindings defined in the interface will be publicly available
   for use in other modules.
 
-  So far everything has been public. This is not ideal, as we do
-  not want to expose every implementation detail to outside modules.
+  This interface defines the record type `t` and a function named
+  `linkTo` which accepts this type `t` as input and returns a
+  string.
 
-  The interface is the API. The users of this interface are the
-  clients. And clients are nothing but other modules, which calls
-  the functions defined in the interface and depends on the types
-  exposed by the module.
 
-  The interface allows us to cherry pick which parts of the module
-  are available for public use by clients. So modules are more than
-  just namespaces for your types, bindings and functions.
- */
+  Everything defined inside the `GithubProject_WithoutInterface` module
+  is public because it does not define its interface.
 
-/*
-  The syntax you see here is applicable only for nested modules. 
-  
-  How do you add an interface for everything else at the top level
-  of this module?
+  Ideally you do not want to expose every implementation detail to
+  the outside clients of the module. Instead you should think of the
+  module interface as the API which the clients will use from
+  other modules.
 
-  In ReScript you create an interface file with the `.resi` extension
-  are put your type defintions inside the `.resi` file.
+  Having an interface allows you to specify the constituents of that
+  public API.
 
-  Within the interface file you can expose types, bindings, functions,
-  and other nested modules.
+  The syntax you see here is only applicable for nested modules. So
+  how do you add an interface for bindings, types and functions
+  defined at the top level of a module?
+
+  The answer is to create a separate interface file. This file has
+  the extension `.resi`. The compiler understands that this is an
+  interface and it only contains the type. It will look for the
+  implementation of this interface in the `.res` file.
+
+  -----------------------------------------------------------------------------
+  Exercise 2
+  -----------------------------------------------------------------------------
+  The `linkTo` function is part of the interface for the `GithubProject`
+  module.
+
+  Remove or comment out the implementation code for `linkTo` from within this
+  module.
+
+  This will result in a compilation error. Read the generated compiler error.
+
+  It essentially tells you that the `linkTo` function is declared in the
+  interface, but the compiler did not find it's impementation within the
+  module.
+
+  Reverse your changes to fix the compilation error, and proceed.
+  -----------------------------------------------------------------------------  
  */
 
 let node: GithubProject.t = {
