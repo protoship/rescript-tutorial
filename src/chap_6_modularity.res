@@ -63,18 +63,18 @@ module GithubProject__WithoutInterface = {
 /*
   Uncomment the line below.
  */
-// module GithubPWI = GithubProject__WithoutInterface
+// module Github_WI = GithubProject__WithoutInterface
 
 /*
   The module name is long and tedious to type often. So we created an alias
-  above. This is shorter and easier to use. When you write: `GithubPWI.t`, 
+  above. This is shorter and easier to use. When you write: `Github_WI.t`, 
   it still refers to this: `GithubProject_WithoutInterface.t`.
  */
 
 /*
   Uncomment the line below.
  */
-// let atom: GithubPWI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
+// let atom: Github_WI.t = {name: "Atom", url: "https://atom.io", repositories: 255, people: 56}
 
 /*
   -----------------------------------------------------------------------------
@@ -93,7 +93,7 @@ module GithubProject__WithoutInterface = {
 /*
   Uncomment the line below.
  */
-// atom->GithubPWI.linkTo // <a href="https://atom.io">Atom</a>
+// atom->Github_WI.linkTo // <a href="https://atom.io">Atom</a>
 
 /*
   Prefix the module name to bring the function you want to call into
@@ -261,8 +261,7 @@ SimpleTest.assertEqual(
 )
 */
 
-/*
-module GithubProject__WithOpaqueType: {
+module GithubProject__OpaqueType: {
   type t
 
   let make: (~name: string, ~url: string, ~repositories: int, ~people: int) => t
@@ -290,18 +289,17 @@ module GithubProject__WithOpaqueType: {
   let updatePeople = (t, count) => {...t, people: t.people + count}
 }
 
-module Github3 = GithubProject__WithOpaqueType
+module Github_OT = GithubProject__OpaqueType
 
-let rails = Github3.make(
+let rails = Github_OT.make(
   ~name="Ruby on Rails",
   ~url="https://rubyonrails.org",
   ~repositories=99,
   ~people=66,
 )
-rails->Github3.linkTo
+rails->Github_OT.linkTo
 
-let rails2 = rails->Github3.updatePeople(5)
-*/
+let rails2 = rails->Github_OT.updatePeople(5)
 
 /*
   -----------------------------------------------------------------------------
