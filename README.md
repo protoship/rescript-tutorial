@@ -1,3 +1,5 @@
+[![License](https://img.shields.io/badge/license-CC%20BY--SA%204.0-orange)](./LICENSE.md)
+
 # Getting started
 
 ```
