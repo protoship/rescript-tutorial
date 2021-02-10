@@ -188,7 +188,7 @@ SimpleTest.assertEqual(
   ~msg="[exercise 2] Calculate discount for 499",
 )
 SimpleTest.assertEqual(
-  ~expected=50,
+  ~expected=40,
   ~actual=calculateDiscount(500),
   ~msg="[exercise 2] Calculate discount for 500",
 )
@@ -221,7 +221,7 @@ SimpleTest.assertEqual(
   available with you. So you can write this:
   
     ```
-    let hindleyPartial = fullName("J. Roger")
+    let hindleyPartial = fullname("J. Roger")
     ```
   
   The `hindleyPartial` is a **partial application** of the function
@@ -231,7 +231,7 @@ SimpleTest.assertEqual(
   Look at the type signatures of both functions:
 
     ```
-    let fullName: (string, string) => string
+    let fullname: (string, string) => string
 
     let hindleyPartial: string => string
     ```
