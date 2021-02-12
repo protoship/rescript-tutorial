@@ -363,7 +363,7 @@ SimpleTest.assertEqual(
   ~msg="[exercise 5] text input for entering first name",
 )
 SimpleTest.assertEqual(
-  ~expected=`<input type="number" name="tickets" min=0 max=5/>`,
+  ~expected=`<input type="number" name="tickets" min="0" max="5" />`,
   ~actual=formInputToHTML(Number("tickets", 0, 5)),
   ~msg="[exercise 5] input for buying upto 5 tickets",
 )
@@ -587,7 +587,7 @@ let projectLinkHTML2 = project => {
   Since records are immutable, this is how you update the value of a 
   record field.
 
-  The `...atom` at the beginning of the record destructures the existing
+  The `...atom` at the beginning of the record spreads (unpacks) the existing
   field values in the record `atom`. The `people` field is then increased
   by one.
  */
@@ -653,7 +653,7 @@ let codersAtWork = {
 
     <div>
       <h2>Coders at Work: Reflections on the Craft of Programming</h2>
-      <p>10 new Paperback avialable in stock</p>
+      <p>10 new Paperback available in stock</p>
     </div>
 
   Notes:
@@ -671,7 +671,7 @@ let bookToHTML = book => ""
 
 let expectedBookHTML = `<div>
     <h2>Coders at Work: Reflections on the Craft of Programming</h2>
-    <p>10 new Paperback avialable in stock</p>
+    <p>10 new Paperback available in stock</p>
 </div>`
 SimpleTest.assertEqual(
   ~expected=expectedBookHTML,
