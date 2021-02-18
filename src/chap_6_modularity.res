@@ -1,5 +1,5 @@
 /*
-  Every individual `.res` file compiles into a module. 
+  Every individual `.res` file compiles into a module.
 
   A file named `hello.res` compiles to a module with the name `Hello`.
 
@@ -67,7 +67,7 @@ module GithubProject__WithoutInterface = {
 
 /*
   The module name is long and tedious to type often. So we created an alias
-  above. This is shorter and easier to use. When you write: `Github_WI.t`, 
+  above. This is shorter and easier to use. When you write: `Github_WI.t`,
   it still refers to this: `GithubProject_WithoutInterface.t`.
  */
 
@@ -78,7 +78,7 @@ module GithubProject__WithoutInterface = {
 
 /*
   -----------------------------------------------------------------------------
-  Exercise 1 
+  Exercise 1
   -----------------------------------------------------------------------------
   The record type defined inside the module is not visible in this lexical
   scope. Therefore manual type annotation is necessary for the `atom` binding.
@@ -109,8 +109,8 @@ module GithubProject__WithoutInterface = {
 /*
   Any binding or type defined in the other modules are also available here.
 
-  Above binding uses the variant type defined the `Chap_3_adt.res` file. 
-  
+  Above binding uses the variant type defined the `Chap_3_adt.res` file.
+
   Here manual annotation is necessary. The `bookFormat` variant is not visible
   in the scope of this module. The type annotation informs the compiler.
  */
@@ -147,7 +147,7 @@ module GithubProject: {
   annotated with a type.
 
     ```
-    module TheModuleName : TheModuleType = 
+    module TheModuleName : TheModuleType =
       TheModuleImplementation
     ```
 
@@ -163,7 +163,7 @@ module GithubProject: {
       }
 
       let linkTo: t => string
-    }   
+    }
     ```
 
   This is known as the interface of the module. Only those types
@@ -211,7 +211,7 @@ module GithubProject: {
   module.
 
   Reverse your changes to fix the compilation error, and proceed.
-  -----------------------------------------------------------------------------  
+  -----------------------------------------------------------------------------
  */
 
 /*
@@ -318,7 +318,7 @@ module Github_OT = GithubProject__OpaqueType
     ```
     type t
     ```
-  
+
   The implemenation is opaque. The type is opaque. From the point of view
   of the client there is no way to know that it is a record.
 
@@ -380,13 +380,13 @@ rails->Github_OT.linkTo
   following code shown below works.
 
     ```
-    rails->Github3.name         // returns: "Ruby on Rails"
-    rails->Github3.url          // returns: "https://rubyonrails.org"
-    rails->Github3.repositories // returns: 99
-    rails->Github3.people       // returns: 66
+    rails->Github_OT.name         // returns: "Ruby on Rails"
+    rails->Github_OT.url          // returns: "https://rubyonrails.org"
+    rails->Github_OT.repositories // returns: 99
+    rails->Github_OT.people       // returns: 66
 
-    let rails2 = rails->Github3.updateRepositories(1)
-    rails2->Github3.repositories // returns: 100
+    let rails2 = rails->Github_OT.updateRepositories(1)
+    rails2->Github_OT.repositories // returns: 100
     ```
   -----------------------------------------------------------------------------
 */
@@ -395,11 +395,11 @@ rails->Github_OT.linkTo
   Uncomment the block below.
  */
 /*
-rails->Github3.name // returns: "Ruby on Rails"
-rails->Github3.url // returns: "https://rubyonrails.org"
-rails->Github3.repositories // returns: 99
-rails->Github3.people // returns: 66
+rails->Github_OT.name // returns: "Ruby on Rails"
+rails->Github_OT.url // returns: "https://rubyonrails.org"
+rails->Github_OT.repositories // returns: 99
+rails->Github_OT.people // returns: 66
 
-let rails2 = rails->Github3.updateRepositories(1)
-rails2->Github3.repositories // returns: 100
+let rails2 = rails->Github_OT.updateRepositories(1)
+rails2->Github_OT.repositories // returns: 100
 */
