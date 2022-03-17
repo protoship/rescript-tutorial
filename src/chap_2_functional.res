@@ -586,7 +586,7 @@ myCharRepeat(~char='@', ~count=6) // @@@@@@
   Which is a cleaner & safer API for the end user? (1 or 2)
 
   1. myCharRepeat(~count=3, ~char='@', ~acc="")
-  2. myCharRepeat(~count=3, ~char='@)
+  2. myCharRepeat(~count=3, ~char='@')
 
   The recursive `aux` (inlined) is a common technique used by functional 
   programmers to hide the accumulator parameter from the end users of the
