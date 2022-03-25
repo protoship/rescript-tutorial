@@ -58,7 +58,7 @@
   the __type inference__ feature at work.
 
   If you are using a recommended editor with the rescript plugin you'll be
-  able to hove over the binding to see the automatically inferred type.
+  able to hover over the binding to see the automatically inferred type.
   
   You'll see that the type of the binding `goodbye` is of `string`.
 
