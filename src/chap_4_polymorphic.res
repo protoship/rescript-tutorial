@@ -56,7 +56,7 @@ let secondInPair = ((_, second): pair<'a>) => second
  */
 
 /*
-  The same function impelmentation can be reused for `pair<int>`, 
+  The same function implementation can be reused for `pair<int>`, 
   `pair<string>` & `pair<float>`.
 
   This is possible because the implemenation of `firstInPair` &
@@ -90,8 +90,8 @@ secondInPair(coords) // 42.3
   function. Every once in a while this results in a runtime error because
   you also get string values as input. 
   
-  There is no explicit notion of types in dynamic langauges. But the code
-  which reads those values have an implict notion of the type of the value
+  There is no explicit notion of types in dynamic languages. But the code
+  which reads those values have an implicit notion of the type of the value
   or rather its data structure.
 
   You can still write robust code in dynamic languages by making explicit
@@ -411,7 +411,7 @@ SimpleTest.assertEqual(
 
   The underscore is used as a name for destructuring the second
   argument of the tuple. This is because we have no use for the
-  second value in the the function. This binding is therefore ignored.
+  second value in the function. This binding is therefore ignored.
 
   In contrast when using `map` you could transform an array of values
   from one type to an array of values of a different or even the same
