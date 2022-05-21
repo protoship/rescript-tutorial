@@ -653,7 +653,7 @@ let codersAtWork = {
 
     <div>
       <h2>Coders at Work: Reflections on the Craft of Programming</h2>
-      <p>10 new Paperback avialable in stock</p>
+      <p>10 new Paperback available in stock</p>
     </div>
 
   Notes:
@@ -671,7 +671,7 @@ let bookToHTML = book => ""
 
 let expectedBookHTML = `<div>
     <h2>Coders at Work: Reflections on the Craft of Programming</h2>
-    <p>10 new Paperback avialable in stock</p>
+    <p>10 new Paperback available in stock</p>
 </div>`
 SimpleTest.assertEqual(
   ~expected=expectedBookHTML,
